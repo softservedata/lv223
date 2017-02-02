@@ -2,7 +2,7 @@ package com.softserve.edu;
 
 public class Appl {
 
-	private String message = "World";
+	private String message = " World";
 
 	private String hello(String text) {
 		return "Hello " + text;
