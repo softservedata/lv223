@@ -4,7 +4,7 @@
  * Copyright (c) No copyright.
  *
  * This program is used to find all natural numbers, which are less then
- * and are mutually simple with the provided number.
+ * and are mutually amicable with the provided number.
  *
  */
 
@@ -27,9 +27,9 @@ public final class Task560 {
     private Task560() {
     }
 
-    /** Used to provide start position for loop.*/
+    /** Used to summarize all dividers of numbers in first loop.*/
     private int sum1 = 0;
-    /** Used to provide start position for loop.*/
+    /** Used to summarize all dividers of numbers in second loop.*/
     private int sum = 0;
     /** Used to provide start position for loop.*/
     private final int startNumber = 200;
@@ -37,7 +37,7 @@ public final class Task560 {
     private final int endNumber = 300;
 
     /**
-     * Method is used to find all mutually simple
+     * Method is used to find all mutually amicable
      * numbers to the provided number.
      *
      */
