@@ -21,7 +21,7 @@ public class SameLastDigits {
         for (int i = 1; i <= n; i++) {
             if (i == ((i * i)
                     % (int) (Math.pow(10, Math.floor(Math.log10(i)) + 1)))) {
-                System.out.print(String.valueOf(i + " "));
+                System.out.print(i + " ");
             }
         }
 
