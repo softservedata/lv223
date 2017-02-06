@@ -1,4 +1,4 @@
-package com.softserve.atqc;
+package SummOfThreeSquares.src.com.softserve.atqc;
 
 /**
  * Class interacts with user through console and represents

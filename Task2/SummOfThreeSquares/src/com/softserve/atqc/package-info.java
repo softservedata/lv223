@@ -5,4 +5,4 @@
  * less than input value.
  */
 
-package com.softserve.atqc;
+package SummOfThreeSquares.src.com.softserve.atqc;

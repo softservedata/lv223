@@ -1,4 +1,4 @@
-package com.softserve.atqc;
+package SummOfTwoSquares.src.com.softserve.atqc;
 
 import java.text.MessageFormat;
 
