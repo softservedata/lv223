@@ -70,12 +70,10 @@ public final class Task182 {
  */
     public static void main(final String[] args) {
         /** Provides the size of array.*/
-        int j;
-        //int j = 7;
+        int j = 7;
 
         /** Array, which provides all numbers, to be analyzed.*/
-        int[] list = new int[j];
-        //int[] inputNumbers = new int[]{15, 20, 24, 12, 7, 4, 25};
+        int[] inputNumbers = new int[]{15, 20, 24, 12, 7, 4, 25};
 
         Task182 solutTask = new Task182();
         solutTask.findNumbersConditionMet(j, inputNumbers);

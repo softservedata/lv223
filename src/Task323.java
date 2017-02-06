@@ -65,8 +65,7 @@ public final class Task323 {
      */
 
     public static void main(final String[] args) {
-        int k;
-        //int k = 50;
+        final int k = 50;
 
         Task323 solutTask = new Task323();
         solutTask.findLessAndSimple(k);
