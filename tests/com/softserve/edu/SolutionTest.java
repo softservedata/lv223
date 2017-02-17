@@ -8,10 +8,11 @@ import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 
 public class SolutionTest {
-   private Solution solut = new Solution();
+   
     
   @BeforeTest
   public void beforeTest() {
+     private Solution solut = new Solution();
       System.out.println("Starting test");
   }
 
