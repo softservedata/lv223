@@ -1,11 +1,11 @@
-package com.softserve.atqc;
+package com.softserve.edu.find_max_degree;
+
 /**
- * Class provides functionality to calculate maximum degree that number 4
- * can be raised to and the result is less than input value.
+ * Class provides functionality to calculate maximum degree that number 4 can be
+ * raised to and the result is less than input value.
  * @version 02.02.2017
  */
-
-public class CalculateResult {
+public class CalculationMaxDegree {
 
     /**
      * Related to the task value to be raised to degree.
@@ -13,8 +13,8 @@ public class CalculateResult {
     private final int numberToRaise = 4;
 
     /**
-     * Method calculates maximum degree that 4 can be
-     * raised to and  less than input value.
+     * Method calculates maximum degree that 4 can be raised to and less than
+     * input value.
      * @param value parsed parameter from command line as the number.
      * @return maximum degree, integer value.
      */

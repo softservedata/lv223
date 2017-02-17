@@ -1,21 +1,24 @@
-package com.softserve.atqc;
+package com.softserve.edu.find_max_degree;
+
+import com.softserve.edu.UserInfoValidator;
+import com.softserve.edu.ConsoleOutput;
 
 /**
  * Class interacts with user through console and initialize calculation of
  * maximum degree.
  * @version 02.02.2017
  */
-public class Main {
+public class RunMaxDegree {
 
-    /**
-     * Instance on UserInfo class.
-     */
-    private UserInfo userInfo = new UserInfo();
-    /**
-     * Instance of CalculateResult class.
-     */
-    private CalculateResult calc = new CalculateResult();
+    private ConsoleOutput toConsole;
+    private UserInfoValidator userInfo;
+    private CalculationMaxDegree calc;
 
+    public RunMaxDegree(){
+        toConsole = new ConsoleOutput();
+        userInfo = new UserInfoValidator();
+        calc = new CalculationMaxDegree();
+    }
     /**
      * Takes userNumber from console, calculates maximum degree of number and
      * prints it to console. Works until user not type "q".
@@ -26,23 +29,25 @@ public class Main {
             if (!userInfo.validateStringValue(userValue)) {
                 continue;
             }
-
             int parsedValue = userInfo.getUserNumber();
             if (userInfo.validateDigitValue(parsedValue)) {
                 int result = calc.getMaxDegree(parsedValue);
-                userInfo.printResult(result);
+                toConsole.printResult(result);
             } else {
                 continue;
             }
         }
+        
+      
     }
 
     /**
      * Main method.
      * @param args from console
      */
-    public static void main(final String[] args) {
-        Main main = new Main();
-        main.interact();
+    public static void main(String[] args) {
+        RunMaxDegree interact = new RunMaxDegree();
+        interact.interact();
     }
+
 }

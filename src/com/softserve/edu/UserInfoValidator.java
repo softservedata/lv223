@@ -1,4 +1,4 @@
-package com.softserve.atqc;
+package com.softserve.edu;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,20 +8,21 @@ import java.io.InputStreamReader;
  * Class provides functionality to read and validate user info.
  * @version 02.02.2017
  */
-public class UserInfo {
+public class UserInfoValidator {
+    
     /**
      * Header message.
      */
-	private String headerInfo = "Please, enter value to represent into three"
-	        + " squares:\n(Or press \"q\" to exit)";
+	private static String headerInfo = "Please, enter value:\n(Or press \"q\" to exit)";
     /**
      * Message, that appears when incorrect data typed.
      */
-	private String failMessage = "Incorrect value. Please, try again.";
+	private static String failMessage = "Incorrect value. Please, try again.";
     /**
      * Instance of reader, is used to read data from console.
      */
 	private BufferedReader reader;
+	
     /**
      * Includes parsed to Number data from console.
      */
@@ -31,7 +32,7 @@ public class UserInfo {
      * Constructor of class, initializing instance of BufferedReader
      * to read data from console.
      */
-	public UserInfo() {
+	public UserInfoValidator() {
 		reader = new BufferedReader(new InputStreamReader(System.in));
 	}
 
@@ -42,7 +43,7 @@ public class UserInfo {
 	public final int getUserNumber() {
 		return userNumber;
 	}
-
+	
     /**
      * Reads user value from console.
      * @return String value from console input
@@ -79,7 +80,7 @@ public class UserInfo {
      * @return true if value is valid, false if not
      */
 	public final boolean validateStringValue(final String value) {
-		if (value.equalsIgnoreCase("Q")) {
+		if (value.trim().equalsIgnoreCase("Q")) {
 			System.exit(0);
 		} else if (value.equals("")) {
 			System.out.println(failMessage);
@@ -90,9 +91,8 @@ public class UserInfo {
 		return true;
 	}
 	
-    /**
+	 /**
      *  Validates if parsed to integer data from console is natural number
-     *  (according to the task).
      *  @param value from console
      *  @return true if natural number, false if not
      */
@@ -105,3 +105,4 @@ public class UserInfo {
 		}
 	}
 }
+
