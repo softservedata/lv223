@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test name="testing">
+  <parameter name = "n" value = "79"/>
+  <parameter name ="expected" value="1,79"></parameter>
+  <parameter name = "nForPrimeDivisors" value = "76"/>
+  <parameter name ="expectedPrimeDivisors" value="1,2,19"></parameter>
+  <parameter name = "nForSameLastDigits" value = "99"/>
+  <parameter name ="expectedSameLastDigits" value="1,5,6,25,76"></parameter>
+    <classes>
+      <class name="com.softserve.edu.TestMethodsXML"/>
+    </classes>
+  </test><!-- Test -->
+</suite><!-- Suite -->

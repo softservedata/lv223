@@ -3,7 +3,7 @@
  * Created by Artem Redchyts on 01.02.2017.
  */
 
-package tasks;
+package com.softserve.edu;
 
 import java.util.Random;
 
@@ -20,21 +20,20 @@ public class Main {
        */
 
         Random rand = new Random();
-        int n = rand.nextInt(100) + 1; // random value for n from 1 to 100
+        int n = rand.nextInt(100); // random value for n from 0 to 1000
         System.out.println("n = " + n);
 
         NaturalDivisors nat = new NaturalDivisors();
-        nat.Func(n);
-
+        nat.func(n);  //calling a function to find natural divisors of n
         System.out.println();
 
         PrimeDivisors sim = new PrimeDivisors();
-        sim.Func(n);
+        sim.func(76); //calling a function to find prime divisors of n
 
         System.out.println();
 
         SameLastDigits same = new SameLastDigits();
-        same.Func(n);
+        same.func(99); //calling a function to find same last digits from 1 to n
 
     }
 }
