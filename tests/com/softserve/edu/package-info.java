@@ -1,5 +1,5 @@
 /**
- * Package for solution.
+ * Package for tests.
  *
  * @since 1.0
  *

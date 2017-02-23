@@ -4,9 +4,9 @@
  * Copyright (c) No copyright.
  *
  * This class is used to find all natural numbers, which are less then
- * and are mutually simple with the provided number; all natural numbers, 
+ * and are mutually simple with the provided number; all natural numbers,
  * which are less then  * and are mutually amicable with the provided number;
- * provide solution  * for uncommon situation, when You need to  * find all 
+ * provide solution  * for uncommon situation, when You need to  * find all
  * numbers from array, divided  * by 5 and not divided by 7.
  *
  */
@@ -24,13 +24,14 @@ import java.util.ArrayList;
  */
 
 public class Solution {
-    
+
     /**
      * Simple constructor.
      */
+
     public Solution() {
     }
-    
+
     /** Used to provide start position for loop.*/
     private final int l = 2;
     /** Used to count numbers, that match the condition.*/
@@ -42,12 +43,13 @@ public class Solution {
     /** Second number in condition, that should be matched. */
     private final int secondNumber = 7;
     /** Used to summarize all dividers of numbers in first loop.*/
-    private int sum1 = 0;    
-    /** Used to provide start position for loop.*/
-    private final int startNumber = 200;
-    /** Used to provide start position for loop.*/
-    private final int endNumber = 300;
-    
+    private int sum1 = 0;
+    /** List, used to provide with method results. Type Integer. */
+    ArrayList<Integer> resultList;
+    /** List, used to provide with method results. Type String.*/
+    ArrayList<String> resuList;
+
+
     /**
      * Method is used to find all mutually simple
      * numbers to the provided number.
@@ -55,47 +57,60 @@ public class Solution {
      *@param k
      * Provided number, which should be analyzed.
      *
+     *@return resultList
+     *List, which contains data after analysis.
+     *
      */
 
     public ArrayList<Integer> findLessAndSimple(final int k) {
-       ArrayList<Integer> resultList = new ArrayList<Integer>();
-       for (int i = l; i < k;) {
-            for (int j = l; j <= i && i < k;) {
-                if (i % j == 0 && i >= j && k % j == 0) {
-                        i++;
-                        j = l;
-                    } else {
-                        if (j == i) {
-                            /** Prints out numbers, which met the condition.*/
-                            resultList.add(i);
-                                i++;
-                            j = (l - 1);
-                        }
-                        j++;
-                }
-            }
-                    }
-        return resultList;
+       resultList = new ArrayList<Integer>();
+       if (k <= 0) {
+           System.out.println("Please provide with valid input. Press N");
+       } else {
+           for (int i = l; i < k;) {
+               for (int j = l; j <= i && i < k;) {
+                   if (i % j == 0 && i >= j && k % j == 0) {
+                           i++;
+                           j = l;
+                       } else {
+                           if (j == i) {
+                               /** Adds numbers, which met the condition
+                                *  to list.*/
+                               resultList.add(i);
+                                   i++;
+                               j = (l - 1);
+                           }
+                           j++;
+                   }
+               }
+                       }
+           }
+         return resultList;
     }
-    
-    
 
     /**
      * Method is used to find all mutually amicable
      * numbers to the provided number.
      *
+     *@param list
+     *Provides amount of numbers for analysis.
+     *
+     *@return resultList
+     * List, which contains data after analysis.
      */
 
-    public ArrayList<String> findMutuallyAmicable() {
-        ArrayList<String> resuList = new ArrayList<String>();
-        for (int i = startNumber; i <= endNumber; i++) {
+
+    public ArrayList<String> findMutuallyAmicable(
+            final ArrayList<Integer> list) {
+        resuList = new ArrayList<String>();
+        for (int i = list.get(0); i <= list.get(1); i++) {
             for (int n = 1; n < i; n++) {
                         if (i % n == 0) {
                     sum += n;
                 }
             }
-            if (sum > startNumber && sum <= endNumber) {
-                for (int j = startNumber; j <= endNumber; j++) {
+            if (sum > list.get(0) && sum <= list.get(1)) {
+                for (int j = list.get(0); j <= list.get(1); j++) {
                     if (sum == j) {
                         for (int n = 1; n < j; n++) {
                             if (j % n == 0) {
@@ -103,7 +118,7 @@ public class Solution {
                     }
                 }
                         if (sum1 == i) {
-                            /** Prints out numbers, which met the condition.*/
+                            /** Adds to list numbers, which met the condition.*/
                             resuList.add(i + " is mutually amicable to "
                                      + j);
                         }
@@ -112,40 +127,38 @@ public class Solution {
                 }
             }
             sum = 0;
-            }
-        return resuList;
-    }   
-    
+        }
+                return resuList;
+    }
 
     /**
     * Method is used to analyze provided numbers for meeting the condition.
-    *
-    * @param j
-    * Input number, which specifies the size of array for numbers,
-    * which should be ananalyzed for condition.
     *
     * @param list
     * Array list is used to provide us with numbers, that should be
     * analyzed for meeting the condition : be divided by 5 and not be
     * divided by 7.
+
+    * @return resultList
+    * List, which contains data after analysis.
     */
 
-    public int[] findNumbersConditionMet(final int j, final int[] list) {
-        int[] resultList = new int[2];       
-        for (int i = 0; i < j; i++) {
-            if (((list[i] % firstNumber) == 0)
-               && ((list[i] % secondNumber) != 0)) {
+    public ArrayList<Integer> findNumbersConditionMet(
+            final ArrayList<Integer> list) {
+    resultList = new ArrayList<Integer>();
+        for (int i = 0; i < list.size(); i++) {
+            if (((list.get(i) % firstNumber) == 0)
+               && ((list.get(i) % secondNumber) != 0)) {
                    count++;
-                   sum += list[i];
+                   sum += list.get(i);
             }
         }
+
         /** Prints out the amount of numbers, which met the condition and
          * the summ of such numbers. */
-        resultList[0] = count;
-        resultList[1] = sum;
+        resultList.add(count);
+        resultList.add(sum);
         return resultList;
     }
-    
-    
-    
+
 }
