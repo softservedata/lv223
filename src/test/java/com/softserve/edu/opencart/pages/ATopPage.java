@@ -22,7 +22,6 @@ public abstract class ATopPage {
     		this.pound = driver.findElement(By.name("GBP"));
     		this.dollar = driver.findElement(By.name("USD"));
     	}
-
 	}
 
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -35,7 +34,6 @@ public abstract class ATopPage {
     		this.register = driver.findElement(By.xpath("//a[contains(@href, 'account/register')]"));
     		this.login = driver.findElement(By.xpath("//a[contains(@href, 'account/login')]"));
     	}
-
 	}
 
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
