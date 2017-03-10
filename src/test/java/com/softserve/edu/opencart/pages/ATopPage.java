@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 
 import com.softserve.edu.opencart.tools.GeneralException;
 
-public abstract class ATopPage {
+abstract class ATopPage {
 
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -40,8 +40,8 @@ public abstract class ATopPage {
 
 	// Fields
 
-	private final String ATTRIBUTE_VALUE = "value";
-	private final String VISIBLE_ERROR_MESSAGE = "Element not visible";
+	public static final String ATTRIBUTE_VALUE = "value";
+	private static final String VISIBLE_ERROR_MESSAGE = "Element not visible";
 	//
 	protected WebDriver driver;
 	//
