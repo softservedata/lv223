@@ -26,6 +26,30 @@ abstract class AVerticalMenuPage extends AMenuPage {
 
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+	private class LaptopsAVerticalMenuPage {
+		public final WebElement vertApple;
+		public final int vertAppleCount;
+		public final WebElement vertHp;
+		public final int vertHpCount;
+		public final WebElement vertOthers;
+		public final int vertOthersCount;
+		public final WebElement vertSamsung;
+		public final int vertSamsungCount;
+
+		public LaptopsAVerticalMenuPage() {
+			this.vertApple = driver.findElement(By.partialLinkText("- PC ("));
+			this.vertAppleCount = CountUtils.getCountInBrackets(this.vertApple.getText());
+			this.vertHp = driver.findElement(By.partialLinkText("- Mac ("));
+			this.vertHpCount = CountUtils.getCountInBrackets(this.vertHp.getText());
+			this.vertOthers = driver.findElement(By.partialLinkText("?"));
+			this.vertOthersCount = CountUtils.getCountInBrackets(this.vertOthers.getText());
+			this.vertSamsung = driver.findElement(By.partialLinkText("?"));
+			this.vertSamsungCount = CountUtils.getCountInBrackets(this.vertOthers.getText());
+		}
+	}
+
+	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 	// Fields
 
 	private WebElement home;
@@ -96,6 +120,59 @@ abstract class AVerticalMenuPage extends AMenuPage {
 	public WebElement getVertLaptops() {
 		return this.vertLaptops;
 	}
+
+	public LaptopsAVerticalMenuPage getVertLaptopsMenu() {
+		return this.getVertLaptopsMenu();
+	}
+
+	public WebElement getLaptopsApple() {
+		clickVertLaptops();
+		return getVertLaptopsMenu().vertApple;
+	}
+
+	public int getVertAppleCount() {
+		if (getVertLaptopsMenu() == null) {
+			clickVertLaptops();
+		}
+		return getVertLaptopsMenu().vertAppleCount;
+	}
+
+	public WebElement getVertLaptopsHp() {
+		clickVertLaptops();
+		return getVertLaptopsMenu().vertHp;
+	}
+
+	public int getVertHpCount() {
+		if (getVertLaptopsMenu() == null) {
+			clickVertLaptops();
+		}
+		return getVertLaptopsMenu().vertHpCount;
+	}
+
+	public WebElement getLaptopsSamsung() {
+		clickVertLaptops();
+		return getVertLaptopsMenu().vertSamsung;
+	}
+
+	public int getVertSamsungCount() {
+		if (getVertLaptopsMenu() == null) {
+			clickVertLaptops();
+		}
+		return getVertLaptopsMenu().vertSamsungCount;
+	}
+
+	public WebElement getVertLaptopsOthers() {
+		clickVertLaptops();
+		return getVertLaptopsMenu().vertOthers;
+	}
+
+	public int getVertOthersCount() {
+		if (getVertLaptopsMenu() == null) {
+			clickVertLaptops();
+		}
+		return getVertLaptopsMenu().vertOthersCount;
+	}
+
 
 	public WebElement getVertComponents() {
 		return this.vertComponents;

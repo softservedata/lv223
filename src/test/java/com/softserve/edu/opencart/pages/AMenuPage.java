@@ -26,12 +26,35 @@ abstract class AMenuPage extends ATopPage {
 
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+	private class LaptopsAMenuPage {
+		public final WebElement apple;
+		public final WebElement hp;
+		public final WebElement others;
+		public final WebElement samsung;
+		public final WebElement allLaptops;
+
+		public LaptopsAMenuPage() {
+			this.apple = driver.findElement(By.xpath
+					("(//div[@class='dropdown-inner']//li/a[contains(text(),'Apple (')])[1]"));
+			this.hp = driver.findElement(By.xpath
+					("//div[@class='dropdown-inner']//li/a[contains(text(),'HP (')]"));
+			this.others = driver.findElement(By.xpath
+					("(//div[@class='dropdown-inner']//li/a[contains(text(),'Others (')])[1]"));
+			this.samsung = driver.findElement(By.xpath
+					("(//div[@class='dropdown-inner']//li/a[contains(text(),'Samsung (')])[1]"));
+			this.allLaptops = driver.findElement(By.partialLinkText("Show All Laptops"));
+		}
+	}
+
+	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 	// Fields
 	
 	// Horizontal Menu
 	private WebElement desktops;
 	private DesktopsAMenuPage desktopsMenu;
 	private WebElement laptops;
+	private LaptopsAMenuPage laptopsMenu;
 	private WebElement components;
 	private WebElement tablets;
 	private WebElement software;
@@ -87,6 +110,27 @@ abstract class AMenuPage extends ATopPage {
 
 	public WebElement getLaptops() {
 		return this.laptops;
+	}
+
+	public WebElement getLaptopsApple() {
+		clickLaptops();
+		return this.laptopsMenu.apple;
+
+	}
+	public WebElement getLaptopsHp() {
+		clickLaptops();
+		return this.laptopsMenu.hp;
+
+	}
+	public WebElement getLaptopsOthers() {
+		clickLaptops();
+		return this.laptopsMenu.others;
+
+	}
+	public WebElement getLaptopsSamsung() {
+		clickLaptops();
+		return this.laptopsMenu.samsung;
+
 	}
 
 	public WebElement getComponents() {
@@ -168,8 +212,13 @@ abstract class AMenuPage extends ATopPage {
 
 	public void clickLaptops() {
 		getLaptops().click();
-		// TODO
+		laptopsMenu = new LaptopsAMenuPage();
 	}
+
+	public void clickLaptopsApple(){ getLaptopsApple().click();}
+	public void clickLaptopsHp(){ getLaptopsHp().click();}
+	public void clickLaptopsOthers(){ getLaptopsOthers().click();}
+	public void clickLaptopsSamsung(){ getLaptopsSamsung().click();}
 
 	public void clickComponents() {
 		getComponents().click();
