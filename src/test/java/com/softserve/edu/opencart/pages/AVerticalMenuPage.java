@@ -8,217 +8,340 @@ import com.softserve.edu.opencart.tools.CountUtils;
 
 abstract class AVerticalMenuPage extends AMenuPage {
 
-	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-	private class DesktopsAVerticalMenuPage {
-		public final WebElement vertPc;
-		public final int vertPcCount;
-		public final WebElement vertMac;
-		public final int vertMacCount;
+    // - - - - - - - - - -DESKTOPS - - - - - - - - - - -
 
-		public DesktopsAVerticalMenuPage() {
-			this.vertPc = driver.findElement(By.partialLinkText("- PC ("));
-			this.vertPcCount = CountUtils.getCountInBrackets(this.vertPc.getText());
-			this.vertMac = driver.findElement(By.partialLinkText("- Mac ("));
-			this.vertMacCount = CountUtils.getCountInBrackets(this.vertMac.getText());
-		}
-	}
+    private class DesktopsAVerticalMenuPage {
+        public final WebElement vertPc;
+        public final int vertPcCount;
+        public final WebElement vertMac;
+        public final int vertMacCount;
 
-	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        public DesktopsAVerticalMenuPage() {
+            this.vertPc = driver.findElement(By.partialLinkText("- PC ("));
+            this.vertPcCount = CountUtils.getCountInBrackets(this.vertPc.getText());
+            this.vertMac = driver.findElement(By.partialLinkText("- Mac ("));
+            this.vertMacCount = CountUtils.getCountInBrackets(this.vertMac.getText());
+        }
+    }
 
-	// Fields
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-	private WebElement home;
-	//
-	// Vertical Menu
-	private WebElement vertDesktops;
-	private DesktopsAVerticalMenuPage vertDesktopsMenu;
-	private WebElement vertLaptops;
-	private WebElement vertComponents;
-	private WebElement vertTablets;
-	private WebElement vertSoftware;
-	private WebElement vertPhones;
-	private WebElement vertCameras;
-	private WebElement vertPlayers;
+    // - - - - - - - - - -LAPTOPS - - - - - - - - - - -
 
-	protected AVerticalMenuPage(WebDriver driver) {
-		super(driver);
-		this.vertDesktops = driver.findElement(By.partialLinkText("Desktops ("));
-		this.vertLaptops = driver.findElement(By.partialLinkText("Laptops & Notebooks ("));
-		this.vertComponents = driver.findElement(By.partialLinkText("Components ("));
-		this.vertTablets = driver.findElement(By.partialLinkText("Tablets ("));
-		this.vertSoftware = driver.findElement(By.partialLinkText("Software ("));
-		this.vertPhones = driver.findElement(By.partialLinkText("Phones & PDAs ("));
-		this.vertCameras = driver.findElement(By.partialLinkText("Cameras ("));
-		this.vertPlayers = driver.findElement(By.partialLinkText("MP3 Players ("));
-	}
+    private class LaptopsAVerticalMenuPage {
+        public final WebElement vertApple;
+        public final int vertAppleCount;
+        public final WebElement vertHp;
+        public final int vertHpCount;
+        public final WebElement vertOthers;
+        public final int vertOthersCount;
+        public final WebElement vertSamsung;
+        public final int vertSamsungCount;
 
-	// PageObject
+        public LaptopsAVerticalMenuPage() {
+            this.vertApple = driver.findElement(By.partialLinkText(""));
+            this.vertAppleCount = CountUtils.getCountInBrackets(this.vertApple.getText());
+            this.vertHp = driver.findElement(By.partialLinkText(""));
+            this.vertHpCount = CountUtils.getCountInBrackets(this.vertHp.getText());
+            this.vertOthers = driver.findElement(By.partialLinkText(""));
+            this.vertOthersCount = CountUtils.getCountInBrackets(this.vertOthers.getText());
+            this.vertSamsung = driver.findElement(By.partialLinkText(""));
+            this.vertSamsungCount = CountUtils.getCountInBrackets(this.vertSamsung.getText());
+        }
+    }
 
-	// get Data
+    // Fields
 
-	public WebElement getHome() {
-		return this.home;
-	}
+    private WebElement home;
+    //
+    // Vertical Menu
+    private WebElement vertDesktops;
+    private DesktopsAVerticalMenuPage vertDesktopsMenu;
+    private WebElement vertLaptops;
+    private LaptopsAVerticalMenuPage vertLaptopsMenu;
+    private WebElement vertComponents;
+    private WebElement vertTablets;
+    private WebElement vertSoftware;
+    private WebElement vertPhones;
+    private WebElement vertCameras;
+    private WebElement vertPlayers;
 
-	public WebElement getVertDesktops() {
-		return this.vertDesktops;
-	}
+    protected AVerticalMenuPage(WebDriver driver) {
+        super(driver);
+        this.vertDesktops = driver.findElement(By.partialLinkText("Desktops ("));
+        this.vertLaptops = driver.findElement(By.partialLinkText("Laptops & Notebooks ("));
+        this.vertComponents = driver.findElement(By.partialLinkText("Components ("));
+        this.vertTablets = driver.findElement(By.partialLinkText("Tablets ("));
+        this.vertSoftware = driver.findElement(By.partialLinkText("Software ("));
+        this.vertPhones = driver.findElement(By.partialLinkText("Phones & PDAs ("));
+        this.vertCameras = driver.findElement(By.partialLinkText("Cameras ("));
+        this.vertPlayers = driver.findElement(By.partialLinkText("MP3 Players ("));
+    }
 
-	public DesktopsAVerticalMenuPage getVertDesktopsMenu() {
-		return this.vertDesktopsMenu;
-	}
+    // PageObject
 
-	public WebElement getVertDesktopsPc() {
-		clickVertDesktops();
-		return getVertDesktopsMenu().vertPc;
-	}
+    // get Data
 
-	public int getVertPcCount() {
-		if (getVertDesktopsMenu() == null) {
-			clickVertDesktops();
-		}
-		return getVertDesktopsMenu().vertPcCount;
-	}
+    public WebElement getHome() {
+        return this.home;
+    }
 
-	public WebElement getVertDesktopsMac() {
-		clickVertDesktops();
-		return getVertDesktopsMenu().vertMac;
-	}
+    // - - - - - - - - - -DESKTOPS - - - - - - - - - - -
 
-	public int getVertMacCount() {
-		if (getVertDesktopsMenu() == null) {
-			clickVertDesktops();
-		}
-		return getVertDesktopsMenu().vertMacCount;
-	}
+    public WebElement getVertDesktops() {
+        return this.vertDesktops;
+    }
 
-	public WebElement getVertLaptops() {
-		return this.vertLaptops;
-	}
+    public DesktopsAVerticalMenuPage getVertDesktopsMenu() {
+        return this.vertDesktopsMenu;
+    }
 
-	public WebElement getVertComponents() {
-		return this.vertComponents;
-	}
+    public WebElement getVertDesktopsPc() {
+        clickVertDesktops();
+        return getVertDesktopsMenu().vertPc;
+    }
 
-	public WebElement getVertTablets() {
-		return this.vertTablets;
-	}
+    public int getVertPcCount() {
+        if (getVertDesktopsMenu() == null) {
+            clickVertDesktops();
+        }
+        return getVertDesktopsMenu().vertPcCount;
+    }
 
-	public WebElement getVertSoftware() {
-		return this.vertSoftware;
-	}
+    public WebElement getVertDesktopsMac() {
+        clickVertDesktops();
+        return getVertDesktopsMenu().vertMac;
+    }
 
-	public WebElement getVertPhones() {
-		return this.vertPhones;
-	}
+    public int getVertMacCount() {
+        if (getVertDesktopsMenu() == null) {
+            clickVertDesktops();
+        }
+        return getVertDesktopsMenu().vertMacCount;
+    }
 
-	public WebElement getVertCameras() {
-		return this.vertCameras;
-	}
+    // - - - - - - - - - -LAPTOPS - - - - - - - - - - -
 
-	public WebElement getVertPlayers() {
-		return this.vertPlayers;
-	}
+    public WebElement getVertLaptops() {
+        return this.vertLaptops;
+    }
 
-	// Functional
+    public LaptopsAVerticalMenuPage getVertLaptopsMenu() {
+        return this.vertLaptopsMenu;
+    }
 
-	public String getVertDesktopsText() {
-		return getVertDesktops().getText();
-	}
+    public WebElement getVertLaptopsApple() {
+        clickVertLaptops();
+        return getVertLaptopsMenu().vertApple;
+    }
 
-	public String getVertDesktopsPcText() {
-		return getVertDesktopsPc().getText();
-	}
+    public int getVertLaptopsAppleCount() {
+        if (getVertLaptopsMenu() == null) {
+            clickVertLaptops();
+        }
+        return getVertLaptopsMenu().vertAppleCount;
+    }
 
-	public String getVertDesktopsMacText() {
-		return getVertDesktopsMac().getText();
-	}
+    public WebElement getVertLaptopsHp() {
+        clickVertLaptops();
+        return getVertLaptopsMenu().vertHp;
+    }
 
-	public String getVertLaptopsText() {
-		return getVertLaptops().getText();
-	}
+    public int getVertLaptopsHpCount() {
+        if (getVertLaptopsMenu() == null) {
+            clickVertLaptops();
+        }
+        return getVertLaptopsMenu().vertHpCount;
+    }
 
-	public String getVertComponentsText() {
-		return getVertComponents().getText();
-	}
+    public WebElement getVertLaptopsSamsung() {
+        clickVertLaptops();
+        return getVertLaptopsMenu().vertSamsung;
+    }
 
-	public String getVertTabletsText() {
-		return getVertTablets().getText();
-	}
+    public int getVertLaptopsSamsungCount() {
+        if (getVertLaptopsMenu() == null) {
+            clickVertLaptops();
+        }
+        return getVertLaptopsMenu().vertSamsungCount;
+    }
 
-	public String getVertSoftwareText() {
-		return getVertSoftware().getText();
-	}
+    public WebElement getVertLaptopsOthers() {
+        clickVertLaptops();
+        return getVertLaptopsMenu().vertOthers;
+    }
 
-	public String getVertPhonesText() {
-		return getVertPhones().getText();
-	}
+    public int getVertLaptopsOthersCount() {
+        if (getVertLaptopsMenu() == null) {
+            clickVertLaptops();
+        }
+        return getVertLaptopsMenu().vertOthersCount;
+    }
 
-	public String getVertCamerasText() {
-		return getVertCameras().getText();
-	}
 
-	public String getVertPlayersText() {
-		return getVertPlayers().getText();
-	}
+    public WebElement getVertComponents() {
+        return this.vertComponents;
+    }
 
-	// set Data
+    public WebElement getVertTablets() {
+        return this.vertTablets;
+    }
 
-	public void clickHome() {
-		getHome().click();
-	}
+    public WebElement getVertSoftware() {
+        return this.vertSoftware;
+    }
 
-	public void clickVertDesktops() {
-		getVertDesktops().click();
-		vertDesktopsMenu = new DesktopsAVerticalMenuPage();
-	}
+    public WebElement getVertPhones() {
+        return this.vertPhones;
+    }
 
-	public void clickVertDesktopsPc() {
-		getVertDesktopsPc().click();
-	}
+    public WebElement getVertCameras() {
+        return this.vertCameras;
+    }
 
-	public void clickVertDesktopsMac() {
-		getVertDesktopsMac().click();
-	}
+    public WebElement getVertPlayers() {
+        return this.vertPlayers;
+    }
 
-	public void clickVertLaptops() {
-		getLaptops().click();
-		// TODO
-	}
+    // Functional
 
-	public void clickVertComponents() {
-		getVertComponents().click();
-		// TODO
-	}
+    // - - - - - - - - - -DESKTOPS - - - - - - - - - - -
 
-	public void clickVertTablets() {
-		getVertTablets().click();
-	}
+    public String getVertDesktopsText() {
+        return getVertDesktops().getText();
+    }
 
-	public void clickVertSoftware() {
-		getVertSoftware().click();
-	}
+    public String getVertDesktopsPcText() {
+        return getVertDesktopsPc().getText();
+    }
 
-	public void clickVertPhones() {
-		getVertPhones().click();
-	}
+    public String getVertDesktopsMacText() {
+        return getVertDesktopsMac().getText();
+    }
 
-	public void clickVertCameras() {
-		getVertCameras().click();
-	}
+    // - - - - - - - - - -LAPTOPS - - - - - - - - - - -
 
-	public void clickVertPlayers() {
-		getVertPlayers().click();
-		// TODO
-	}
+    public String getVertLaptopsText() {
+        return getVertLaptops().getText();
+    }
 
-	// Business Logic
+    public String getVertLaptopsAppleText() {
+        return getVertLaptopsApple().getText();
+    }
 
-	public ProductListPage gotoVertDesktops() {
-		clickVertDesktops();
-		return new ProductListPage(driver,
-				driver.findElements(By.cssSelector("div.product-layout.product-grid.col-lg-4.col-md-4.col-sm-6.col-xs-12")));
-	}
+    public String getVertLaptopsHpText() {
+        return getVertLaptopsHp().getText();
+    }
 
+    public String getVertLaptopsSamsungText() {
+        return getVertLaptopsSamsung().getText();
+    }
+
+    public String getVertLaptopsOthersText() {
+        return getVertLaptopsOthers().getText();
+    }
+
+    public String getVertComponentsText() {
+        return getVertComponents().getText();
+    }
+
+    public String getVertTabletsText() {
+        return getVertTablets().getText();
+    }
+
+    public String getVertSoftwareText() {
+        return getVertSoftware().getText();
+    }
+
+    public String getVertPhonesText() {
+        return getVertPhones().getText();
+    }
+
+    public String getVertCamerasText() {
+        return getVertCameras().getText();
+    }
+
+    public String getVertPlayersText() {
+        return getVertPlayers().getText();
+    }
+
+    // set Data
+
+    public void clickHome() {
+        getHome().click();
+    }
+
+    // - - - - - - - - - -DESKTOPS - - - - - - - - - - -
+
+    public void clickVertDesktops() {
+        getVertDesktops().click();
+        vertDesktopsMenu = new DesktopsAVerticalMenuPage();
+    }
+
+    public void clickVertDesktopsPc() {
+        getVertDesktopsPc().click();
+    }
+
+    public void clickVertDesktopsMac() {
+        getVertDesktopsMac().click();
+    }
+
+    // - - - - - - - - - -LAPTOPS - - - - - - - - - - -
+
+    public void clickVertLaptops() {
+        getLaptops().click();
+    }
+
+    public void clickVertLaptopsApple() {
+        getVertLaptopsApple().click();
+    }
+
+    public void clickVertLaptopsHp() {
+        getVertLaptopsHp().click();
+    }
+
+    public void clickVertLaptopsSamsung() {
+        getVertLaptopsSamsung().click();
+    }
+
+    public void clickVertLaptopsOthers() {
+        getVertLaptopsOthers().click();
+    }
+
+
+    public void clickVertComponents() {
+        getVertComponents().click();
+        // TODO
+    }
+
+    public void clickVertTablets() {
+        getVertTablets().click();
+    }
+
+    public void clickVertSoftware() {
+        getVertSoftware().click();
+    }
+
+    public void clickVertPhones() {
+        getVertPhones().click();
+    }
+
+    public void clickVertCameras() {
+        getVertCameras().click();
+    }
+
+    public void clickVertPlayers() {
+        getVertPlayers().click();
+        // TODO
+    }
+
+    // Business Logic
+
+    public ProductListPage gotoVertDesktops() {
+        clickVertDesktops();
+        return new ProductListPage(driver,
+                driver.findElements(By.cssSelector("div.product-layout.product-grid.col-lg-4.col-md-4.col-sm-6.col-xs-12")));
+    }
 }

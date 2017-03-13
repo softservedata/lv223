@@ -6,44 +6,68 @@ import org.openqa.selenium.WebElement;
 
 abstract class AMenuPage extends ATopPage {
 
-	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // - - - - - - - - - -DESKTOPS - - - - - - - - - - -
 
-	private class DesktopsAMenuPage {
-		public final WebElement pc;
-		public final WebElement mac;
-		public final WebElement allDesktops;
+    private class DesktopsAMenuPage {
+        public final WebElement pc;
+        public final WebElement mac;
+        public final WebElement allDesktops;
 
-		public DesktopsAMenuPage() {
-			/*-
-    		this.pc = driver.findElement(By.partialLinkText("PC ("));
+        public DesktopsAMenuPage() {
+            /*-
+            this.pc = driver.findElement(By.partialLinkText("PC ("));
     		this.mac = driver.findElement(By.partialLinkText("Mac ("));
 			*/
-    		this.pc = driver.findElement(By.xpath("//div[@class='dropdown-inner']//li/a[contains(text(),'PC (')]"));
-    		this.mac = driver.findElement(By.xpath("//div[@class='dropdown-inner']//li/a[contains(text(),'Mac (')]"));
-    		this.allDesktops = driver.findElement(By.partialLinkText("Show All Desktops"));
-    	}
-	}
+            this.pc = driver.findElement(By.xpath("//div[@class='dropdown-inner']//li/a[contains(text(),'PC (')]"));
+            this.mac = driver.findElement(By.xpath("//div[@class='dropdown-inner']//li/a[contains(text(),'Mac (')]"));
+            this.allDesktops = driver.findElement(By.partialLinkText("Show All Desktops"));
+        }
+    }
 
-	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // - - - - - - - - - -LAPTOPS - - - - - - - - - - -
 
-	// Fields
-	
-	public static final int MENU_PRODUCT_COLUMN = 4; 
-	//
-	// Horizontal Menu
-	private WebElement desktops;
-	private DesktopsAMenuPage desktopsMenu;
-	private WebElement laptops;
-	private WebElement components;
-	private WebElement tablets;
-	private WebElement software;
-	private WebElement phones;
-	private WebElement cameras;
-	private WebElement players;
+    private class LaptopsAMenuPage {
+        public final WebElement apple;
+        public final WebElement hp;
+        public final WebElement others;
+        public final WebElement samsung;
+        public final WebElement allLaptops;
 
-	protected AMenuPage(WebDriver driver) {
-		super(driver);
-		// if l10n exist
+        public LaptopsAMenuPage() {
+            this.apple = driver.findElement(By.xpath
+                    ("(//div[@class='dropdown-inner']//li/a[contains(text(),'Apple (')])[1]"));
+            this.hp = driver.findElement(By.xpath
+                    ("//div[@class='dropdown-inner']//li/a[contains(text(),'HP (')]"));
+            this.others = driver.findElement(By.xpath
+                    ("(//div[@class='dropdown-inner']//li/a[contains(text(),'Others (')])[1]"));
+            this.samsung = driver.findElement(By.xpath
+                    ("(//div[@class='dropdown-inner']//li/a[contains(text(),'Samsung (')])[1]"));
+            this.allLaptops = driver.findElement(By.partialLinkText("Show All Laptops"));
+        }
+    }
+
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    // Fields
+
+    public static final int MENU_PRODUCT_COLUMN = 4;
+    //
+    // Horizontal Menu
+    private WebElement desktops;
+    private DesktopsAMenuPage desktopsMenu;
+    private WebElement laptops;
+    private LaptopsAMenuPage laptopsMenu;
+    private WebElement components;
+    private WebElement tablets;
+    private WebElement software;
+    private WebElement phones;
+    private WebElement cameras;
+    private WebElement players;
+
+    protected AMenuPage(WebDriver driver) {
+        super(driver);
+        // if l10n exist
 		/*-
 		this.desktops = driver.findElement(By.xpath("//a[contains(@href,'path=20') and contains(@class,'dropdown-toggle')]"));
 		this.laptops = driver.findElement(By.xpath("//a[contains(@href,'path=18') and contains(@class,'dropdown-toggle')]")); this.components = driver.findElement(By.xpath("//a[contains(@href,'path=25') and contains(@class,'dropdown-toggle')]"));
@@ -53,167 +77,221 @@ abstract class AMenuPage extends ATopPage {
 		this.cameras = driver.findElement(By.xpath("//a[contains(@href,'path=25') and contains(@class,'dropdown-toggle')]/parent::li/following-sibling::li[4]/a"));
 		this.players = driver.findElement(By.xpath("//a[contains(@href,'path=34') and contains(@class,'dropdown-toggle')]"));
 		*/
-		//
-		this.desktops = driver.findElement(By.linkText("Desktops"));
-		this.laptops = driver.findElement(By.linkText("Laptops & Notebooks"));
-		this.components = driver.findElement(By.linkText("Components"));
-		this.tablets = driver.findElement(By.linkText("Tablets"));
-		this.software = driver.findElement(By.linkText("Software"));
-		this.phones = driver.findElement(By.linkText("Phones & PDAs"));
-		this.cameras = driver.findElement(By.linkText("Cameras"));
-		this.players = driver.findElement(By.linkText("MP3 Players"));
-	}
+        //
+        this.desktops = driver.findElement(By.linkText("Desktops"));
+        this.laptops = driver.findElement(By.linkText("Laptops & Notebooks"));
+        this.components = driver.findElement(By.linkText("Components"));
+        this.tablets = driver.findElement(By.linkText("Tablets"));
+        this.software = driver.findElement(By.linkText("Software"));
+        this.phones = driver.findElement(By.linkText("Phones & PDAs"));
+        this.cameras = driver.findElement(By.linkText("Cameras"));
+        this.players = driver.findElement(By.linkText("MP3 Players"));
+    }
 
-	// PageObject
+    // PageObject
 
-	// get Data
+    // get Data
 
-	public WebElement getDesktops() {
-		return this.desktops;
-	}
+    // - - - - - - - - - -DESKTOPS - - - - - - - - - - -
 
-	public WebElement getDesktopsPc() {
-		clickDesktops();
-		return this.desktopsMenu.pc;
-	}
+    public WebElement getDesktops() {
+        return this.desktops;
+    }
 
-	public WebElement getDesktopsMac() {
-		clickDesktops();
-		return this.desktopsMenu.mac;
-	}
+    public WebElement getDesktopsPc() {
+        clickDesktops();
+        return this.desktopsMenu.pc;
+    }
 
-	public WebElement getDesktopsAll() {
-		clickDesktops();
-		return this.desktopsMenu.allDesktops;
-	}
+    public WebElement getDesktopsMac() {
+        clickDesktops();
+        return this.desktopsMenu.mac;
+    }
 
-	public WebElement getLaptops() {
-		return this.laptops;
-	}
+    public WebElement getDesktopsAll() {
+        clickDesktops();
+        return this.desktopsMenu.allDesktops;
+    }
 
-	public WebElement getComponents() {
-		return this.components;
-	}
+    // - - - - - - - - - -LAPTOPS - - - - - - - - - - -
 
-	public WebElement getTablets() {
-		return this.tablets;
-	}
+    public WebElement getLaptops() {
+        return this.laptops;
+    }
 
-	public WebElement getSoftware() {
-		return this.software;
-	}
+    public WebElement getLaptopsApple() {
+        clickLaptops();
+        return this.laptopsMenu.apple;
 
-	public WebElement getPhones() {
-		return this.phones;
-	}
+    }
 
-	public WebElement getCameras() {
-		return this.cameras;
-	}
+    public WebElement getLaptopsHp() {
+        clickLaptops();
+        return this.laptopsMenu.hp;
 
-	public WebElement getPlayers() {
-		return this.players;
-	}
+    }
 
-	// Functional
+    public WebElement getLaptopsOthers() {
+        clickLaptops();
+        return this.laptopsMenu.others;
 
-	public String getDesktopsText() {
-		return getDesktops().getText();
-	}
+    }
 
-	public String getLaptopsText() {
-		return getLaptops().getText();
-	}
+    public WebElement getLaptopsSamsung() {
+        clickLaptops();
+        return this.laptopsMenu.samsung;
 
-	public String getComponentsText() {
-		return getComponents().getText();
-	}
+    }
 
-	public String getTabletsText() {
-		return getTablets().getText();
-	}
+    public WebElement getComponents() {
+        return this.components;
+    }
 
-	public String getSoftwareText() {
-		return getSoftware().getText();
-	}
+    public WebElement getTablets() {
+        return this.tablets;
+    }
 
-	public String getPhonesText() {
-		return getPhones().getText();
-	}
+    public WebElement getSoftware() {
+        return this.software;
+    }
 
-	public String getCamerasText() {
-		return getCameras().getText();
-	}
+    public WebElement getPhones() {
+        return this.phones;
+    }
 
-	public String getPlayersText() {
-		return getPlayers().getText();
-	}
+    public WebElement getCameras() {
+        return this.cameras;
+    }
 
-	// set Data
+    public WebElement getPlayers() {
+        return this.players;
+    }
 
-	public void clickDesktops() {
-		getDesktops().click();
-		desktopsMenu = new DesktopsAMenuPage();
-	}
+    // Functional
 
-	public void clickDesktopsPc() {
-		getDesktopsPc().click();
-	}
+    public String getDesktopsText() {
+        return getDesktops().getText();
+    }
 
-	public void clickDesktopsMac() {
-		getDesktopsMac().click();
-	}
+    public String getLaptopsText() {
+        return getLaptops().getText();
+    }
 
-	public void clickDesktopsAll() {
-		getDesktopsAll().click();
-	}
+    public String getComponentsText() {
+        return getComponents().getText();
+    }
 
-	public void clickLaptops() {
-		getLaptops().click();
-		// TODO
-	}
+    public String getTabletsText() {
+        return getTablets().getText();
+    }
 
-	public void clickComponents() {
-		getComponents().click();
-		// TODO
-	}
+    public String getSoftwareText() {
+        return getSoftware().getText();
+    }
 
-	public void clickTablets() {
-		getTablets().click();
-	}
+    public String getPhonesText() {
+        return getPhones().getText();
+    }
 
-	public void clickSoftware() {
-		getSoftware().click();
-	}
+    public String getCamerasText() {
+        return getCameras().getText();
+    }
 
-	public void clickPhones() {
-		getPhones().click();
-	}
+    public String getPlayersText() {
+        return getPlayers().getText();
+    }
 
-	public void clickCameras() {
-		getCameras().click();
-	}
+    // set Data
 
-	public void clickPlayers() {
-		getPlayers().click();
-		// TODO
-	}
+    // - - - - - - - - - -DESKTOPS - - - - - - - - - - -
 
-	// Business Logic
+    public void clickDesktops() {
+        getDesktops().click();
+        desktopsMenu = new DesktopsAMenuPage();
+    }
 
-	public VerticalMenuPage gotoDesktopsAll() {
-		clickDesktopsAll();
-		return new VerticalMenuPage(driver, MENU_PRODUCT_COLUMN);
-	}
+    public void clickDesktopsPc() {
+        getDesktopsPc().click();
+    }
 
-	public VerticalMenuPage gotoDesktopsPc() {
-		clickDesktopsPc();
-		return new VerticalMenuPage(driver, MENU_PRODUCT_COLUMN);
-	}
+    public void clickDesktopsMac() {
+        getDesktopsMac().click();
+    }
 
-	public VerticalMenuPage gotoDesktopsMac() {
-		clickDesktopsMac();
-		return new VerticalMenuPage(driver, MENU_PRODUCT_COLUMN);
-	}
+    public void clickDesktopsAll() {
+        getDesktopsAll().click();
+    }
+
+    // - - - - - - - - - -LAPTOPS - - - - - - - - - - -
+
+    public void clickLaptops() {
+        getLaptops().click();
+        laptopsMenu = new LaptopsAMenuPage();
+    }
+
+    public void clickLaptopsApple() {
+        getLaptopsApple().click();
+    }
+
+    public void clickLaptopsHp() {
+        getLaptopsHp().click();
+    }
+
+    public void clickLaptopsOthers() {
+        getLaptopsOthers().click();
+    }
+
+    public void clickLaptopsSamsung() {
+        getLaptopsSamsung().click();
+    }
+
+
+    public void clickComponents() {
+        getComponents().click();
+        // TODO
+    }
+
+    public void clickTablets() {
+        getTablets().click();
+    }
+
+    public void clickSoftware() {
+        getSoftware().click();
+    }
+
+    public void clickPhones() {
+        getPhones().click();
+    }
+
+    public void clickCameras() {
+        getCameras().click();
+    }
+
+    public void clickPlayers() {
+        getPlayers().click();
+        // TODO
+    }
+
+    // Business Logic
+
+    // - - - - - - - - - -DESKTOPS - - - - - - - - - - -
+
+    public VerticalMenuPage gotoDesktopsAll() {
+        clickDesktopsAll();
+        return new VerticalMenuPage(driver, MENU_PRODUCT_COLUMN);
+    }
+
+    public VerticalMenuPage gotoDesktopsPc() {
+        clickDesktopsPc();
+        return new VerticalMenuPage(driver, MENU_PRODUCT_COLUMN);
+    }
+
+    public VerticalMenuPage gotoDesktopsMac() {
+        clickDesktopsMac();
+        return new VerticalMenuPage(driver, MENU_PRODUCT_COLUMN);
+    }
+
+    // - - - - - - - - - -LAPTOPS - - - - - - - - - - -
+
 
 }
