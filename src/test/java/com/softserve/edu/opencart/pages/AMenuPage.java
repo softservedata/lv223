@@ -28,6 +28,8 @@ abstract class AMenuPage extends ATopPage {
 
 	// Fields
 	
+	public static final int MENU_PRODUCT_COLUMN = 4; 
+	//
 	// Horizontal Menu
 	private WebElement desktops;
 	private DesktopsAMenuPage desktopsMenu;
@@ -198,5 +200,20 @@ abstract class AMenuPage extends ATopPage {
 	}
 
 	// Business Logic
+
+	public VerticalMenuPage gotoDesktopsAll() {
+		clickDesktopsAll();
+		return new VerticalMenuPage(driver, MENU_PRODUCT_COLUMN);
+	}
+
+	public VerticalMenuPage gotoDesktopsPc() {
+		clickDesktopsPc();
+		return new VerticalMenuPage(driver, MENU_PRODUCT_COLUMN);
+	}
+
+	public VerticalMenuPage gotoDesktopsMac() {
+		clickDesktopsMac();
+		return new VerticalMenuPage(driver, MENU_PRODUCT_COLUMN);
+	}
 
 }
