@@ -48,6 +48,7 @@ public class ProductTest {
 		//
 		// Check
 		Assert.assertTrue(verticalMenuPage.getProductsListSize() == 0);
+		//Assert.assertTrue(verticalMenuPage.getVertPcCount() == 0);
 		Thread.sleep(1000);
 		//
 		// Steps
