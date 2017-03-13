@@ -41,13 +41,13 @@ abstract class AVerticalMenuPage extends AMenuPage {
         public final int vertSamsungCount;
 
         public LaptopsAVerticalMenuPage() {
-            this.vertApple = driver.findElement(By.partialLinkText(""));
+            this.vertApple = driver.findElement(By.xpath("//div[@class='list-group']//a[contains(text(),'Apple (')]"));
             this.vertAppleCount = CountUtils.getCountInBrackets(this.vertApple.getText());
-            this.vertHp = driver.findElement(By.partialLinkText(""));
+            this.vertHp = driver.findElement(By.xpath("//div[@class='list-group']//a[contains(text(),'HP (')]"));
             this.vertHpCount = CountUtils.getCountInBrackets(this.vertHp.getText());
-            this.vertOthers = driver.findElement(By.partialLinkText(""));
+            this.vertOthers = driver.findElement(By.xpath("//div[@class='list-group']//a[contains(text(),'Others (')]"));
             this.vertOthersCount = CountUtils.getCountInBrackets(this.vertOthers.getText());
-            this.vertSamsung = driver.findElement(By.partialLinkText(""));
+            this.vertSamsung = driver.findElement(By.xpath("//div[@class='list-group']//a[contains(text(),'Samsung (')]"));
             this.vertSamsungCount = CountUtils.getCountInBrackets(this.vertSamsung.getText());
         }
     }
