@@ -20,7 +20,7 @@ public class ProductTest {
 				"./lib/chromedriver.exe");
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--no-proxy-server");
-		//options.addArguments("--start-maximized"); // DELETE
+		options.addArguments("--start-maximized"); // DELETE
 		// WebDriver driver = new ChromeDriver();
 		WebDriver driver = new ChromeDriver(options);
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -48,7 +48,8 @@ public class ProductTest {
 		//
 		// Check
 		Assert.assertTrue(verticalMenuPage.getProductsListSize() == 0);
-		//Assert.assertTrue(verticalMenuPage.getVertPcCount() == 0);
+		System.out.println(verticalMenuPage.getDesktops() + "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+		Assert.assertTrue(verticalMenuPage.getVertPcCount() == 0);
 		Thread.sleep(1000);
 		//
 		// Steps

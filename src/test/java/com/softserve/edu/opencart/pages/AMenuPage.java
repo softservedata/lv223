@@ -47,8 +47,38 @@ abstract class AMenuPage extends ATopPage {
     }
 
 
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // - - - - - - - - - COMPONENTS - - - - - - - - - - - - - - - - - -
 
+    private class ComponentsAMenuPage {
+        public final WebElement mice;
+        //public final int vertMiceCount;
+        public final WebElement monitors;
+        //public final int vertMonitorsCount;
+        public final WebElement printers;
+        //public final int vertPrintersCount;
+        public final WebElement scanners;
+        //public final int vertScannersCount;
+        public final WebElement webCameras;
+        //public final int vertWebCamerasCount;
+        public final WebElement allComponents;
+
+        public ComponentsAMenuPage() {
+            this.mice = driver.findElement(By.partialLinkText("- PC ("));
+            //this.vertMiceCount= CountUtils.getCountInBrackets(this.vertMice.getText());
+            this.monitors = driver.findElement(By.partialLinkText("- PC ("));
+            //this.vertMonitorsCount= CountUtils.getCountInBrackets(this.vertMonitors.getText());
+            this.printers = driver.findElement(By.partialLinkText("- PC ("));
+            //this.vertPrintersCount= CountUtils.getCountInBrackets(this.vertPrinters.getText());
+            this.scanners = driver.findElement(By.partialLinkText("- PC ("));
+            //this.vertScannersCount= CountUtils.getCountInBrackets(this.vertScanners.getText());
+            this.webCameras = driver.findElement(By.partialLinkText("- PC ("));
+            //this.vertWebCamerasCount= CountUtils.getCountInBrackets(this.vertWebCameras.getText());
+            this.allComponents = driver.findElement(By.partialLinkText("- PC ("));
+        }
+    }
+
+    
+    
     // Fields
 
     public static final int MENU_PRODUCT_COLUMN = 4;
@@ -59,6 +89,7 @@ abstract class AMenuPage extends ATopPage {
     private WebElement laptops;
     private LaptopsAMenuPage laptopsMenu;
     private WebElement components;
+    private ComponentsAMenuPage componentsMenu;
     private WebElement tablets;
     private WebElement software;
     private WebElement phones;
@@ -142,11 +173,51 @@ abstract class AMenuPage extends ATopPage {
         return this.laptopsMenu.samsung;
 
     }
+    
+    public WebElement getLaptopsAll() {
+        clickLaptops();
+        return this.laptopsMenu.allLaptops;
 
+    }
+
+    //--------------COMPONENTS---------------------
+    
     public WebElement getComponents() {
         return this.components;
     }
+    
+    public WebElement getComponentsMice() {
+        clickLaptops();
+        return this.componentsMenu.mice;
+    }
 
+    public WebElement getComponentsMonitors() {
+        clickLaptops();
+        return this.componentsMenu.monitors;
+    }
+    
+    public WebElement getComponentsPrinters() {
+        clickLaptops();
+        return this.componentsMenu.printers;
+    }
+    
+    public WebElement getComponentsScanners() {
+        clickLaptops();
+        return this.componentsMenu.scanners;
+    }
+    
+    public WebElement getComponentsWebCameras() {
+        clickLaptops();
+        return this.componentsMenu.webCameras;
+    }
+    
+    public WebElement getComponentsAll(){
+        clickLaptops();
+        return this.componentsMenu.allComponents;
+    }
+    
+    //--------------------------------------------
+    
     public WebElement getTablets() {
         return this.tablets;
     }
@@ -177,10 +248,34 @@ abstract class AMenuPage extends ATopPage {
         return getLaptops().getText();
     }
 
+    //-------------------COMPONENTS-------------------???????????????????????---
+    
     public String getComponentsText() {
         return getComponents().getText();
     }
-
+    
+    public String getComponentsMiceText() {
+        return getComponentsMice().getText();
+    }
+    
+    public String getComponentsMonitorsText() {
+        return getComponentsMonitors().getText();
+    }
+    
+    public String getComponentsPrintersText() {
+        return getComponentsPrinters().getText();
+    }
+    
+    public String getComponentsScannersText() {
+        return getComponentsScanners().getText();
+    }
+    
+    public String getComponentsWebCamerasText() {
+        return getComponentsWebCameras().getText();
+    }
+    
+    //---------------------------------------------------
+    
     public String getTabletsText() {
         return getTablets().getText();
     }
@@ -245,11 +340,38 @@ abstract class AMenuPage extends ATopPage {
         getLaptopsSamsung().click();
     }
 
-
+    //--------------------COMPONENTS---------------------
+    
     public void clickComponents() {
         getComponents().click();
-        // TODO
+        componentsMenu = new ComponentsAMenuPage();
     }
+    
+    public void clickComponentsMice() {
+        getComponentsMice().click();
+    }
+    
+    public void clickComponentsMonitors() {
+        getComponentsMonitors().click();
+    }
+    
+    public void clickComponentsPrinters() {
+        getComponentsPrinters().click();
+    }
+    
+    public void clickComponentsScanners() {
+        getComponentsScanners().click();
+    }
+    
+    public void clickComponentsWebCameras() {
+        getComponentsWebCameras().click();
+    }
+    
+    public void clickComponentsAll() {
+        getComponentsAll().click();
+    }
+    
+    //---------------------------------------------------
 
     public void clickTablets() {
         getTablets().click();
@@ -293,5 +415,35 @@ abstract class AMenuPage extends ATopPage {
 
     // - - - - - - - - - -LAPTOPS - - - - - - - - - - -
 
-
+    //-------------------COMPONENTS--------------------
+    
+    public VerticalMenuPage gotoComponentsAll() {
+        clickComponentsAll();
+        return new VerticalMenuPage(driver, MENU_PRODUCT_COLUMN);
+    }
+    
+    public VerticalMenuPage gotoComponentsMice() {
+        clickComponentsMice();
+        return new VerticalMenuPage(driver, MENU_PRODUCT_COLUMN);
+    }
+    
+    public VerticalMenuPage gotoComponentsMonitors() {
+        clickComponentsMonitors();
+        return new VerticalMenuPage(driver, MENU_PRODUCT_COLUMN);
+    }
+    
+    public VerticalMenuPage gotoComponentsPrinters() {
+        clickComponentsPrinters();
+        return new VerticalMenuPage(driver, MENU_PRODUCT_COLUMN);
+    }
+    
+    public VerticalMenuPage gotoComponentsScanners() {
+        clickComponentsScanners();
+        return new VerticalMenuPage(driver, MENU_PRODUCT_COLUMN);
+    }
+    
+    public VerticalMenuPage gotoComponentsWebCameras() {
+        clickComponentsWebCameras();
+        return new VerticalMenuPage(driver, MENU_PRODUCT_COLUMN);
+    }
 }
