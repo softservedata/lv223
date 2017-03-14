@@ -51,6 +51,36 @@ abstract class AVerticalMenuPage extends AMenuPage {
             this.vertSamsungCount = CountUtils.getCountInBrackets(this.vertSamsung.getText());
         }
     }
+
+    //---------------------Components---------------
+    
+    private class ComponentsAVerticalMenuPage {
+        public final WebElement vertMice;
+        public final int vertMiceCount;
+        public final WebElement vertMonitors;
+        public final int vertMonitorsCount;
+        public final WebElement vertPrinters;
+        public final int vertPrintersCount;
+        public final WebElement vertScanners;
+        public final int vertScannersCount;
+        public final WebElement vertWebCameras;
+        public final int vertWebCamerasCount;
+
+        public ComponentsAVerticalMenuPage() {
+            this.vertMice = driver.findElement(By.partialLinkText("- Mice and Trackballs ("));
+            this.vertMiceCount= CountUtils.getCountInBrackets(this.vertMice.getText());
+            this.vertMonitors = driver.findElement(By.partialLinkText("- Monitors ("));
+            this.vertMonitorsCount= CountUtils.getCountInBrackets(this.vertMonitors.getText());
+            this.vertPrinters = driver.findElement(By.partialLinkText("- Printers ("));
+            this.vertPrintersCount= CountUtils.getCountInBrackets(this.vertPrinters.getText());
+            this.vertScanners = driver.findElement(By.partialLinkText("- Scanners ("));
+            this.vertScannersCount= CountUtils.getCountInBrackets(this.vertScanners.getText());
+            this.vertWebCameras = driver.findElement(By.partialLinkText("- Web Cameras ("));
+            this.vertWebCamerasCount= CountUtils.getCountInBrackets(this.vertWebCameras.getText());
+        }
+    }
+    
+    //-----------------------------------------------------------------------
     
     //- - - - - - - - - - - -SOFTWARE - - -  - - - - 
     private class SoftwareAVerticalMenuPage {
@@ -81,6 +111,7 @@ abstract class AVerticalMenuPage extends AMenuPage {
     private WebElement vertLaptops;
     private LaptopsAVerticalMenuPage vertLaptopsMenu;
     private WebElement vertComponents;
+    private ComponentsAVerticalMenuPage vertComponentsMenu; 
     private WebElement vertTablets;
     private WebElement vertSoftware;
     private SoftwareAVerticalMenuPage vertSoftwareMenu;
@@ -201,9 +232,74 @@ abstract class AVerticalMenuPage extends AMenuPage {
     }
 
 
+    //----------------------Components----------------------
+    
     public WebElement getVertComponents() {
         return this.vertComponents;
     }
+    
+    public ComponentsAVerticalMenuPage getVertComponentsMenu() {
+        return this.vertComponentsMenu;
+    }
+    
+    public WebElement getVertComponentsMice() {
+        return this.getVertComponentsMenu().vertMice;
+    }
+    
+    public int getVertComponentsMiceCount() {
+        if (getVertComponentsMenu() == null) {
+            clickVertComponents();
+        }
+        return getVertComponentsMenu().vertMiceCount;
+    }
+    
+    public WebElement getVertComponentsMonitors() {
+        return this.getVertComponentsMenu().vertMonitors;
+    }
+    
+    public int getVertComponentsMonitorsCount() {
+        if (getVertComponentsMenu() == null) {
+            clickVertComponents();
+        }
+        return getVertComponentsMenu().vertMonitorsCount;
+    }
+    
+
+    public WebElement getVertComponentsPrinters() {
+        return this.getVertComponentsMenu().vertPrinters;
+    }
+    
+    public int getVertComponentsPrintersCount() {
+        if (getVertComponentsMenu() == null) {
+            clickVertComponents();
+        }
+        return getVertComponentsMenu().vertPrintersCount;
+    }
+    
+    
+    public WebElement getVertComponentsScanners() {
+        return this.getVertComponentsMenu().vertScanners;
+    }
+    
+    public int getVertComponentsScannersCount() {
+        if (getVertComponentsMenu() == null) {
+            clickVertComponents();
+        }
+        return getVertComponentsMenu().vertScannersCount;
+    }
+    
+    public WebElement getVertComponentsWebCameras() {
+        return this.getVertComponentsMenu().vertWebCameras;
+    }
+    
+    public int getVertComponentsWebCamerasCount() {
+        if (getVertComponentsMenu() == null) {
+            clickVertComponents();
+        }
+        return getVertComponentsMenu().vertWebCamerasCount;
+    }
+    
+    //-----------------------------------------------
 
     public WebElement getVertTablets() {
         return this.vertTablets;
@@ -324,10 +420,34 @@ abstract class AVerticalMenuPage extends AMenuPage {
         return getVertOtherSoftware().getText();
     }
 
+    //--------------------COMPONENTS---------------------
+    
     public String getVertComponentsText() {
         return getVertComponents().getText();
     }
+    
+    public String getVertComponentsMiceText() {
+        return getVertComponentsMice().getText();
+    } 
+    
+    public String getVertComponentsMonitorsText() {
+        return getVertComponentsMonitors().getText();
+    }
+    
+    public String getVertComponentsPrintersText() {
+        return getVertComponentsPrinters().getText();
+    }
+    
+    public String getVertComponentsScannersText() {
+        return getVertComponentsScanners().getText();
+    }
+    
+    public String getVertComponentsWebCamerasText() {
+        return getVertComponentsWebCameras().getText();
+    }
 
+    //---------------------------------------------
+    
     public String getVertTabletsText() {
         return getVertTablets().getText();
     }   
@@ -387,11 +507,33 @@ abstract class AVerticalMenuPage extends AMenuPage {
         getVertLaptopsOthers().click();
     }
 
-
+    //---------------------COMPONENTS---------------------------
+    
     public void clickVertComponents() {
         getVertComponents().click();
-        // TODO
     }
+    
+    public void clickVertComponentsMice() {
+        getVertComponentsMice().click();
+    }
+    
+    public void clickVertComponentsMonitors() {
+        getVertComponentsMonitors().click();
+    }
+    
+    public void clickVertComponentsPrinters() {
+        getVertComponentsPrinters().click();
+    }
+    
+    public void clickVertComponentsScanners() {
+        getVertComponentsScanners().click();
+    }
+    
+    public void clickVertComponentsWebCameras() {
+        getVertComponentsWebCameras().click();
+    }
+    
+    //--------------------------------------------------------
 
     public void clickVertTablets() {
         getVertTablets().click();

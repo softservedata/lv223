@@ -3,7 +3,6 @@ package com.softserve.edu.opencart.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
 import com.softserve.edu.opencart.tools.CountUtils;
 
 import test.java.com.softserve.edu.opencart.pages.AVerticalMenuPage.SoftwareAVerticalMenuPage;
@@ -73,7 +72,34 @@ public class VerticalMenuPage extends AProductListPage {
          }
     }
 
+    //----------------------COMPONENTS---------------------------
+    
+    private class ComponentsAVerticalMenuPage {
+        public final WebElement vertMice;
+        public final int vertMiceCount;
+        public final WebElement vertMonitors;
+        public final int vertMonitorsCount;
+        public final WebElement vertPrinters;
+        public final int vertPrintersCount;
+        public final WebElement vertScanners;
+        public final int vertScannersCount;
+        public final WebElement vertWebCameras;
+        public final int vertWebCamerasCount;
 
+        public ComponentsAVerticalMenuPage() {
+            this.vertMice = driver.findElement(By.partialLinkText("- Mice and Trackballs ("));
+            this.vertMiceCount= CountUtils.getCountInBrackets(this.vertMice.getText());
+            this.vertMonitors = driver.findElement(By.partialLinkText("- Monitors ("));
+            this.vertMonitorsCount= CountUtils.getCountInBrackets(this.vertMonitors.getText());
+            this.vertPrinters = driver.findElement(By.partialLinkText("- Printers ("));
+            this.vertPrintersCount= CountUtils.getCountInBrackets(this.vertPrinters.getText());
+            this.vertScanners = driver.findElement(By.partialLinkText("- Scanners ("));
+            this.vertScannersCount= CountUtils.getCountInBrackets(this.vertScanners.getText());
+            this.vertWebCameras = driver.findElement(By.partialLinkText("- Web Cameras ("));
+            this.vertWebCamerasCount= CountUtils.getCountInBrackets(this.vertWebCameras.getText());
+        }
+    }
+    
     // Fields
 
     private WebElement home;
@@ -84,6 +110,7 @@ public class VerticalMenuPage extends AProductListPage {
     private WebElement vertLaptops;
     private LaptopsAVerticalMenuPage vertLaptopsMenu;
     private WebElement vertComponents;
+    private ComponentsAVerticalMenuPage vertComponentsMenu;
     private WebElement vertTablets;
     private WebElement vertSoftware;
     private SoftwareAVerticalMenuPage vertSoftwareMenu;
@@ -101,6 +128,7 @@ public class VerticalMenuPage extends AProductListPage {
         this.vertPhones = driver.findElement(By.partialLinkText("Phones & PDAs ("));
         this.vertCameras = driver.findElement(By.partialLinkText("Cameras ("));
         this.vertPlayers = driver.findElement(By.partialLinkText("MP3 Players ("));
+        
     }
 
     // PageObject
@@ -118,6 +146,7 @@ public class VerticalMenuPage extends AProductListPage {
     }
 
     private DesktopsAVerticalMenuPage getVertDesktopsMenu() {
+        this.vertDesktopsMenu = new DesktopsAVerticalMenuPage();
         return this.vertDesktopsMenu;
     }
 
@@ -152,6 +181,7 @@ public class VerticalMenuPage extends AProductListPage {
     }
 
     private LaptopsAVerticalMenuPage getVertLaptopsMenu() {
+        this.vertLaptopsMenu = new LaptopsAVerticalMenuPage();
         return this.vertLaptopsMenu;
     }
 
@@ -203,9 +233,75 @@ public class VerticalMenuPage extends AProductListPage {
         return getVertLaptopsMenu().vertOthersCount;
     }
 
+    //------------------------COMPONENTS----------------------------
+    
     public WebElement getVertComponents() {
         return this.vertComponents;
     }
+    
+    public ComponentsAVerticalMenuPage getVertComponentsMenu() {
+        this.vertComponentsMenu = new ComponentsAVerticalMenuPage();
+        return this.vertComponentsMenu;
+    }
+    
+    public WebElement getVertComponentsMice() {
+        return this.getVertComponentsMenu().vertMice;
+    }
+    
+    public int getVertComponentsMiceCount() {
+        if (getVertComponentsMenu() == null) {
+            clickVertComponents();
+        }
+        return getVertComponentsMenu().vertMiceCount;
+    }
+    
+    public WebElement getVertComponentsMonitors() {
+        return this.getVertComponentsMenu().vertMonitors;
+    }
+    
+    public int getVertComponentsMonitorsCount() {
+        if (getVertComponentsMenu() == null) {
+            clickVertComponents();
+        }
+        return getVertComponentsMenu().vertMonitorsCount;
+    }
+    
+
+    public WebElement getVertComponentsPrinters() {
+        return this.getVertComponentsMenu().vertPrinters;
+    }
+    
+    public int getVertComponentsPrintersCount() {
+        if (getVertComponentsMenu() == null) {
+            clickVertComponents();
+        }
+        return getVertComponentsMenu().vertPrintersCount;
+    }
+    
+    
+    public WebElement getVertComponentsScanners() {
+        return this.getVertComponentsMenu().vertScanners;
+    }
+    
+    public int getVertComponentsScannersCount() {
+        if (getVertComponentsMenu() == null) {
+            clickVertComponents();
+        }
+        return getVertComponentsMenu().vertScannersCount;
+    }
+    
+    public WebElement getVertComponentsWebCameras() {
+        return this.getVertComponentsMenu().vertWebCameras;
+    }
+    
+    public int getVertComponentsWebCamerasCount() {
+        if (getVertComponentsMenu() == null) {
+            clickVertComponents();
+        }
+        return getVertComponentsMenu().vertWebCamerasCount;
+    }
+    
+    //---------------------------------------------------------------
 
     public WebElement getVertTablets() {
         return this.vertTablets;
@@ -307,11 +403,35 @@ public class VerticalMenuPage extends AProductListPage {
     public String getVertLaptopsOthersText() {
         return getVertLaptopsOthers().getText();
     }
+    
+    //----------------------------COMPONENTS------------------
 
     public String getVertComponentsText() {
         return getVertComponents().getText();
     }
 
+    public String getVertComponentsMiceText() {
+        return getVertComponentsMice().getText();
+    } 
+    
+    public String getVertComponentsMonitorsText() {
+        return getVertComponentsMonitors().getText();
+    }
+    
+    public String getVertComponentsPrintersText() {
+        return getVertComponentsPrinters().getText();
+    }
+    
+    public String getVertComponentsScannersText() {
+        return getVertComponentsScanners().getText();
+    }
+    
+    public String getVertComponentsWebCamerasText() {
+        return getVertComponentsWebCameras().getText();
+    }
+    
+    //--------------------------------------------------------
+    
     public String getVertTabletsText() {
         return getVertTablets().getText();
     }
@@ -389,10 +509,33 @@ public class VerticalMenuPage extends AProductListPage {
         getVertLaptopsOthers().click();
     }
 
+    //--------------------------COMPONENTS---------------------
+    
     public void clickVertComponents() {
         getVertComponents().click();
-        // TODO
     }
+    
+    public void clickVertComponentsMice() {
+        getVertComponentsMice().click();
+    }
+    
+    public void clickVertComponentsMonitors() {
+        getVertComponentsMonitors().click();
+    }
+    
+    public void clickVertComponentsPrinters() {
+        getVertComponentsPrinters().click();
+    }
+    
+    public void clickVertComponentsScanners() {
+        getVertComponentsScanners().click();
+    }
+    
+    public void clickVertComponentsWebCameras() {
+        getVertComponentsWebCameras().click();
+    }
+    
+    //---------------------------------------------------------
 
     public void clickVertTablets() {
         getVertTablets().click();
@@ -447,7 +590,7 @@ public class VerticalMenuPage extends AProductListPage {
 
     public VerticalMenuPage gotoVertDesktopsMac() {
         clickVertDesktopsMac();
-        return new VerticalMenuPage(driver, 4);
+        return new VerticalMenuPage(driver, MENU_PRODUCT_COLUMN);
     }
 
 }
