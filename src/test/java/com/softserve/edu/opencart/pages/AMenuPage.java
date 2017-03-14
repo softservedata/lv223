@@ -49,6 +49,7 @@ abstract class AMenuPage extends ATopPage {
 
     // - - - - - - - - - COMPONENTS - - - - - - - - - - - - - - - - - -
 
+
     private class ComponentsAMenuPage {
         public final WebElement mice;
         //public final int vertMiceCount;
@@ -78,6 +79,25 @@ abstract class AMenuPage extends ATopPage {
     }
 
     
+
+    // - - - - - - - - - - - - - SOFTWARE - - - - - - - - - - - - - - - - -
+    private class SoftwareAMenuPage {
+        public final WebElement appleSoftware;
+        public final WebElement microsoftSoftware;
+        public final WebElement otherSoftware;        
+        public final WebElement allSoftware;
+
+        public SoftwareAMenuPage() {
+            this.appleSoftware = driver.findElement(By.xpath
+                    ("//div[@class='dropdown-inner']//li/a[contains(@href,'&path=17_76')]"));
+            this.microsoftSoftware = driver.findElement(By.xpath
+                    ("//div[@class='dropdown-inner']//li/a[contains(@href,'&path=17_68')]"));
+            this.otherSoftware = driver.findElement(By.xpath
+                    ("//div[@class='dropdown-inner']//li/a[contains(@href,'&path=17_70')]"));            
+            this.allSoftware = driver.findElement(By.partialLinkText("Show All Laptops"));
+        }
+    }
+
     
     // Fields
 
@@ -92,6 +112,7 @@ abstract class AMenuPage extends ATopPage {
     private ComponentsAMenuPage componentsMenu;
     private WebElement tablets;
     private WebElement software;
+    private SoftwareAMenuPage softwareMenu;
     private WebElement phones;
     private WebElement cameras;
     private WebElement players;
@@ -171,7 +192,6 @@ abstract class AMenuPage extends ATopPage {
     public WebElement getLaptopsSamsung() {
         clickLaptops();
         return this.laptopsMenu.samsung;
-
     }
     
     public WebElement getLaptopsAll() {
@@ -222,9 +242,28 @@ abstract class AMenuPage extends ATopPage {
         return this.tablets;
     }
 
+    // - - - - - - - - - - SOFTWARE - - - - - - - -
     public WebElement getSoftware() {
         return this.software;
     }
+    
+    public WebElement getAppleSoftware() {
+        clickSoftware();
+        return this.softwareMenu.appleSoftware;
+
+    }
+
+    public WebElement getMicrosoftSoftware() {
+        clickSoftware();
+        return this.softwareMenu.microsoftSoftware;
+
+    }
+
+    public WebElement getOtherSoftware() {
+        clickSoftware();
+        return this.softwareMenu.otherSoftware;
+    }
+    
 
     public WebElement getPhones() {
         return this.phones;
@@ -377,8 +416,22 @@ abstract class AMenuPage extends ATopPage {
         getTablets().click();
     }
 
+    // - -  - - - - - - SOFTWARE - - - - - - - 
     public void clickSoftware() {
-        getSoftware().click();
+        getSoftware().click();        
+        softwareMenu = new SoftwareAMenuPage();
+    }
+    
+    public void clickAppleSoftware() {
+        getAppleSoftware().click();
+    }
+
+    public void clickMicrosoftSoftware() {
+        getMicrosoftSoftware().click();
+    }
+
+    public void clickOtherSoftware() {
+        getOtherSoftware().click();
     }
 
     public void clickPhones() {

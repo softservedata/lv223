@@ -81,6 +81,27 @@ abstract class AVerticalMenuPage extends AMenuPage {
     }
     
     //-----------------------------------------------------------------------
+    
+    //- - - - - - - - - - - -SOFTWARE - - -  - - - - 
+    private class SoftwareAVerticalMenuPage {
+        public final WebElement vertAppleSoftware;
+        public final int vertAppleSoftwareCount;
+        public final WebElement vertMicrosoftSoftware;
+        public final int vertMicrosoftSoftwareCount;
+        public final WebElement vertOtherSoftware;
+        public final int vertOtherSoftwareCount;
+        
+        //Change xpath expressions!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        public SoftwareAVerticalMenuPage() {
+            this.vertAppleSoftware = driver.findElement(By.xpath("//div[@class='list-group']//a[contains(@href,'&path=17_76')]"));
+            this.vertAppleSoftwareCount = CountUtils.getCountInBrackets(this.vertAppleSoftware.getText());
+            this.vertMicrosoftSoftware = driver.findElement(By.xpath("//div[@class='list-group']//a[contains(@href,'&path=17_68')]"));
+            this.vertMicrosoftSoftwareCount = CountUtils.getCountInBrackets(this.vertMicrosoftSoftware.getText());
+            this.vertOtherSoftware = driver.findElement(By.xpath("//div[@class='list-group']//a[contains(@href,'&path=17_70')]"));
+            this.vertOtherSoftwareCount = CountUtils.getCountInBrackets(this.vertOtherSoftware.getText());
+         }
+    }
+    
     // Fields
 
     private WebElement home;
@@ -94,6 +115,7 @@ abstract class AVerticalMenuPage extends AMenuPage {
     private ComponentsAVerticalMenuPage vertComponentsMenu; 
     private WebElement vertTablets;
     private WebElement vertSoftware;
+    private SoftwareAVerticalMenuPage vertSoftwareMenu;
     private WebElement vertPhones;
     private WebElement vertCameras;
     private WebElement vertPlayers;
@@ -283,11 +305,54 @@ abstract class AVerticalMenuPage extends AMenuPage {
     public WebElement getVertTablets() {
         return this.vertTablets;
     }
-
+    
+    // - - -  - -  - - - SOFTWARE - - -  - -  - - - - 
     public WebElement getVertSoftware() {
         return this.vertSoftware;
     }
 
+    public SoftwareAVerticalMenuPage getVertSoftwareMenu() {
+        return this.vertSoftwareMenu; 
+    }
+
+    public WebElement getVertAppleSoftware() {
+        clickVertSoftware();
+        return getVertSoftwareMenu().vertAppleSoftware;
+    }
+
+    public int getVertAppleSoftwareCount() {
+        if (getVertSoftwareMenu() == null) {
+            clickVertSoftware();
+        }
+        return getVertSoftwareMenu().vertAppleSoftwareCount;
+    }
+
+    public WebElement getVertMicrosoftSoftware() {
+        clickVertSoftware();
+        return getVertSoftwareMenu().vertMicrosoftSoftware;
+    }
+
+    public int getVertMicrosoftSoftwareCount() {
+        if (getVertSoftwareMenu() == null) {
+            clickVertSoftware();
+        }
+        return getVertSoftwareMenu().vertMicrosoftSoftwareCount;
+    }
+
+    public WebElement getVertOtherSoftware() {
+        clickVertSoftware();
+        return getVertSoftwareMenu().vertOtherSoftware;
+    }
+
+    public int getVertOtherSoftwareCount() {
+        if (getVertSoftwareMenu() == null) {
+            clickVertSoftware();
+        }
+        return getVertSoftwareMenu().vertOtherSoftwareCount;
+    }       
+    //- - - - - -  - - - - -  - - - - - -  - - - - - -  -    
+    
+   
     public WebElement getVertPhones() {
         return this.vertPhones;
     }
@@ -337,6 +402,24 @@ abstract class AVerticalMenuPage extends AMenuPage {
     public String getVertLaptopsOthersText() {
         return getVertLaptopsOthers().getText();
     }
+    
+    // - - - - - - - - - SOFTWARE - - - - - - - - - - 
+    
+    public String getVertSoftwareText() {
+        return getVertSoftware().getText();
+    }
+    
+    public String getVertSoftwareAppleText() {
+        return getVertAppleSoftware().getText();
+    }
+
+    public String getVertMicrosoftSoftwareText() {
+        return getVertMicrosoftSoftware().getText();
+    }
+
+    public String getVertOtherSoftwareText() {
+        return getVertOtherSoftware().getText();
+    }
 
     //--------------------COMPONENTS---------------------
     
@@ -368,11 +451,7 @@ abstract class AVerticalMenuPage extends AMenuPage {
     
     public String getVertTabletsText() {
         return getVertTablets().getText();
-    }
-
-    public String getVertSoftwareText() {
-        return getVertSoftware().getText();
-    }
+    }   
 
     public String getVertPhonesText() {
         return getVertPhones().getText();
@@ -461,9 +540,22 @@ abstract class AVerticalMenuPage extends AMenuPage {
         getVertTablets().click();
     }
 
+    //- - - - - - - - - - - - SOFTWARE - - - - - - - - - 
     public void clickVertSoftware() {
         getVertSoftware().click();
     }
+    
+    public void clickVertAppleSoftware() {
+        getVertAppleSoftware().click();
+    }
+
+    public void clickVertMicrosoftSoftware() {
+        getVertMicrosoftSoftware().click();
+    }
+
+    public void clickVertOtherSoftware() {
+        getVertOtherSoftware().click();
+    }    
 
     public void clickVertPhones() {
         getVertPhones().click();
