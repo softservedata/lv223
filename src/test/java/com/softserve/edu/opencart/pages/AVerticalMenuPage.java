@@ -61,7 +61,6 @@ abstract class AVerticalMenuPage extends AMenuPage {
         public final WebElement vertOtherSoftware;
         public final int vertOtherSoftwareCount;
         
-        //Change xpath expressions!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         public SoftwareAVerticalMenuPage() {
             this.vertAppleSoftware = driver.findElement(By.xpath("//div[@class='list-group']//a[contains(@href,'&path=17_76')]"));
             this.vertAppleSoftwareCount = CountUtils.getCountInBrackets(this.vertAppleSoftware.getText());
