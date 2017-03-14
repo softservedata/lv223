@@ -9,6 +9,7 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import com.softserve.edu.opencart.appl.ApplicationSourcesRepository;
 import com.softserve.edu.opencart.data.Product;
 import com.softserve.edu.opencart.data.ProductRepository;
 import com.softserve.edu.opencart.pages.HomePage;
@@ -29,7 +30,9 @@ public class ProductTest {
 	public void checkComponent(Product product) throws InterruptedException {
 		// Precondition
 		System.setProperty("webdriver.chrome.driver",
-				"./lib/chromedriver.exe");
+				//"./lib/chromedriver.exe");
+		ApplicationSourcesRepository.class.getResource("/lib/chromedriver.exe").getPath().substring(1));
+		//
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--no-proxy-server");
 		options.addArguments("--start-maximized"); // DELETE
