@@ -8,16 +8,22 @@
 	<test verbose="5" name="Test3">
 		<parameter name="number" value="2" />
 		<classes>
-			<class name="com.softserve.edu.opencart.AppTest">
+			<!-- <class name="com.softserve.edu.opencart.AppTest"> -->
+			<!-- <methods> -->
+			<!-- <include name="testApp" /> -->
+			<!-- </methods> -->
+			<!-- </class> -->
+			<!-- <class name="com.softserve.edu.opencart.Smoke"> -->
+			<!-- <methods> -->
+			<!-- <include name="testInject" /> -->
+			<!-- </methods> -->
+			<!-- </class> -->
+			<class name="com.softserve.edu.opencart.tests.ProductApplTest">
 				<methods>
-					<include name="testApp" />
+					<include name="checkComponentAppl" />
 				</methods>
 			</class>
-			<class name="com.softserve.edu.opencart.Smoke">
-				<methods>
-					<include name="testInject" />
-				</methods>
-			</class>
-					</classes>
+
+		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->

@@ -3,9 +3,8 @@ package com.softserve.edu.opencart.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import com.softserve.edu.opencart.tools.CountUtils;
 
-import test.java.com.softserve.edu.opencart.pages.AVerticalMenuPage.SoftwareAVerticalMenuPage;
+import com.softserve.edu.opencart.tools.CountUtils;
 
 public class VerticalMenuPage extends AProductListPage {
 

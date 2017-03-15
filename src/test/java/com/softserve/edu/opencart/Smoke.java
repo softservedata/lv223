@@ -17,6 +17,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import com.softserve.edu.opencart.appl.ApplicationSourcesRepository;
+
 public class Smoke {
 
 	//@Test
@@ -25,7 +27,9 @@ public class Smoke {
 		//System.setProperty("webdriver.gecko.driver", "./lib/geckodriver.exe");
 		//WebDriver driver = new FirefoxDriver();
 		//
-		System.setProperty("webdriver.chrome.driver", "./lib/chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver",
+		//		"./lib/chromedriver.exe");
+				ApplicationSourcesRepository.class.getResource("/lib/chromedriver.exe").getPath().substring(1));
 		WebDriver driver = new ChromeDriver();
 		//
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -59,7 +63,9 @@ public class Smoke {
 
 	@Test
 	public void testInject() throws Exception {
-		System.setProperty("webdriver.chrome.driver", "./lib/chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver",
+		//		"./lib/chromedriver.exe");
+				ApplicationSourcesRepository.class.getResource("/lib/chromedriver.exe").getPath().substring(1));
 		WebDriver driver = new ChromeDriver();
 		//
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -124,7 +130,9 @@ public class Smoke {
 
 	//@Test
 	public void testSelect() throws Exception {
-		System.setProperty("webdriver.chrome.driver", "./lib/chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver",
+		//		"./lib/chromedriver.exe");
+				ApplicationSourcesRepository.class.getResource("/lib/chromedriver.exe").getPath().substring(1));
 		WebDriver driver = new ChromeDriver();
 		//
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
