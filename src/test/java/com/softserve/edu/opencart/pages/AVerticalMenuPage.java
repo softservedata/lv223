@@ -48,8 +48,7 @@ abstract class AVerticalMenuPage extends AMenuPage {
             this.vertOthers = driver
                     .findElement(By.xpath("//div[@class='list-group']//a[contains(text(),'Others (')]"));
             this.vertOthersCount = CountUtils.getCountInBrackets(this.vertOthers.getText());
-            this.vertSamsung = driver
-                    .findElement(By.xpath("//div[@class='list-group']//a[contains(text(),'Samsung (')]"));
+            this.vertSamsung = driver.findElement(By.xpath("//div[@class='list-group']//a[contains(text(),'Samsung (')]"));
             this.vertSamsungCount = CountUtils.getCountInBrackets(this.vertSamsung.getText());
         }
     }
@@ -72,6 +71,55 @@ abstract class AVerticalMenuPage extends AMenuPage {
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+    //---------------------Components---------------
+    
+    private class ComponentsAVerticalMenuPage {
+        public final WebElement vertMice;
+        public final int vertMiceCount;
+        public final WebElement vertMonitors;
+        public final int vertMonitorsCount;
+        public final WebElement vertPrinters;
+        public final int vertPrintersCount;
+        public final WebElement vertScanners;
+        public final int vertScannersCount;
+        public final WebElement vertWebCameras;
+        public final int vertWebCamerasCount;
+
+        public ComponentsAVerticalMenuPage() {
+            this.vertMice = driver.findElement(By.partialLinkText("- Mice and Trackballs ("));
+            this.vertMiceCount= CountUtils.getCountInBrackets(this.vertMice.getText());
+            this.vertMonitors = driver.findElement(By.partialLinkText("- Monitors ("));
+            this.vertMonitorsCount= CountUtils.getCountInBrackets(this.vertMonitors.getText());
+            this.vertPrinters = driver.findElement(By.partialLinkText("- Printers ("));
+            this.vertPrintersCount= CountUtils.getCountInBrackets(this.vertPrinters.getText());
+            this.vertScanners = driver.findElement(By.partialLinkText("- Scanners ("));
+            this.vertScannersCount= CountUtils.getCountInBrackets(this.vertScanners.getText());
+            this.vertWebCameras = driver.findElement(By.partialLinkText("- Web Cameras ("));
+            this.vertWebCamerasCount= CountUtils.getCountInBrackets(this.vertWebCameras.getText());
+        }
+    }
+    
+    //-----------------------------------------------------------------------
+    
+    //- - - - - - - - - - - -SOFTWARE - - -  - - - - 
+    private class SoftwareAVerticalMenuPage {
+        public final WebElement vertAppleSoftware;
+        public final int vertAppleSoftwareCount;
+        public final WebElement vertMicrosoftSoftware;
+        public final int vertMicrosoftSoftwareCount;
+        public final WebElement vertOtherSoftware;
+        public final int vertOtherSoftwareCount;
+        
+        public SoftwareAVerticalMenuPage() {
+            this.vertAppleSoftware = driver.findElement(By.xpath("//div[@class='list-group']//a[contains(@href,'&path=17_76')]"));
+            this.vertAppleSoftwareCount = CountUtils.getCountInBrackets(this.vertAppleSoftware.getText());
+            this.vertMicrosoftSoftware = driver.findElement(By.xpath("//div[@class='list-group']//a[contains(@href,'&path=17_68')]"));
+            this.vertMicrosoftSoftwareCount = CountUtils.getCountInBrackets(this.vertMicrosoftSoftware.getText());
+            this.vertOtherSoftware = driver.findElement(By.xpath("//div[@class='list-group']//a[contains(@href,'&path=17_70')]"));
+            this.vertOtherSoftwareCount = CountUtils.getCountInBrackets(this.vertOtherSoftware.getText());
+         }
+    }
+    
     // Fields
 
     private WebElement home;

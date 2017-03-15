@@ -8,6 +8,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import com.softserve.edu.opencart.appl.ApplicationSourcesRepository;
 import com.softserve.edu.opencart.pages.TopPage;
 
 public class TopPageTest {
@@ -17,7 +18,9 @@ public class TopPageTest {
 	public void checkComponent() throws InterruptedException {
 		// Precondition
 		System.setProperty("webdriver.chrome.driver",
-				"./lib/chromedriver.exe");
+				//"./lib/chromedriver.exe");
+		ApplicationSourcesRepository.class.getResource("/lib/chromedriver.exe").getPath().substring(1));
+		//
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--no-proxy-server");
 		//options.addArguments("--start-maximized"); // DELETE
