@@ -18,7 +18,7 @@
 			<!-- <include name="testInject" /> -->
 			<!-- </methods> -->
 			<!-- </class> -->
-			<class name="com.softserve.edu.opencart.tests.ProductApplTest">
+			<class name="com.softserve.edu.opencart.tests.ProductApplRunnerTest">
 				<methods>
 					<include name="checkComponentAppl" />
 				</methods>
