@@ -45,12 +45,32 @@ abstract class AVerticalMenuPage extends AMenuPage {
             this.vertAppleCount = CountUtils.getCountInBrackets(this.vertApple.getText());
             this.vertHp = driver.findElement(By.xpath("//div[@class='list-group']//a[contains(text(),'HP (')]"));
             this.vertHpCount = CountUtils.getCountInBrackets(this.vertHp.getText());
-            this.vertOthers = driver.findElement(By.xpath("//div[@class='list-group']//a[contains(text(),'Others (')]"));
+            this.vertOthers = driver
+                    .findElement(By.xpath("//div[@class='list-group']//a[contains(text(),'Others (')]"));
             this.vertOthersCount = CountUtils.getCountInBrackets(this.vertOthers.getText());
-            this.vertSamsung = driver.findElement(By.xpath("//div[@class='list-group']//a[contains(text(),'Samsung (')]"));
+            this.vertSamsung = driver
+                    .findElement(By.xpath("//div[@class='list-group']//a[contains(text(),'Samsung (')]"));
             this.vertSamsungCount = CountUtils.getCountInBrackets(this.vertSamsung.getText());
         }
     }
+
+    // - - - - - - - - - -CAMERAS - - - - - - - - - - -
+
+    private class CamerasAVerticalMenuPage {
+        public final WebElement vertCanon;
+        public final int vertCanonCount;
+        public final WebElement vertNikon;
+        public final int vertNikonCount;
+
+        public CamerasAVerticalMenuPage() {
+            this.vertCanon = driver.findElement(By.partialLinkText("- Canon ("));
+            this.vertCanonCount = CountUtils.getCountInBrackets(this.vertCanon.getText());
+            this.vertNikon = driver.findElement(By.partialLinkText("- Nikon ("));
+            this.vertNikonCount = CountUtils.getCountInBrackets(this.vertNikon.getText());
+        }
+    }
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     // Fields
 
@@ -66,6 +86,7 @@ abstract class AVerticalMenuPage extends AMenuPage {
     private WebElement vertSoftware;
     private WebElement vertPhones;
     private WebElement vertCameras;
+    private CamerasAVerticalMenuPage vertCamerasMenu;
     private WebElement vertPlayers;
 
     protected AVerticalMenuPage(WebDriver driver) {
@@ -87,6 +108,8 @@ abstract class AVerticalMenuPage extends AMenuPage {
     public WebElement getHome() {
         return this.home;
     }
+    
+    
 
     // - - - - - - - - - -DESKTOPS - - - - - - - - - - -
 
@@ -180,7 +203,6 @@ abstract class AVerticalMenuPage extends AMenuPage {
         return getVertLaptopsMenu().vertOthersCount;
     }
 
-
     public WebElement getVertComponents() {
         return this.vertComponents;
     }
@@ -204,6 +226,42 @@ abstract class AVerticalMenuPage extends AMenuPage {
     public WebElement getVertPlayers() {
         return this.vertPlayers;
     }
+    
+    
+  //CAMERAS
+    
+    public WebElement getCameras() {
+        return this.vertCameras;
+    }
+
+    public CamerasAVerticalMenuPage getVertCamerasMenu() {
+        return this.vertCamerasMenu;
+    }
+
+    public WebElement getVertCamerasCanon() {
+        clickVertDesktops();
+        return getVertCamerasMenu().vertCanon;
+    }
+
+    public int getVertcanonCount() {
+        if (getVertCamerasMenu() == null) {
+            clickVertCameras();
+        }
+        return getVertCamerasMenu().vertCanonCount;
+    }
+
+    public WebElement getVertCamerasNikon() {
+        clickVertCameras();
+        return getVertCamerasMenu().vertNikon;
+    }
+
+    public int getVertNikonCount() {
+        if (getVertCamerasMenu() == null) {
+            clickVertCameras();
+        }
+        return getVertCamerasMenu().vertCanonCount;
+    }
+
 
     // Functional
 
@@ -259,10 +317,19 @@ abstract class AVerticalMenuPage extends AMenuPage {
         return getVertPhones().getText();
     }
 
+    //---------------CAMERAS---------------
     public String getVertCamerasText() {
         return getVertCameras().getText();
     }
+    public String getVertCamerasCanonText() {
+        return getVertCamerasCanon().getText();
+    }
 
+    public String getVertCamerasNikonText() {
+        return getVertCamerasNikon().getText();
+    }
+
+    //--------Players-------------------------
     public String getVertPlayersText() {
         return getVertPlayers().getText();
     }
@@ -310,7 +377,6 @@ abstract class AVerticalMenuPage extends AMenuPage {
         getVertLaptopsOthers().click();
     }
 
-
     public void clickVertComponents() {
         getVertComponents().click();
         // TODO
@@ -327,11 +393,19 @@ abstract class AVerticalMenuPage extends AMenuPage {
     public void clickVertPhones() {
         getVertPhones().click();
     }
-
+//----------------------Cameras------------------
+    
     public void clickVertCameras() {
         getVertCameras().click();
     }
+    public void clickVertCamerasCanon() {
+        getVertCamerasCanon().click();
+    }
 
+    public void clickVertCamerasNikon() {
+        getVertCamerasNikon().click();
+    }
+//---------------Players------------------
     public void clickVertPlayers() {
         getVertPlayers().click();
         // TODO
@@ -341,7 +415,7 @@ abstract class AVerticalMenuPage extends AMenuPage {
 
     public ProductListPage gotoVertDesktops() {
         clickVertDesktops();
-        return new ProductListPage(driver,
-                driver.findElements(By.cssSelector("div.product-layout.product-grid.col-lg-4.col-md-4.col-sm-6.col-xs-12")));
+        return new ProductListPage(driver, driver
+                .findElements(By.cssSelector("div.product-layout.product-grid.col-lg-4.col-md-4.col-sm-6.col-xs-12")));
     }
 }

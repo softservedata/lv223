@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+//import com.softserve.edu.opencart.pages.AVerticalMenuPage.CamerasAVerticalMenuPage;
 import com.softserve.edu.opencart.tools.CountUtils;
 
 public class VerticalMenuPage extends AProductListPage {
@@ -51,6 +52,22 @@ public class VerticalMenuPage extends AProductListPage {
             this.vertSamsungCount = CountUtils.getCountInBrackets(this.vertSamsung.getText());
         }
     }
+    
+    // - - - - - - - - - -CAMERAS - - - - - - - - - - -
+
+    private class CamerasAVerticalMenuPage {
+        public final WebElement vertCanon;
+        public final int vertCanonCount;
+        public final WebElement vertNikon;
+        public final int vertNikonCount;
+
+        public CamerasAVerticalMenuPage() {
+            this.vertCanon = driver.findElement(By.partialLinkText("- Canon ("));
+            this.vertCanonCount = CountUtils.getCountInBrackets(this.vertCanon.getText());
+            this.vertNikon = driver.findElement(By.partialLinkText("- Nikon ("));
+            this.vertNikonCount = CountUtils.getCountInBrackets(this.vertNikon.getText());
+        }
+    }
 
 
     // Fields
@@ -67,6 +84,7 @@ public class VerticalMenuPage extends AProductListPage {
     private WebElement vertSoftware;
     private WebElement vertPhones;
     private WebElement vertCameras;
+    private CamerasAVerticalMenuPage vertCamerasMenu;
     private WebElement vertPlayers;
 
     protected VerticalMenuPage(WebDriver driver, int column) {
@@ -196,15 +214,46 @@ public class VerticalMenuPage extends AProductListPage {
     public WebElement getVertPhones() {
         return this.vertPhones;
     }
-
+ //CAMERAS
     public WebElement getVertCameras() {
         return this.vertCameras;
     }
+//
+//    public WebElement getCameras() {
+//        return this.vertCameras;
+//    }
 
+    public CamerasAVerticalMenuPage getVertCamerasMenu() {
+        return this.vertCamerasMenu;
+    }
+
+    public WebElement getVertCamerasCanon() {
+        clickVertDesktops();
+        return getVertCamerasMenu().vertCanon;
+    }
+
+    public int getVertcanonCount() {
+        if (getVertCamerasMenu() == null) {
+            clickVertCameras();
+        }
+        return getVertCamerasMenu().vertCanonCount;
+    }
+
+    public WebElement getVertCamerasNikon() {
+        clickVertCameras();
+        return getVertCamerasMenu().vertNikon;
+    }
+
+    public int getVertNikonCount() {
+        if (getVertCamerasMenu() == null) {
+            clickVertCameras();
+        }
+        return getVertCamerasMenu().vertCanonCount;
+    }
+//---------------------------------Players-------------------------  
     public WebElement getVertPlayers() {
         return this.vertPlayers;
     }
-
     // Functional
 
     // - - - - - - - - - -DESKTOPS - - - - - - - - - - -
@@ -259,11 +308,19 @@ public class VerticalMenuPage extends AProductListPage {
     public String getVertPhonesText() {
         return getVertPhones().getText();
     }
-
+//---------------CAMERAS---------------
     public String getVertCamerasText() {
         return getVertCameras().getText();
     }
+    public String getVertCamerasCanonText() {
+        return getVertCamerasCanon().getText();
+    }
 
+    public String getVertCamerasNikonText() {
+        return getVertCamerasNikon().getText();
+    }
+
+//----------------PLAYERS------------------------------
     public String getVertPlayersText() {
         return getVertPlayers().getText();
     }
@@ -327,9 +384,16 @@ public class VerticalMenuPage extends AProductListPage {
     public void clickVertPhones() {
         getVertPhones().click();
     }
-
+//----------------------Cameras------------------
     public void clickVertCameras() {
         getVertCameras().click();
+    }
+    public void clickVertCamerasCanon() {
+        getVertCamerasCanon().click();
+    }
+
+    public void clickVertCamerasNikon() {
+        getVertCamerasNikon().click();
     }
 
     public void clickVertPlayers() {

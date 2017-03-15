@@ -46,6 +46,25 @@ abstract class AMenuPage extends ATopPage {
         }
     }
 
+    
+    // - - - - - - - - - -CAMERAS - - - - - - - - - - -
+
+    private class CamerasAMenuPage {
+        public final WebElement canon;
+        public final WebElement nikon;
+        public final WebElement allCameras;
+
+        public CamerasAMenuPage() {
+            /*-
+            this.pc = driver.findElement(By.partialLinkText("PC ("));
+            this.mac = driver.findElement(By.partialLinkText("Mac ("));
+            */
+            this.canon = driver.findElement(By.xpath("//div[@class='dropdown-inner']//li/a[contains(text(),'Canon (')]"));
+            this.nikon = driver.findElement(By.xpath("//div[@class='dropdown-inner']//li/a[contains(text(),'Nikon (')]"));
+            this.allCameras = driver.findElement(By.partialLinkText("Show All Cameras"));
+        }
+    }
+
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -63,6 +82,7 @@ abstract class AMenuPage extends ATopPage {
     private WebElement software;
     private WebElement phones;
     private WebElement cameras;
+    private CamerasAMenuPage camerasMenu;
     private WebElement players;
 
     protected AMenuPage(WebDriver driver) {
@@ -158,11 +178,26 @@ abstract class AMenuPage extends ATopPage {
     public WebElement getPhones() {
         return this.phones;
     }
-
+//-----------CAMERAS--------------------------------
     public WebElement getCameras() {
         return this.cameras;
     }
+    public WebElement getCamerasCanon() {
+        clickCameras();
+        return this.camerasMenu.canon;
+    }
 
+    public WebElement getCamerasNikon() {
+        clickCameras();
+        return this.camerasMenu.nikon;
+    }
+
+    public WebElement getCamerasAll() {
+        clickCameras();
+        return this.camerasMenu.allCameras;
+    }
+
+//--------------Player-----------------------
     public WebElement getPlayers() {
         return this.players;
     }
@@ -262,11 +297,25 @@ abstract class AMenuPage extends ATopPage {
     public void clickPhones() {
         getPhones().click();
     }
-
+//--------------CAMERAS------------------------------
     public void clickCameras() {
         getCameras().click();
+        camerasMenu = new CamerasAMenuPage();
     }
 
+    public void clickCamerasCanon() {
+        getCamerasCanon().click();
+    }
+
+    public void clickCamerasNikon() {
+        getCamerasNikon().click();
+    }
+
+    public void clickCamerasAll() {
+        getCamerasAll().click();
+    }
+    
+//--------------PLAYER----------------------------------------------
     public void clickPlayers() {
         getPlayers().click();
         // TODO
