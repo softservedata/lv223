@@ -30,18 +30,18 @@ abstract class AMenuPage extends ATopPage {
         public final WebElement apple;
         public final WebElement hp;
         public final WebElement others;
-        public final WebElement samsung;
+        public final WebElement acer;
         public final WebElement allLaptops;
 
         public LaptopsAMenuPage() {
             this.apple = driver.findElement(By.xpath
-                    ("(//div[@class='dropdown-inner']//li/a[contains(text(),'Apple (')])[1]"));
+                    ("//div[@class='dropdown-inner']//li/a[contains(@href,'&path=18_46')]"));
             this.hp = driver.findElement(By.xpath
-                    ("//div[@class='dropdown-inner']//li/a[contains(text(),'HP (')]"));
+                    ("//div[@class='dropdown-inner']//li/a[contains(@href,'&path=18_45')]"));
             this.others = driver.findElement(By.xpath
-                    ("(//div[@class='dropdown-inner']//li/a[contains(text(),'Others (')])[1]"));
-            this.samsung = driver.findElement(By.xpath
-                    ("(//div[@class='dropdown-inner']//li/a[contains(text(),'Samsung (')])[1]"));
+                    ("//div[@class='dropdown-inner']//li/a[contains(@href,'&path=18_72')]"));
+            this.acer = driver.findElement(By.xpath
+                    ("(//div[@class='dropdown-inner']//li/a[contains(@href,'&path=18_71')]"));
             this.allLaptops = driver.findElement(By.partialLinkText("Show All Laptops"));
         }
     }
@@ -209,9 +209,9 @@ abstract class AMenuPage extends ATopPage {
 
     }
 
-    public WebElement getLaptopsSamsung() {
+    public WebElement getLaptopsAcer() {
         clickLaptops();
-        return this.laptopsMenu.samsung;
+        return this.laptopsMenu.acer;
     }
     
     public WebElement getLaptopsAll() {
@@ -410,8 +410,8 @@ abstract class AMenuPage extends ATopPage {
         getLaptopsOthers().click();
     }
 
-    public void clickLaptopsSamsung() {
-        getLaptopsSamsung().click();
+    public void clickLaptopsAcer() {
+        getLaptopsAcer().click();
     }
 
     //--------------------COMPONENTS---------------------
