@@ -50,6 +50,9 @@ hs_err_pid*
 # Ignore log
 *.log
 
+# Ignore IntelliJ IDEA Config Files
+*.stackdump
+
 # Ignore Picture
 *.bmp
 
