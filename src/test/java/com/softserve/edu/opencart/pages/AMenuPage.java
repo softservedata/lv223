@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import com.softserve.edu.opencart.pages.AMenuPage.PhonesAMenuPage;
+
 
 abstract class AMenuPage extends ATopPage {
 
@@ -310,29 +310,29 @@ abstract class AMenuPage extends ATopPage {
         return this.phones;
     }
 
-    public WebElement getApplePhones() {				//Phones
-		clickPhones();											//Phones
-		return this.phonesMenu.applePhones;					//Phones
+    public WebElement getApplePhones() {				
+		clickPhones();											
+		return this.phonesMenu.applePhones;					
 	}
 	
-	public WebElement getHtcPhones() {				//Phones
-		clickPhones();											//Phones
-		return this.phonesMenu.htcPhones;					//Phones
+	public WebElement getHtcPhones() {				
+		clickPhones();											
+		return this.phonesMenu.htcPhones;					
 	}
 	
-	public WebElement getOtherPhones() {				//Phones
-		clickPhones();											//Phones
-		return this.phonesMenu.otherPhones;					//Phones
+	public WebElement getOtherPhones() {				
+		clickPhones();											
+		return this.phonesMenu.otherPhones;					
 	}
 	
-	public WebElement getSamsungPhones() {				//Phones
-		clickPhones();											//Phones
-		return this.phonesMenu.samsungPhones;					//Phones
+	public WebElement getSamsungPhones() {				
+		clickPhones();											
+		return this.phonesMenu.samsungPhones;					
 	}
 	
-	public WebElement getAllPhones() {				//Phones
-		clickPhones();											//Phones
-		return this.phonesMenu.allPhones;					//Phones
+	public WebElement getAllPhones() {				
+		clickPhones();											
+		return this.phonesMenu.allPhones;					
 	}
     
 	//-----------CAMERAS--------------------------------
@@ -521,27 +521,27 @@ abstract class AMenuPage extends ATopPage {
 
     //--------------PHONES------------------------------
   
-    public void clickPhones() {				//Phones
-		getPhones().click();				//Phones
-		phonesMenu = new PhonesAMenuPage();				//Phones
+    public void clickPhones() {				
+		getPhones().click();				
+		phonesMenu = new PhonesAMenuPage();				
 	}
 
-	public void clickPhonesApple() {				//Phones
-		getApplePhones().click();				//Phones
+	public void clickPhonesApple() {				
+		getApplePhones().click();				
 	}
 	
-	public void clickPhonesHtc() {				//Phones
-		getHtcPhones().click();				//Phones
+	public void clickPhonesHtc() {				
+		getHtcPhones().click();				
 	}
 	
-	public void clickPhonesOthers() {				//Phones
-		getOtherPhones().click();				//Phones
+	public void clickPhonesOthers() {				
+		getOtherPhones().click();				
 	}
-	public void clickPhonesSamsung() {				//Phones
-		getSamsungPhones().click();				//Phones
+	public void clickPhonesSamsung() {				
+		getSamsungPhones().click();				
 	}
-	public void clickPhonesAll() {				//Phones
-		getAllPhones().click();					//Phones
+	public void clickPhonesAll() {				
+		getAllPhones().click();					
 	}
     
     //--------------CAMERAS------------------------------
