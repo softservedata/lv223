@@ -14,7 +14,7 @@ public class ProductApplRunnerTest extends TestRunner {
 	@DataProvider//(parallel = true) // Do not use parallel attribute
     public Object[][] desctopProducts() {
         return new Object[][] {
-            {  ProductRepository.getDesktopIMac() },
+            //{  ProductRepository.getDesktopIMac() },
             {  ProductRepository.getDesktopIMac() },
         };
     }
