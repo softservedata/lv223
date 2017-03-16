@@ -28,7 +28,7 @@ public class TestRunner {
 	@BeforeMethod
 	public void beforeMethod() {
 		System.out.println("@BeforeMethod");
-		Application.get().load();
+		//Application.get().load();
 		//Application.get().login();
 	}
 

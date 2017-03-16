@@ -26,12 +26,18 @@ public class ProductComponent {
 	//public ProductComponent(WebElement baseElement) {
 		this.driver = driver;
 		//this.baseElement = baseElement;
+		//System.out.println("+++++Base Element Text: "+baseElement.getText());
 		this.image = baseElement.findElement(By.cssSelector("div[class='image'] img"));
 		this.detailsLink = baseElement.findElement(By.cssSelector("div[class='caption'] a"));
-		this.description = baseElement.findElement(By.xpath("//div[@class='caption']/p[1]"));
+		//this.description = baseElement.findElement(By.xpath("//div[@class='caption']/p[1]"));
+		this.description = baseElement.findElement(By.cssSelector("div[class='caption'] > p:not([class])"));
 		this.price = baseElement.findElement(By.cssSelector("div[class='caption'] p[class='price']"));
 		this.exTaxPrice = price.findElement(By.tagName("span"));
 		this.addCart = baseElement.findElement(By.cssSelector("div[class='button-group'] span[class='hidden-xs hidden-sm hidden-md']"));
+		//
+		//System.out.println("detailsLink = "+ detailsLink.getText());
+		//System.out.println("description = "+ description.getText());
+		//System.out.println("price = "+ price.getText());
 	}
 	
 	// PageObject

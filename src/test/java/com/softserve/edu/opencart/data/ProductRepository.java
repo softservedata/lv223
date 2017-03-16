@@ -39,6 +39,26 @@ public final class ProductRepository {
 		return products;
 	}
 
+	public static List<Product> getPhonesAndPDAs() {
+		List<Product> products = new ArrayList<Product>();
+		products.add(new Product("HTC Touch HD",
+				"HTC Touch - in High Definition. Watch music videos and streaming content in awe-inspiring high de..",
+				"98.82", "81.00"));
+		products.add(new Product("Palm Treo Pro",
+				"Redefine your workday with the Palm Treo Pro smartphone. Perfectly balanced, you can respond to b..",
+				"273.77", "226.79"));
+		return products;
+	}
+
+	 public static List<Product> getComponentsMonitors() {
+	        List<Product> products = new ArrayList<>();
+	        products.add(new Product("Apple Cinema 30\"", "The 30-inch Apple Cinema HD Display", "110.00", "90.00"));
+	        products.add(new Product("Samsung SyncMaster 941BW", "Imagine the advantages of going", "242.00",
+	                "200.00"));
+	        // products.add(new Product("", "", "", ""));
+	        return products;
+	    }
+	 
 //	public static List<Product> getProductFromCsvFile() {
 //		return new ProductUtils().getAllProduct();
 //	}

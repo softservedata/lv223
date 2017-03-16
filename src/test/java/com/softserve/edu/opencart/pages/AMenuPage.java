@@ -43,7 +43,7 @@ abstract class AMenuPage extends ATopPage {
             this.others = driver.findElement(By.xpath
                     ("//div[@class='dropdown-inner']//li/a[contains(@href,'&path=18_72')]"));
             this.acer = driver.findElement(By.xpath
-                    ("(//div[@class='dropdown-inner']//li/a[contains(@href,'&path=18_71')]"));
+                    ("//div[@class='dropdown-inner']//li/a[contains(@href,'&path=18_71')]"));
             this.allLaptops = driver.findElement(By.partialLinkText("Show All Laptops"));
         }
     }
@@ -66,7 +66,7 @@ abstract class AMenuPage extends ATopPage {
         public ComponentsAMenuPage() {
             this.mice = driver.findElement(By.partialLinkText("- PC ("));
             //this.vertMiceCount= CountUtils.getCountInBrackets(this.vertMice.getText());
-            this.monitors = driver.findElement(By.partialLinkText("- PC ("));
+            this.monitors = driver.findElement(By.partialLinkText("Monitors ("));
             //this.vertMonitorsCount= CountUtils.getCountInBrackets(this.vertMonitors.getText());
             this.printers = driver.findElement(By.partialLinkText("- PC ("));
             //this.vertPrintersCount= CountUtils.getCountInBrackets(this.vertPrinters.getText());
