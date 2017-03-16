@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import com.softserve.edu.opencart.pages.AMenuPage.PhonesAMenuPage;
+
 abstract class AMenuPage extends ATopPage {
 
     // - - - - - - - - - -DESKTOPS - - - - - - - - - - -
@@ -45,29 +47,8 @@ abstract class AMenuPage extends ATopPage {
             this.allLaptops = driver.findElement(By.partialLinkText("Show All Laptops"));
         }
     }
-
     
-    // - - - - - - - - - -CAMERAS - - - - - - - - - - -
-
-    private class CamerasAMenuPage {
-        public final WebElement canon;
-        public final WebElement nikon;
-        public final WebElement allCameras;
-
-        public CamerasAMenuPage() {
-            /*-
-            this.pc = driver.findElement(By.partialLinkText("PC ("));
-            this.mac = driver.findElement(By.partialLinkText("Mac ("));
-            */
-            this.canon = driver.findElement(By.xpath("//div[@class='dropdown-inner']//li/a[contains(text(),'Canon (')]"));
-            this.nikon = driver.findElement(By.xpath("//div[@class='dropdown-inner']//li/a[contains(text(),'Nikon (')]"));
-            this.allCameras = driver.findElement(By.partialLinkText("Show All Cameras"));
-        }
-    }
-
-
-    // - - - - - - - - - COMPONENTS - - - - - - - - - - - - - - - - - -
-
+       // - - - - - - - - - COMPONENTS - - - - - - - - - - - - - - - - - -
 
     private class ComponentsAMenuPage {
         public final WebElement mice;
@@ -97,9 +78,8 @@ abstract class AMenuPage extends ATopPage {
         }
     }
 
+        // - - - - - - - - - - - - - SOFTWARE - - - - - - - - - - - - - - - - -
     
-
-    // - - - - - - - - - - - - - SOFTWARE - - - - - - - - - - - - - - - - -
     private class SoftwareAMenuPage {
         public final WebElement appleSoftware;
         public final WebElement microsoftSoftware;
@@ -118,6 +98,44 @@ abstract class AMenuPage extends ATopPage {
     }
 
     
+    // - - - - - - - - - -PHONES - - - - - - - - - - -
+	
+    private class PhonesAMenuPage {
+		public final WebElement applePhones;
+		public final WebElement htcPhones;
+		public final WebElement otherPhones;
+		public final WebElement samsungPhones;
+		public final WebElement allPhones;
+		
+		public PhonesAMenuPage() {
+			this.applePhones = driver.findElement(By.xpath("//nav[@id='menu']//a[contains(@href,'path=24_61')]"));
+			this.htcPhones = driver.findElement(By.xpath("//nav[@id='menu']//a[contains(@href,'path=24_63')]"));
+			this.otherPhones = driver.findElement(By.xpath("//nav[@id='menu']//a[contains(@href,'path=24_64')]"));
+			this.samsungPhones = driver.findElement(By.xpath("//nav[@id='menu']//a[contains(@href,'path=24_62')]"));
+			this.allPhones = driver.findElement(By.xpath("//*[contains(text(),'Show All Phones')]"));
+		}
+	}
+    
+    
+    // - - - - - - - - - -CAMERAS - - - - - - - - - - -
+
+    private class CamerasAMenuPage {
+        public final WebElement canon;
+        public final WebElement nikon;
+        public final WebElement allCameras;
+
+        public CamerasAMenuPage() {
+            /*-
+            this.pc = driver.findElement(By.partialLinkText("PC ("));
+            this.mac = driver.findElement(By.partialLinkText("Mac ("));
+            */
+            this.canon = driver.findElement(By.xpath("//div[@class='dropdown-inner']//li/a[contains(text(),'Canon (')]"));
+            this.nikon = driver.findElement(By.xpath("//div[@class='dropdown-inner']//li/a[contains(text(),'Nikon (')]"));
+            this.allCameras = driver.findElement(By.partialLinkText("Show All Cameras"));
+        }
+    }
+
+
     // Fields
 
     public static final int MENU_PRODUCT_COLUMN = 4;
@@ -133,6 +151,7 @@ abstract class AMenuPage extends ATopPage {
     private WebElement software;
     private SoftwareAMenuPage softwareMenu;
     private WebElement phones;
+	private PhonesAMenuPage phonesMenu;
     private WebElement cameras;
     private CamerasAMenuPage camerasMenu;
     private WebElement players;
@@ -263,6 +282,7 @@ abstract class AMenuPage extends ATopPage {
     }
 
     // - - - - - - - - - - SOFTWARE - - - - - - - -
+   
     public WebElement getSoftware() {
         return this.software;
     }
@@ -284,11 +304,39 @@ abstract class AMenuPage extends ATopPage {
         return this.softwareMenu.otherSoftware;
     }
     
-
+    // - - - - - - - - PHONES - - - - - - - -
+    
     public WebElement getPhones() {
         return this.phones;
     }
-//-----------CAMERAS--------------------------------
+
+    public WebElement getApplePhones() {				//Phones
+		clickPhones();											//Phones
+		return this.phonesMenu.applePhones;					//Phones
+	}
+	
+	public WebElement getHtcPhones() {				//Phones
+		clickPhones();											//Phones
+		return this.phonesMenu.htcPhones;					//Phones
+	}
+	
+	public WebElement getOtherPhones() {				//Phones
+		clickPhones();											//Phones
+		return this.phonesMenu.otherPhones;					//Phones
+	}
+	
+	public WebElement getSamsungPhones() {				//Phones
+		clickPhones();											//Phones
+		return this.phonesMenu.samsungPhones;					//Phones
+	}
+	
+	public WebElement getAllPhones() {				//Phones
+		clickPhones();											//Phones
+		return this.phonesMenu.allPhones;					//Phones
+	}
+    
+	//-----------CAMERAS--------------------------------
+    
     public WebElement getCameras() {
         return this.cameras;
     }
@@ -307,7 +355,8 @@ abstract class AMenuPage extends ATopPage {
         return this.camerasMenu.allCameras;
     }
 
-//--------------Player-----------------------
+    //--------------PLAYERS-----------------------
+   
     public WebElement getPlayers() {
         return this.players;
     }
@@ -452,6 +501,7 @@ abstract class AMenuPage extends ATopPage {
     }
 
     // - -  - - - - - - SOFTWARE - - - - - - - 
+    
     public void clickSoftware() {
         getSoftware().click();        
         softwareMenu = new SoftwareAMenuPage();
@@ -469,10 +519,33 @@ abstract class AMenuPage extends ATopPage {
         getOtherSoftware().click();
     }
 
-    public void clickPhones() {
-        getPhones().click();
-    }
-//--------------CAMERAS------------------------------
+    //--------------PHONES------------------------------
+  
+    public void clickPhones() {				//Phones
+		getPhones().click();				//Phones
+		phonesMenu = new PhonesAMenuPage();				//Phones
+	}
+
+	public void clickPhonesApple() {				//Phones
+		getApplePhones().click();				//Phones
+	}
+	
+	public void clickPhonesHtc() {				//Phones
+		getHtcPhones().click();				//Phones
+	}
+	
+	public void clickPhonesOthers() {				//Phones
+		getOtherPhones().click();				//Phones
+	}
+	public void clickPhonesSamsung() {				//Phones
+		getSamsungPhones().click();				//Phones
+	}
+	public void clickPhonesAll() {				//Phones
+		getAllPhones().click();					//Phones
+	}
+    
+    //--------------CAMERAS------------------------------
+    
     public void clickCameras() {
         getCameras().click();
         camerasMenu = new CamerasAMenuPage();
@@ -548,4 +621,34 @@ abstract class AMenuPage extends ATopPage {
         clickComponentsWebCameras();
         return new VerticalMenuPage(driver, MENU_PRODUCT_COLUMN);
     }
+
+
+	// - - - - - - - - - -PHONES - - - - - - - - - - -
+	
+    public VerticalMenuPage gotoPhonesApple() {
+		clickPhonesApple();
+		return new VerticalMenuPage(driver, MENU_PRODUCT_COLUMN);
+	}
+	
+	public VerticalMenuPage gotoPhonesHtc() {
+		clickPhonesHtc();
+		return new VerticalMenuPage(driver, MENU_PRODUCT_COLUMN);
+	}
+	
+	public VerticalMenuPage gotoPhonesOthers() {
+		clickPhonesOthers();
+		return new VerticalMenuPage(driver, MENU_PRODUCT_COLUMN);
+	}
+	
+	public VerticalMenuPage gotoPhonesSamsung() {
+		clickPhonesSamsung();
+		return new VerticalMenuPage(driver, MENU_PRODUCT_COLUMN);
+	}
+	
+	public VerticalMenuPage gotoPhonesAll() {
+		clickPhonesAll();
+		return new VerticalMenuPage(driver, MENU_PRODUCT_COLUMN);
+	}
+	
 }
+
