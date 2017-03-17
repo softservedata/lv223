@@ -1,5 +1,7 @@
 package com.softserve.edu.opencart.data;
 
+import com.softserve.edu.opencart.tools.ProductUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,7 +60,12 @@ public final class ProductRepository {
 	        // products.add(new Product("", "", "", ""));
 	        return products;
 	    }
-	 
+
+	public static List<Product> getComponentsMonitorsCsv() {
+		return new ProductUtils().getProductsCSV(ProductUtils.COMPONENTS_MONITORS_CSV);
+	}
+
+
 //	public static List<Product> getProductFromCsvFile() {
 //		return new ProductUtils().getAllProduct();
 //	}

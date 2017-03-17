@@ -72,70 +72,70 @@ public class VerticalMenuPage extends AProductListPage {
 
     private class ComponentsAVerticalMenuPage {
         public final WebElement vertMice;
-        public final int vertMiceCount;
+        //public final int vertMiceCount;
         public final WebElement vertMonitors;
-        public final int vertMonitorsCount;
+        //public final int vertMonitorsCount;
         public final WebElement vertPrinters;
-        public final int vertPrintersCount;
+        //public final int vertPrintersCount;
         public final WebElement vertScanners;
-        public final int vertScannersCount;
+        //public final int vertScannersCount;
         public final WebElement vertWebCameras;
-        public final int vertWebCamerasCount;
+        //public final int vertWebCamerasCount;
 
         public ComponentsAVerticalMenuPage() {
             this.vertMice = driver.findElement(By.partialLinkText("- Mice and Trackballs ("));
-            this.vertMiceCount = CountUtils.getCountInBrackets(this.vertMice.getText());
+            //this.vertMiceCount = CountUtils.getCountInBrackets(this.vertMice.getText());
             this.vertMonitors = driver.findElement(By.partialLinkText("- Monitors ("));
-            this.vertMonitorsCount = CountUtils.getCountInBrackets(this.vertMonitors.getText());
+            //this.vertMonitorsCount = CountUtils.getCountInBrackets(this.vertMonitors.getText());
             this.vertPrinters = driver.findElement(By.partialLinkText("- Printers ("));
-            this.vertPrintersCount = CountUtils.getCountInBrackets(this.vertPrinters.getText());
+            //this.vertPrintersCount = CountUtils.getCountInBrackets(this.vertPrinters.getText());
             this.vertScanners = driver.findElement(By.partialLinkText("- Scanners ("));
-            this.vertScannersCount = CountUtils.getCountInBrackets(this.vertScanners.getText());
+            //this.vertScannersCount = CountUtils.getCountInBrackets(this.vertScanners.getText());
             this.vertWebCameras = driver.findElement(By.partialLinkText("- Web Cameras ("));
-            this.vertWebCamerasCount = CountUtils.getCountInBrackets(this.vertWebCameras.getText());
+            //this.vertWebCamerasCount = CountUtils.getCountInBrackets(this.vertWebCameras.getText());
         }
     }
 
     // - - - - - - - - - -PHONES - - - - - - - - - - -
 
-   private class PhonesAVerticalMenuPage{				
-		public final WebElement vertApplePhones;				
-		public final int vertApplePhonesCount;				
-		public final WebElement vertHtcPhones;				
-		public final int vertHtcPhonesCount;				
-		public final WebElement vertOthersPhones;				
-		public final int vertOthersPhonesCount;				
-		public final WebElement vertSamsungPhones;				
-		public final int vertSamsungPhonesCount;				
-		
-		public PhonesAVerticalMenuPage() {								 
-			this.vertApplePhones = driver.findElement(By.xpath("//div[@class='list-group']//a[contains(text(),'Apple (')]"));							
-			this.vertApplePhonesCount = CountUtils.getCountInBrackets(this.vertApplePhones.getText());							
-			this.vertHtcPhones = driver.findElement(By.xpath("//div[@class='list-group']//a[contains(text(),'HTC (')]"));									
-			this.vertHtcPhonesCount = CountUtils.getCountInBrackets(this.vertHtcPhones.getText());
-			this.vertOthersPhones = driver.findElement(By.xpath("//div[@class='list-group']//a[contains(text(),'Others (')]"));					
-			this.vertOthersPhonesCount = CountUtils.getCountInBrackets(this.vertOthersPhones.getText());
-			this.vertSamsungPhones = driver.findElement(By.xpath("//div[@class='list-group']//a[contains(text(),'Samsung (')]"));				
-			this.vertSamsungPhonesCount = CountUtils.getCountInBrackets(this.vertSamsungPhones.getText());										
-		}
-	}
-   
-   // - - - - - - - - - -CAMERAS - - - - - - - - - - -
+    private class PhonesAVerticalMenuPage{
+        public final WebElement vertApplePhones;
+        public final int vertApplePhonesCount;
+        public final WebElement vertHtcPhones;
+        public final int vertHtcPhonesCount;
+        public final WebElement vertOthersPhones;
+        public final int vertOthersPhonesCount;
+        public final WebElement vertSamsungPhones;
+        public final int vertSamsungPhonesCount;
 
-   private class CamerasAVerticalMenuPage {
-       public final WebElement vertCanon;
-       public final int vertCanonCount;
-       public final WebElement vertNikon;
-       public final int vertNikonCount;
+        public PhonesAVerticalMenuPage() {
+            this.vertApplePhones = driver.findElement(By.xpath("//div[@class='list-group']//a[contains(text(),'Apple (')]"));
+            this.vertApplePhonesCount = CountUtils.getCountInBrackets(this.vertApplePhones.getText());
+            this.vertHtcPhones = driver.findElement(By.xpath("//div[@class='list-group']//a[contains(text(),'HTC (')]"));
+            this.vertHtcPhonesCount = CountUtils.getCountInBrackets(this.vertHtcPhones.getText());
+            this.vertOthersPhones = driver.findElement(By.xpath("//div[@class='list-group']//a[contains(text(),'Others (')]"));
+            this.vertOthersPhonesCount = CountUtils.getCountInBrackets(this.vertOthersPhones.getText());
+            this.vertSamsungPhones = driver.findElement(By.xpath("//div[@class='list-group']//a[contains(text(),'Samsung (')]"));
+            this.vertSamsungPhonesCount = CountUtils.getCountInBrackets(this.vertSamsungPhones.getText());
+        }
+    }
 
-       public CamerasAVerticalMenuPage() {
-           this.vertCanon = driver.findElement(By.partialLinkText("- Canon ("));
-           this.vertCanonCount = CountUtils.getCountInBrackets(this.vertCanon.getText());
-           this.vertNikon = driver.findElement(By.partialLinkText("- Nikon ("));
-           this.vertNikonCount = CountUtils.getCountInBrackets(this.vertNikon.getText());
-       }
-   }
-    
+    // - - - - - - - - - -CAMERAS - - - - - - - - - - -
+
+    private class CamerasAVerticalMenuPage {
+        public final WebElement vertCanon;
+        public final int vertCanonCount;
+        public final WebElement vertNikon;
+        public final int vertNikonCount;
+
+        public CamerasAVerticalMenuPage() {
+            this.vertCanon = driver.findElement(By.partialLinkText("- Canon ("));
+            this.vertCanonCount = CountUtils.getCountInBrackets(this.vertCanon.getText());
+            this.vertNikon = driver.findElement(By.partialLinkText("- Nikon ("));
+            this.vertNikonCount = CountUtils.getCountInBrackets(this.vertNikon.getText());
+        }
+    }
+
     // Fields
 
     private WebElement home;
@@ -151,7 +151,7 @@ public class VerticalMenuPage extends AProductListPage {
     private WebElement vertSoftware;
     private SoftwareAVerticalMenuPage vertSoftwareMenu;
     private WebElement vertPhones;
-	private PhonesAVerticalMenuPage vertPhonesMenu;	
+    private PhonesAVerticalMenuPage vertPhonesMenu;
     private WebElement vertCameras;
     private CamerasAVerticalMenuPage vertCamerasMenu;
     private WebElement vertPlayers;
@@ -286,22 +286,8 @@ public class VerticalMenuPage extends AProductListPage {
         return this.getVertComponentsMenu().vertMice;
     }
 
-    public int getVertComponentsMiceCount() {
-        if (getVertComponentsMenu() == null) {
-            clickVertComponents();
-        }
-        return getVertComponentsMenu().vertMiceCount;
-    }
-
     public WebElement getVertComponentsMonitors() {
         return this.getVertComponentsMenu().vertMonitors;
-    }
-
-    public int getVertComponentsMonitorsCount() {
-        if (getVertComponentsMenu() == null) {
-            clickVertComponents();
-        }
-        return getVertComponentsMenu().vertMonitorsCount;
     }
 
 
@@ -309,37 +295,17 @@ public class VerticalMenuPage extends AProductListPage {
         return this.getVertComponentsMenu().vertPrinters;
     }
 
-    public int getVertComponentsPrintersCount() {
-        if (getVertComponentsMenu() == null) {
-            clickVertComponents();
-        }
-        return getVertComponentsMenu().vertPrintersCount;
-    }
-
 
     public WebElement getVertComponentsScanners() {
         return this.getVertComponentsMenu().vertScanners;
-    }
-
-    public int getVertComponentsScannersCount() {
-        if (getVertComponentsMenu() == null) {
-            clickVertComponents();
-        }
-        return getVertComponentsMenu().vertScannersCount;
     }
 
     public WebElement getVertComponentsWebCameras() {
         return this.getVertComponentsMenu().vertWebCameras;
     }
 
-    public int getVertComponentsWebCamerasCount() {
-        if (getVertComponentsMenu() == null) {
-            clickVertComponents();
-        }
-        return getVertComponentsMenu().vertWebCamerasCount;
-    }
 
-    // - - - - - - - - -TABLETS - - - - - - - - - - 
+    // - - - - - - - - -TABLETS - - - - - - - - - -
 
     public WebElement getVertTablets() {
         return this.vertTablets;
@@ -391,65 +357,65 @@ public class VerticalMenuPage extends AProductListPage {
         return getVertSoftwareMenu().vertOtherSoftwareCount;
     }
 
-    // - - - - - - - - -PHONES - - - - - - - - - - 
+    // - - - - - - - - -PHONES - - - - - - - - - -
 
     public WebElement getVertPhones() {
         return this.vertPhones;
     }
 
-	public PhonesAVerticalMenuPage getVertPhonesMenu() {			
-		return this.vertPhonesMenu;									
-	}
+    public PhonesAVerticalMenuPage getVertPhonesMenu() {
+        return this.vertPhonesMenu;
+    }
 
-	public WebElement getVertApplePhones() {							
-		clickVertPhones();												
-		return getVertPhonesMenu().vertApplePhones;						
-	}
+    public WebElement getVertApplePhones() {
+        clickVertPhones();
+        return getVertPhonesMenu().vertApplePhones;
+    }
 
-	public int getVertApplePhonesCount() {					
-		if (getVertPhonesMenu() == null) {					
-			clickVertPhones();					
-		}
-		return getVertPhonesMenu().vertApplePhonesCount;					
-	}
-	
-	public WebElement getVertHtcPhones() {							
-		clickVertPhones();											
-		return getVertPhonesMenu().vertHtcPhones;					
-	}
-	
-	public int getVertHtcPhonesCount() {					
-		if (getVertPhonesMenu() == null) {					
-			clickVertPhones();								
-		}
-		return getVertPhonesMenu().vertHtcPhonesCount;					
-	}
-	
-	public WebElement getVertOthersPhones() {							
-		clickVertPhones();												
-		return getVertPhonesMenu().vertOthersPhones;					
-	}
-	
-	public int getVertOthersPhonesCount() {					
-		if (getVertPhonesMenu() == null) {					
-			clickVertPhones();
-		}
-		return getVertPhonesMenu().vertOthersPhonesCount;					
-	}
-	
-	public WebElement getVertSamsungPhones() {							
-		clickVertPhones();												
-		return getVertPhonesMenu().vertSamsungPhones;					
-	}
-	
-	public int getVertSamsungPhonesCount() {					
-		if (getVertPhonesMenu() == null) {					
-			clickVertPhones();								
-		}
-		return getVertPhonesMenu().vertSamsungPhonesCount;				
-	}
+    public int getVertApplePhonesCount() {
+        if (getVertPhonesMenu() == null) {
+            clickVertPhones();
+        }
+        return getVertPhonesMenu().vertApplePhonesCount;
+    }
 
-  // - - - - - - - - -CAMERAS - - - - - - - - - - 
+    public WebElement getVertHtcPhones() {
+        clickVertPhones();
+        return getVertPhonesMenu().vertHtcPhones;
+    }
+
+    public int getVertHtcPhonesCount() {
+        if (getVertPhonesMenu() == null) {
+            clickVertPhones();
+        }
+        return getVertPhonesMenu().vertHtcPhonesCount;
+    }
+
+    public WebElement getVertOthersPhones() {
+        clickVertPhones();
+        return getVertPhonesMenu().vertOthersPhones;
+    }
+
+    public int getVertOthersPhonesCount() {
+        if (getVertPhonesMenu() == null) {
+            clickVertPhones();
+        }
+        return getVertPhonesMenu().vertOthersPhonesCount;
+    }
+
+    public WebElement getVertSamsungPhones() {
+        clickVertPhones();
+        return getVertPhonesMenu().vertSamsungPhones;
+    }
+
+    public int getVertSamsungPhonesCount() {
+        if (getVertPhonesMenu() == null) {
+            clickVertPhones();
+        }
+        return getVertPhonesMenu().vertSamsungPhonesCount;
+    }
+
+    // - - - - - - - - -CAMERAS - - - - - - - - - -
 
     public WebElement getVertCameras() {
         return this.vertCameras;
@@ -483,7 +449,7 @@ public class VerticalMenuPage extends AProductListPage {
         return getVertCamerasMenu().vertCanonCount;
     }
 
- // - - - - - - - - -PLAYERS - - - - - - - - - - 
+    // - - - - - - - - -PLAYERS - - - - - - - - - -
 
     public WebElement getVertPlayers() {
         return this.vertPlayers;
@@ -554,13 +520,13 @@ public class VerticalMenuPage extends AProductListPage {
         return getVertComponentsWebCameras().getText();
     }
 
- // - - - - - - - - - TABLES - - - - - - - - - - 
+    // - - - - - - - - - TABLES - - - - - - - - - -
 
     public String getVertTabletsText() {
         return getVertTablets().getText();
     }
 
-// - - - - - - - - - SOFTWARE - - - - - - - - - - 
+// - - - - - - - - - SOFTWARE - - - - - - - - - -
 
     public String getVertSoftwareText() {
         return getVertSoftware().getText();
@@ -700,22 +666,22 @@ public class VerticalMenuPage extends AProductListPage {
         getVertPhones().click();
     }
 
-	public void clickVertPnonesApple() {				
-		getVertApplePhones().click();				
-	}
-	
-	public void clickVertPhonesHtc() {				
-		getVertHtcPhones().click();				
-	}
-	
-	public void clickVertPhonesOthers() {				
-		getVertOthersPhones().click();				
-	}
-	
-	public void clickVertPhonesSamsung() {				
-		getVertSamsungPhones().click();				
-	}
-	
+    public void clickVertPnonesApple() {
+        getVertApplePhones().click();
+    }
+
+    public void clickVertPhonesHtc() {
+        getVertHtcPhones().click();
+    }
+
+    public void clickVertPhonesOthers() {
+        getVertOthersPhones().click();
+    }
+
+    public void clickVertPhonesSamsung() {
+        getVertSamsungPhones().click();
+    }
+
 //----------------------CAMERAS------------------
 
     public void clickVertCameras() {
@@ -729,7 +695,7 @@ public class VerticalMenuPage extends AProductListPage {
     public void clickVertCamerasNikon() {
         getVertCamerasNikon().click();
     }
-    
+
 //---------------Players------------------
 
     public void clickVertPlayers() {
