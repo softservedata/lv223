@@ -8,7 +8,26 @@ import org.openqa.selenium.WebElement;
 
 abstract class AMenuPage extends ATopPage {
 
-    // - - - - - - - - - -DESKTOPS - - - - - - - - - - -
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+	public static enum MenuRepository {
+		DESKTOPS("Desktops"),
+		LAPTOPS("Laptops & Notebooks"),
+		COMPONENTS("Components");
+		//
+		private String menuItem;
+
+		private MenuRepository(String menuItem) {
+			this.menuItem = menuItem;
+		}
+
+		@Override
+		public String toString() {
+			return menuItem;
+		}
+	}
+
+	// - - - - - - - - - -DESKTOPS - - - - - - - - - - -
 
     private class DesktopsAMenuPage {
         public final WebElement pc;
