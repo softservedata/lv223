@@ -90,7 +90,8 @@ public abstract class AMenuPage extends ATopPage {
 		// PageObject
 
 		private void initSubCategories() {
-			getCategoryItem().click();
+			//getCategoryItem().click();
+			clickCategoryItem();
 			this.subCategoryItems = driver
 					.findElements(By.xpath(String.format(SUBCATEGORY_LIST_XPATH, category.getIdPath())));
 			this.showAll = driver
@@ -112,7 +113,7 @@ public abstract class AMenuPage extends ATopPage {
 			return this.subCategoryItems;
 		}
 
-		public WebElement getSubCategoryItems(String subCategory) {
+		public WebElement getSubCategoryItem(String subCategory) {
 			WebElement resultWebElement = null;
 			for (WebElement currentWebElement : getSubCategoryItems()) {
 				if (currentWebElement.getText().trim().toLowerCase().contains(subCategory.trim().toLowerCase())) {
@@ -155,12 +156,12 @@ public abstract class AMenuPage extends ATopPage {
 			getCategoryItem().click();
 		}
 
-		public void clickSubCategoryItems(int index) {
+		public void clickSubCategoryItem(int index) {
 			getSubCategoryItems().get(index).click();
 		}
 
-		public void clickSubCategoryItems(String subCategory) {
-			getSubCategoryItems(subCategory).click();
+		public void clickSubCategoryItem(String subCategory) {
+			getSubCategoryItem(subCategory).click();
 		}
 
 		public void clickShowAll() {
@@ -171,7 +172,7 @@ public abstract class AMenuPage extends ATopPage {
 
 	// Fields
 
-	private static final String SUBCATEGORY_NOT_FOUND_ERROR_MESSAGE = "Subcategory not found";
+	protected static final String SUBCATEGORY_NOT_FOUND_ERROR_MESSAGE = "Subcategory not found";
 	public static final int MENU_PRODUCT_COLUMN = 4;
 	//
 	// Horizontal Menu
@@ -217,7 +218,7 @@ public abstract class AMenuPage extends ATopPage {
 	}
 
 	public WebElement getHorizontalMenuSubCategory(CategoryRepository category, String subCategory) {
-		return getItemMenuPage(category).getSubCategoryItems(subCategory);
+		return getItemMenuPage(category).getSubCategoryItem(subCategory);
 	}
 
 	public WebElement getShowAllMenuSubCategory(CategoryRepository category) {
@@ -249,11 +250,11 @@ public abstract class AMenuPage extends ATopPage {
 	}
 
 	public void clickHorizontalMenuSubCategory(CategoryRepository category, int index) {
-		getItemMenuPage(category).clickSubCategoryItems(index);
+		getItemMenuPage(category).clickSubCategoryItem(index);
 	}
 
 	public void clickHorizontalMenuSubCategory(CategoryRepository category, String subCategory) {
-		getItemMenuPage(category).clickSubCategoryItems(subCategory);
+		getItemMenuPage(category).clickSubCategoryItem(subCategory);
 	}
 
 	public void clickShowAllMenuSubCategory(CategoryRepository category) {

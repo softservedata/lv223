@@ -62,17 +62,22 @@ public class ProductTest {
 		Thread.sleep(1000);
 		//
 		// Steps
-		verticalMenuPage = verticalMenuPage.gotoVertDesktopsPc();
+		//verticalMenuPage = verticalMenuPage.gotoVertDesktopsPc();
+		verticalMenuPage = verticalMenuPage.gotoVertMenuSubCategory(CategoryRepository.DESKTOPS, "PC");
 		Thread.sleep(1000);
 		//
 		// Check
 		Assert.assertTrue(verticalMenuPage.getProductsListSize() == 0);
 		
-		Assert.assertTrue(verticalMenuPage.getVertPcCount() == 0);
+		//Assert.assertTrue(verticalMenuPage.getVertPcCount() == 0);
+//		Assert.assertTrue(verticalMenuPage
+//				.getVerticalMenuSubCategoryCount(CategoryRepository.DESKTOPS, "PC") == 0);
+		
 		Thread.sleep(1000);
 		//
 		// Steps
-		verticalMenuPage = verticalMenuPage.gotoVertDesktopsMac();
+		//verticalMenuPage = verticalMenuPage.gotoVertDesktopsMac();
+		verticalMenuPage = verticalMenuPage.gotoVertMenuSubCategory(CategoryRepository.DESKTOPS, "Mac");
 		Thread.sleep(1000);
 		//
 		// Check
