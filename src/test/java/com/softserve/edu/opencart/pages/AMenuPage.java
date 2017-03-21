@@ -35,8 +35,10 @@ abstract class AMenuPage extends ATopPage {
 		}
 
 		private void init(String... subCategories){
-			for (String currentSubCategories : subCategories) {
-				this.subCategories.add(currentSubCategories);
+			if (subCategories != null) {
+				for (String currentSubCategories : subCategories) {
+					this.subCategories.add(currentSubCategories);
+				}
 			}
 		}
 		
