@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 import com.softserve.edu.opencart.appl.Application;
 import com.softserve.edu.opencart.data.Product;
 import com.softserve.edu.opencart.data.ProductRepository;
+import com.softserve.edu.opencart.pages.AMenuPage.CategoryRepository;
 import com.softserve.edu.opencart.pages.VerticalMenuPage;
 import com.softserve.edu.opencart.tools.ProviderUtils;
 
@@ -25,8 +26,10 @@ public class LaptopApplRunnerTest extends TestRunner {
 	public void checkComponentAppl(Product product) throws InterruptedException {
 		// Precondition
 		// Steps
+//		VerticalMenuPage verticalMenuPage = Application.get()
+//				.load().gotoPhonesAll();
 		VerticalMenuPage verticalMenuPage = Application.get()
-				.load().gotoPhonesAll();
+				.load().gotoShowAll(CategoryRepository.PHONES);
 		Thread.sleep(2000);
 		//
 		//System.out.println("*****Actual: "+verticalMenuPage.getProductByDetailsLink(product.getDetails())

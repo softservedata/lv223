@@ -8,6 +8,7 @@ import com.softserve.edu.opencart.appl.Application;
 import com.softserve.edu.opencart.data.Product;
 import com.softserve.edu.opencart.data.ProductRepository;
 import com.softserve.edu.opencart.pages.VerticalMenuPage;
+import com.softserve.edu.opencart.pages.AMenuPage.CategoryRepository;
 
 public class ProductApplRunnerTest extends TestRunner {
 
@@ -23,8 +24,10 @@ public class ProductApplRunnerTest extends TestRunner {
 	public void checkComponentAppl(Product product) throws InterruptedException {
 		// Precondition
 		// Steps
+//		VerticalMenuPage verticalMenuPage = Application.get()
+//				.load().gotoDesktopsAll();
 		VerticalMenuPage verticalMenuPage = Application.get()
-				.load().gotoDesktopsAll();
+				.load().gotoShowAll(CategoryRepository.DESKTOPS);
 		Thread.sleep(1000);
 		//
 		// Check

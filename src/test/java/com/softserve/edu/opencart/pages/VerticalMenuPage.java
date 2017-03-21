@@ -591,8 +591,9 @@ public class VerticalMenuPage extends AProductListPage {
 
     // - - - - - - - - - -LAPTOPS - - - - - - - - - - -
 
+    // ++++++++++++++++DELETE
     public void clickVertLaptops() {
-        getLaptops().click();
+        //getLaptops().click();
     }
 
     public void clickVertLaptopsApple() {

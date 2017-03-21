@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 import com.softserve.edu.opencart.appl.Application;
 import com.softserve.edu.opencart.data.Product;
 import com.softserve.edu.opencart.data.ProductRepository;
+import com.softserve.edu.opencart.pages.AMenuPage.CategoryRepository;
 import com.softserve.edu.opencart.pages.HomePage;
 import com.softserve.edu.opencart.pages.ProductComponent;
 import com.softserve.edu.opencart.pages.VerticalMenuPage;
@@ -42,7 +43,9 @@ public class ComponentsTest extends TestRunner {
     @Test(dataProvider = "componentsMonitorsProvider")
     public void monitorsTest(Product expectedProduct)  {
         logger.info("Start running monitors Test...");
-        VerticalMenuPage verticalMenuPage = Application.get().load().gotoComponentsMonitors();
+        //VerticalMenuPage verticalMenuPage = Application.get().load().gotoComponentsMonitors();
+        VerticalMenuPage verticalMenuPage = Application.get().load().gotoMenuSubCategory(CategoryRepository.COMPONENTS,
+        		CategoryRepository.COMPONENTS.getSubCategoriesByPartialName("Monitors"));
         ProductComponent actualProduct = verticalMenuPage.getProductByDetailsLink(expectedProduct.getDetails());
 
         logger.info("Actual product: " + actualProduct.getDetailsLinkText() + ", expectedProduct: " +
@@ -66,7 +69,9 @@ public class ComponentsTest extends TestRunner {
         logger.info("Starting checkMonitorsCurrency Test.....");
         HomePage home = Application.get().load();
         String actCurrency = home.getCurrencyText();
-        VerticalMenuPage verticalMenuPage = home.gotoComponentsScanners();
+        //VerticalMenuPage verticalMenuPage = home.gotoComponentsScanners();
+        VerticalMenuPage verticalMenuPage = home.gotoMenuSubCategory(CategoryRepository.COMPONENTS,
+        		CategoryRepository.COMPONENTS.getSubCategoriesByPartialName("Scanners"));
         List<ProductComponent> products = verticalMenuPage.getProductsList();
 
         Assert.assertFalse(products.equals(null), "Product list of Monitors is empty.");

@@ -9,6 +9,7 @@ import com.softserve.edu.opencart.appl.ApplicationSources;
 import com.softserve.edu.opencart.appl.ApplicationSourcesRepository;
 import com.softserve.edu.opencart.data.Product;
 import com.softserve.edu.opencart.data.ProductRepository;
+import com.softserve.edu.opencart.pages.AMenuPage.CategoryRepository;
 import com.softserve.edu.opencart.pages.VerticalMenuPage;
 
 public class ProductApplTest {
@@ -27,8 +28,10 @@ public class ProductApplTest {
 			Product product) throws InterruptedException {
 		// Precondition
 		// Steps
+//		VerticalMenuPage verticalMenuPage = Application.get(applicationSources)
+//				.load().gotoDesktopsAll();
 		VerticalMenuPage verticalMenuPage = Application.get(applicationSources)
-				.load().gotoDesktopsAll();
+				.load().gotoShowAll(CategoryRepository.DESKTOPS);
 		Thread.sleep(1000);
 		//
 		// Check

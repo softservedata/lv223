@@ -14,6 +14,7 @@ import com.softserve.edu.opencart.data.Product;
 import com.softserve.edu.opencart.data.ProductRepository;
 import com.softserve.edu.opencart.pages.HomePage;
 import com.softserve.edu.opencart.pages.VerticalMenuPage;
+import com.softserve.edu.opencart.pages.AMenuPage.CategoryRepository;
 import com.softserve.edu.opencart.tools.ProviderUtils;
 
 public class ProductTest {
@@ -46,7 +47,7 @@ public class ProductTest {
 		HomePage homePage = new HomePage(driver);
 		Thread.sleep(1000);
 		//
-		VerticalMenuPage verticalMenuPage = homePage.gotoDesktopsAll();
+		VerticalMenuPage verticalMenuPage = homePage.gotoShowAll(CategoryRepository.DESKTOPS);
 		Thread.sleep(1000);
 		//
 		// Check

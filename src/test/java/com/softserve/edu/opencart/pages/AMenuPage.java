@@ -9,7 +9,7 @@ import org.openqa.selenium.WebElement;
 
 import com.softserve.edu.opencart.tools.GeneralException;
 
-abstract class AMenuPage extends ATopPage {
+public abstract class AMenuPage extends ATopPage {
 	
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -52,6 +52,21 @@ abstract class AMenuPage extends ATopPage {
 
 		public List<String> getSubCategories() {
 			return subCategories;
+		}
+
+		public String getSubCategoriesByPartialName(String name) {
+			String subCategory = null;
+			for (String currentSubCategory : getSubCategories()) {
+				if (currentSubCategory.trim().toLowerCase()
+						.contains(name.trim().toLowerCase())) {
+					subCategory = currentSubCategory;
+					break;
+				}
+			}
+			if (subCategory == null) {
+				throw new GeneralException(SUBCATEGORY_NOT_FOUND_ERROR_MESSAGE);
+			}
+			return subCategory;
 		}
 	}
 
@@ -97,6 +112,21 @@ abstract class AMenuPage extends ATopPage {
         	return this.subCategoryItems;
         }
         
+        public WebElement getSubCategoryItems(String subCategory) {
+        	WebElement resultWebElement = null;
+        	for (WebElement currentWebElement : getSubCategoryItems()) {
+        		if (currentWebElement.getText().trim().toLowerCase()
+        				.contains(subCategory.trim().toLowerCase())) {
+        			resultWebElement = currentWebElement;
+        			break;
+        		}
+        	}
+        	if (resultWebElement == null) {
+        		throw new GeneralException(SUBCATEGORY_NOT_FOUND_ERROR_MESSAGE);
+        	}
+        	return resultWebElement;
+        }
+        
         public WebElement getShowAll() {
         	initSubCategories();
         	return this.showAll;
@@ -131,18 +161,7 @@ abstract class AMenuPage extends ATopPage {
         }
 
         public void clickSubCategoryItems(String subCategory) {
-        	WebElement resultWebElement = null;
-        	for (WebElement currentWebElement : getSubCategoryItems()) {
-        		if (currentWebElement.getText().trim().toLowerCase()
-        				.contains(subCategory.trim().toLowerCase())) {
-        			resultWebElement = currentWebElement;
-        			break;
-        		}
-        	}
-        	if (resultWebElement == null) {
-        		throw new GeneralException(SUBCATEGORY_NOT_FOUND_ERROR_MESSAGE);
-        	}
-        	resultWebElement.click();
+        	getSubCategoryItems(subCategory).click();
         }
 
         public void clickShowAll() {
@@ -151,7 +170,7 @@ abstract class AMenuPage extends ATopPage {
 
     }
     
-    
+    /*
     // Delete
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	// - - - - - - - - - -DESKTOPS - - - - - - - - - - -
@@ -162,10 +181,10 @@ abstract class AMenuPage extends ATopPage {
         public final WebElement allDesktops;
 
         public DesktopsAMenuPage() {
-            /*-
-            this.pc = driver.findElement(By.partialLinkText("PC ("));
-    		this.mac = driver.findElement(By.partialLinkText("Mac ("));
-			*/
+            
+            //this.pc = driver.findElement(By.partialLinkText("PC ("));
+    		//this.mac = driver.findElement(By.partialLinkText("Mac ("));
+			
             this.pc = driver.findElement(By.xpath("//div[@class='dropdown-inner']//li/a[contains(text(),'PC (')]"));
             this.mac = driver.findElement(By.xpath("//div[@class='dropdown-inner']//li/a[contains(text(),'Mac (')]"));
             this.allDesktops = driver.findElement(By.partialLinkText("Show All Desktops"));
@@ -277,16 +296,17 @@ abstract class AMenuPage extends ATopPage {
         public final WebElement allCameras;
 
         public CamerasAMenuPage() {
-            /*-
-            this.pc = driver.findElement(By.partialLinkText("PC ("));
-            this.mac = driver.findElement(By.partialLinkText("Mac ("));
-            */
+            
+            //this.pc = driver.findElement(By.partialLinkText("PC ("));
+            //this.mac = driver.findElement(By.partialLinkText("Mac ("));
+            
             this.canon = driver.findElement(By.xpath("//div[@class='dropdown-inner']//li/a[contains(text(),'Canon (')]"));
             this.nikon = driver.findElement(By.xpath("//div[@class='dropdown-inner']//li/a[contains(text(),'Nikon (')]"));
             this.allCameras = driver.findElement(By.partialLinkText("Show All Cameras"));
         }
     }
     //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    */
     
     // Fields
 
@@ -296,6 +316,7 @@ abstract class AMenuPage extends ATopPage {
     // Horizontal Menu
     private List<ItemMenuPage> horizontalMenu;
 
+    /*
     // Delete
     //++++++++++++++++++++++++++++++++++++++
     private WebElement desktops;
@@ -313,7 +334,8 @@ abstract class AMenuPage extends ATopPage {
     private CamerasAMenuPage camerasMenu;
     private WebElement players;
     //++++++++++++++++++++++++++++++++++++++
-
+	*/
+    
     protected AMenuPage(WebDriver driver) {
         super(driver);
         initHorizontalMenu();
@@ -327,6 +349,7 @@ abstract class AMenuPage extends ATopPage {
 		this.cameras = driver.findElement(By.xpath("//a[contains(@href,'path=25') and contains(@class,'dropdown-toggle')]/parent::li/following-sibling::li[4]/a"));
 		this.players = driver.findElement(By.xpath("//a[contains(@href,'path=34') and contains(@class,'dropdown-toggle')]"));
 		*/
+        /*
         // DELETE
         // +++++++++++++++++
         this.desktops = driver.findElement(By.linkText("Desktops"));
@@ -338,6 +361,8 @@ abstract class AMenuPage extends ATopPage {
         this.cameras = driver.findElement(By.linkText("Cameras"));
         this.players = driver.findElement(By.linkText("MP3 Players"));
         // +++++++++++++++++
+         */
+
     }
 
     // PageObject
@@ -368,7 +393,21 @@ abstract class AMenuPage extends ATopPage {
     public WebElement getHorizontalMenuCategory(CategoryRepository category) {
         return getItemMenuPage(category).getCategoryItem();
     }
+
+    public WebElement getHorizontalMenuSubCategory(CategoryRepository category, int index) {
+    	return getItemMenuPage(category).getSubCategoryItems().get(index);
+    }
+
+    public WebElement getHorizontalMenuSubCategory(CategoryRepository category, String subCategory) {
+    	return getItemMenuPage(category).getSubCategoryItems(subCategory);
+    }
+
+    public WebElement getShowAllMenuSubCategory(CategoryRepository category) {
+    	return getItemMenuPage(category).getShowAll();
+    }
+
     
+    /*
     // DELETE ++++++++++++++++++++++++++++++++++++++++++++++++++++++
     // - - - - - - - - - -DESKTOPS - - - - - - - - - - -
 
@@ -547,7 +586,7 @@ abstract class AMenuPage extends ATopPage {
         return this.players;
     }
     // ++++++++++++++++++++++++++++++++++++++++++++++
-    
+    */
     
     
     // Functional
@@ -556,7 +595,19 @@ abstract class AMenuPage extends ATopPage {
         return getHorizontalMenuCategory(category).getText();
     }
 
-    
+    public String getHorizontalMenuSubCategoryText(CategoryRepository category, int index) {
+    	return getHorizontalMenuSubCategory(category, index).getText();
+    }
+
+    public String getHorizontalMenuSubCategoryText(CategoryRepository category, String subCategory) {
+    	return getHorizontalMenuSubCategory(category, subCategory).getText();
+    }
+
+    public String getShowAllMenuSubCategoryText(CategoryRepository category) {
+    	return getShowAllMenuSubCategory(category).getText();
+    }
+
+    /*
     // DELETE ++++++++++++++++++++++++++++++++++
     public String getDesktopsText() {
         return getDesktops().getText();
@@ -614,7 +665,7 @@ abstract class AMenuPage extends ATopPage {
         return getPlayers().getText();
     }
     /// +++++++++++++++++++++++++++++++++++++++++++
-    
+    */
     
     
     // set Data
@@ -635,7 +686,7 @@ abstract class AMenuPage extends ATopPage {
     	getItemMenuPage(category).clickShowAll();
     }
 
-    
+    /*
     // DELETE ++++++++++++++++++++++++++
     // - - - - - - - - - -DESKTOPS - - - - - - - - - - -
 
@@ -785,10 +836,27 @@ abstract class AMenuPage extends ATopPage {
         // TODO
     }
     // ++++++++++++++++++++++++++++++++
-    
+    */
     
     // Business Logic
 
+    public VerticalMenuPage gotoMenuSubCategory(CategoryRepository category, int index) {
+    	clickHorizontalMenuSubCategory(category, index);
+        return new VerticalMenuPage(driver, MENU_PRODUCT_COLUMN);
+    }
+
+    public VerticalMenuPage gotoMenuSubCategory(CategoryRepository category, String subCategory) {
+    	clickHorizontalMenuSubCategory(category, subCategory);
+        return new VerticalMenuPage(driver, MENU_PRODUCT_COLUMN);
+    }
+
+    public VerticalMenuPage gotoShowAll(CategoryRepository category) {
+    	clickShowAllMenuSubCategory(category);
+        return new VerticalMenuPage(driver, MENU_PRODUCT_COLUMN);
+    }
+
+    /*
+    //	+++++++DELETE ++++++++++++++
     // - - - - - - - - - -DESKTOPS - - - - - - - - - - -
 
     public VerticalMenuPage gotoDesktopsAll() {
@@ -868,5 +936,8 @@ abstract class AMenuPage extends ATopPage {
         return new VerticalMenuPage(driver, MENU_PRODUCT_COLUMN);
     }
 
+    //++++++++++++++++++++++++++++
+    */
+    
 }
 
