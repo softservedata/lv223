@@ -55,7 +55,10 @@ public class VerticalMenuPage extends AProductListPage {
 		public WebElement getSubCategoryVert(String subCategory) {
 			WebElement resultWebElement = null;
 			for (WebElement currentWebElement : getSubCategoryVerts()) {
-				if (currentWebElement.getText().trim().toLowerCase().contains(subCategory.trim().toLowerCase())) {
+				//System.out.println("+++currentWebElement.getText() = "+currentWebElement.getText());
+				//System.out.println("+++subCategory = "+subCategory);
+				if (currentWebElement.getText().trim().toLowerCase()
+						.contains(subCategory.trim().toLowerCase())) {
 					resultWebElement = currentWebElement;
 					break;
 				}
@@ -226,6 +229,11 @@ public class VerticalMenuPage extends AProductListPage {
 
 	public VerticalMenuPage gotoVertMenuSubCategory(CategoryRepository category, String subCategory) {
 		clickVerticalMenuSubCategory(category, subCategory);
+		return new VerticalMenuPage(driver, MENU_PRODUCT_COLUMN);
+	}
+
+	public VerticalMenuPage gotoCurrencyUSDollar() {
+		clickDollar();
 		return new VerticalMenuPage(driver, MENU_PRODUCT_COLUMN);
 	}
 

@@ -29,7 +29,7 @@ public final class ProductUtils {
 
         for (String line : data) {
             String[] array = line.split(",");
-            Product product = new Product(array[0], array[1], array[2], array[3]);
+            Product product = new Product(array[0], array[1], array[2], array[3], array[4], array[5]);
             result.add(product);
         }
         return result;

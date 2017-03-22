@@ -12,19 +12,19 @@ import org.testng.annotations.Test;
 import com.softserve.edu.opencart.appl.ApplicationSourcesRepository;
 import com.softserve.edu.opencart.data.Product;
 import com.softserve.edu.opencart.data.ProductRepository;
+import com.softserve.edu.opencart.pages.AMenuPage.CategoryRepository;
 import com.softserve.edu.opencart.pages.HomePage;
 import com.softserve.edu.opencart.pages.VerticalMenuPage;
-import com.softserve.edu.opencart.pages.AMenuPage.CategoryRepository;
-import com.softserve.edu.opencart.tools.ProviderUtils;
+import com.softserve.edu.opencart.tools.CountUtils;
 
 public class ProductTest {
 
 	@DataProvider//(parallel = true)
     public Object[][] desctopProducts() {
-//        return new Object[][] {
-//            { ProductRepository.getDesktopIMac() }
-//        };
-        return ProviderUtils.toMultiArray(ProductRepository.getDesktopIMacs());
+        return new Object[][] {
+            { ProductRepository.getDesktopIMac() }
+        };
+        //return ProviderUtils.toMultiArray(ProductRepository.getDesktopIMacs());
     }
 	
 	@Test(dataProvider = "desctopProducts")
@@ -48,6 +48,7 @@ public class ProductTest {
 		Thread.sleep(1000);
 		//
 		VerticalMenuPage verticalMenuPage = homePage.gotoShowAll(CategoryRepository.DESKTOPS);
+		verticalMenuPage = verticalMenuPage.gotoCurrencyUSDollar();
 		Thread.sleep(1000);
 		//
 		// Check
@@ -63,7 +64,10 @@ public class ProductTest {
 		//
 		// Steps
 		//verticalMenuPage = verticalMenuPage.gotoVertDesktopsPc();
-		verticalMenuPage = verticalMenuPage.gotoVertMenuSubCategory(CategoryRepository.DESKTOPS, "PC");
+		//verticalMenuPage = verticalMenuPage.gotoVertMenuSubCategory(CategoryRepository.DESKTOPS, "PC");
+		verticalMenuPage = verticalMenuPage.gotoVertMenuSubCategory(
+				ProductRepository.getDesktopPc().getCategory(),
+				ProductRepository.getDesktopPc().getSubCategory());
 		Thread.sleep(1000);
 		//
 		// Check
@@ -77,13 +81,17 @@ public class ProductTest {
 		//
 		// Steps
 		//verticalMenuPage = verticalMenuPage.gotoVertDesktopsMac();
-		verticalMenuPage = verticalMenuPage.gotoVertMenuSubCategory(CategoryRepository.DESKTOPS, "Mac");
+		verticalMenuPage = verticalMenuPage.gotoVertMenuSubCategory(
+				product.getCategory(), product.getSubCategory());
 		Thread.sleep(1000);
 		//
 		// Check
 		Assert.assertTrue(verticalMenuPage.getProductByDetailsLink(product.getDetails())
 				.getDescriptionText().trim().toLowerCase()
 				.contains(product.getDescription().toLowerCase()));
+		String actualPrice = verticalMenuPage.getProductByDetailsLink(product.getDetails()).getPriceText();
+		Assert.assertEquals(CountUtils.getPriceInText(actualPrice),
+				CountUtils.getPriceInText(product.getPrice()), 0.01);
 		Thread.sleep(2000);
 		//
 		// Return to previous state
