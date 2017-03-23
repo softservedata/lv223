@@ -19,7 +19,7 @@ public final class ApplicationSourcesRepository {
 
 	public static ApplicationSources getChromeCloud() {
 		System.out.println("+++++ PATH = "
-				+ ApplicationSourcesRepository.class.getResource("/lib/geckodriver.exe").getPath());
+				+ ApplicationSourcesRepository.class.getResource("/lib/chromedriver.exe").getPath());
 		return new ApplicationSources("Chrome",
 				ApplicationSourcesRepository.class.getResource("/lib/chromedriver.exe").getPath().substring(1), 5L,
 				"http://atqc-shop.epizy.com/");

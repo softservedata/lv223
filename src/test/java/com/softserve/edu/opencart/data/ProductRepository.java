@@ -1,9 +1,10 @@
 package com.softserve.edu.opencart.data;
 
-import com.softserve.edu.opencart.tools.ProductUtils;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import com.softserve.edu.opencart.tools.CSVUtils;
+import com.softserve.edu.opencart.tools.ProductUtils;
 
 public final class ProductRepository {
 
@@ -72,12 +73,15 @@ public final class ProductRepository {
 		return new ProductUtils().getProductsCSV(ProductUtils.COMPONENTS_MONITORS_CSV);
 	}
 
+	public static List<Product> getProductFromCsvFile() {
+		return new ProductDataUtils("/product.csv", new CSVUtils()).getAllProduct();
+	}
 
-//	public static List<Product> getProductFromCsvFile() {
-//		return new ProductUtils().getAllProduct();
-//	}
-//
-//	public static List<Product> getProductFromExcelFile() {
+	public static List<Product> getProductFromCsvFile(String filename) {
+		return new ProductDataUtils(filename, new CSVUtils()).getAllProduct();
+	}
+
+	//	public static List<Product> getProductFromExcelFile() {
 //		return new ProductUtils("/newUsers.xlsx", new ExcelUtils()).getAllProduct();
 //	}
 //
