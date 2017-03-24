@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.softserve.edu.opencart.tools.CSVUtils;
-import com.softserve.edu.opencart.tools.ProductUtils;
 
 public final class ProductRepository {
 
@@ -68,10 +67,6 @@ public final class ProductRepository {
 	        // products.add(new Product("", "", "", ""));
 	        return products;
 	    }
-
-	public static List<Product> getComponentsMonitorsCsv() {
-		return new ProductUtils().getProductsCSV(ProductUtils.COMPONENTS_MONITORS_CSV);
-	}
 
 	public static List<Product> getProductFromCsvFile() {
 		return new ProductDataUtils("/product.csv", new CSVUtils()).getAllProduct();

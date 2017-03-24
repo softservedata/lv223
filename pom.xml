@@ -143,7 +143,6 @@
 					</systemPropertyVariables>
 					<suiteXmlFiles>
 						<suiteXmlFile>testng2.xml</suiteXmlFile>
-						<!-- <suiteXmlFile>testng_component_test.xml</suiteXmlFile> -->
 					</suiteXmlFiles>
 					<reportsDirectory>${testng.reports.directory}</reportsDirectory>
 				</configuration>
