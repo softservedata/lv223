@@ -14,14 +14,14 @@ public final class ProductDataUtils {
 		this.externalData = externalData;
 	}
 
-	public List<Product> getAllProduct() {
-		System.out.println("+++ Path to file: "
-				+ this.getClass().getResource(path).getPath());
-		return getAllProduct(this.getClass()
+	public List<Product> getAllProducts() {
+		//System.out.println("+++ Path to file: "
+		//		+ this.getClass().getResource(path).getPath());
+		return getAllProducts(this.getClass()
 				.getResource(path).getPath().substring(1));
 	}
 
-	public List<Product> getAllProduct(String connection) {
+	public List<Product> getAllProducts(String connection) {
 		List<Product> products = new ArrayList<Product>();
 		for (List<String> row : externalData.getAllCells(connection)) {
 			if (row.get(2).toLowerCase().contains("price")
@@ -29,6 +29,7 @@ public final class ProductDataUtils {
 				continue;
 			}
 			//System.out.println("\t+++new Product: " + row.get(0));
+			// TODO Use Builder.
 			products.add(new Product(row.get(0), row.get(1),
 					row.get(2), row.get(3), row.get(4), row.get(5)));
 		}

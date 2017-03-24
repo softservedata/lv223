@@ -24,4 +24,9 @@ public class HomePage extends AProductListPage {
 
 	// Business Logic
 
+	public LoginPage gotoLoginPage() {
+		clickLogin();
+		return new LoginPage(driver);
+	}
+
 }

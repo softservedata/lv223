@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.softserve.edu.opencart.tools.CSVUtils;
+import com.softserve.edu.opencart.tools.ExcelUtils;
 
 public final class ProductRepository {
 
@@ -68,18 +69,22 @@ public final class ProductRepository {
 	        return products;
 	    }
 
-	public static List<Product> getProductFromCsvFile() {
-		return new ProductDataUtils("/product.csv", new CSVUtils()).getAllProduct();
+	public static List<Product> getProductsFromCsvFile() {
+		return new ProductDataUtils("/products.csv", new CSVUtils()).getAllProducts();
 	}
 
-	public static List<Product> getProductFromCsvFile(String filename) {
-		return new ProductDataUtils(filename, new CSVUtils()).getAllProduct();
+	public static List<Product> getProductsFromCsvFile(String filename) {
+		return new ProductDataUtils(filename, new CSVUtils()).getAllProducts();
 	}
 
-	//	public static List<Product> getProductFromExcelFile() {
-//		return new ProductUtils("/newUsers.xlsx", new ExcelUtils()).getAllProduct();
-//	}
-//
+	public static List<Product> getProductsFromExcelFile() {
+		return new ProductDataUtils("/products.xlsx", new ExcelUtils()).getAllProducts();
+	}
+
+	public static List<Product> getProductsFromExcelFile(String filename) {
+		return new ProductDataUtils(filename, new ExcelUtils()).getAllProducts();
+	}
+
 //	public static List<Product> getProductFromDB() {
 //		return new ProductUtils("/", new DBUtils()).getAllProduct();
 //	}

@@ -22,10 +22,16 @@ public class ProductApplRunnerTest extends TestRunner {
 
 	@DataProvider//(parallel = true) // Do not use parallel attribute
     public Object[][] csvProducts() {
-        return ProviderUtils.toMultiArray(ProductRepository.getProductFromCsvFile());
+        return ProviderUtils.toMultiArray(ProductRepository.getProductsFromCsvFile());
     }
 
-	@Test(dataProvider = "csvProducts")
+	@DataProvider//(parallel = true) // Do not use parallel attribute
+    public Object[][] excelProducts() {
+        return ProviderUtils.toMultiArray(ProductRepository.getProductsFromExcelFile());
+    }
+
+	@Test(dataProvider = "excelProducts")
+	//@Test(dataProvider = "csvProducts")
 	//@Test(dataProvider = "desctopProducts")
 	public void checkComponentAppl(Product product) throws InterruptedException {
 		// Precondition
