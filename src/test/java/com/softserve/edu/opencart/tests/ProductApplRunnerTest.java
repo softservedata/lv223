@@ -5,6 +5,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.softserve.edu.opencart.appl.Application;
+import com.softserve.edu.opencart.data.IProduct;
 import com.softserve.edu.opencart.data.Product;
 import com.softserve.edu.opencart.data.ProductRepository;
 import com.softserve.edu.opencart.pages.VerticalMenuPage;
@@ -30,10 +31,10 @@ public class ProductApplRunnerTest extends TestRunner {
         return ProviderUtils.toMultiArray(ProductRepository.getProductsFromExcelFile());
     }
 
-	@Test(dataProvider = "excelProducts")
+	@Test(dataProvider = "desctopProducts")
 	//@Test(dataProvider = "csvProducts")
 	//@Test(dataProvider = "desctopProducts")
-	public void checkComponentAppl(Product product) throws InterruptedException {
+	public void checkComponentAppl(IProduct product) throws InterruptedException {
 		// Precondition
 		// Steps
 //		VerticalMenuPage verticalMenuPage = Application.get()

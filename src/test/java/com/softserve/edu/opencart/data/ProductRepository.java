@@ -11,81 +11,146 @@ public final class ProductRepository {
 	private ProductRepository() {
 	}
 	
-	public static Product getDesktopPc() {
-		return new Product("", "", "", "", "Desktops", "PC");
+	public static IProduct getDesktopPc() {
+		return  Product.get()
+				.setDetails(new String())
+				.setDescription(new String())
+				.setPrice(new String())
+				.setExTaxPrice(new String())
+				.setCategoryName("Desctops")
+				.setSubCategoryName("PC")
+				.build();
 	}
 
-	public static Product getDesktopIMac() {
-		return new Product("iMac",
-				"Just when you thought iMac had everything, now there´s even more. More powerful Intel Core 2 Duo ..",
-				"122.0001", "100.00", "Desktops", "Mac");
+	public static IProduct getDesktopIMac() {
+		return Product.get()
+				.setDetails("iMac")
+				.setDescription("Just when you thought iMac had everything, now there´s even more. More powerful Intel Core 2 Duo ..")
+				.setPrice("122.0001")
+				.setExTaxPrice("100.00")
+				.setCategoryName("Desctops")
+				.setSubCategoryName("Mac")
+				.build();
 	}
 
-	public static List<Product> getDesktopIMacs() {
-		List<Product> products = new ArrayList<Product>();
-		products.add(new Product("iMac",
-				"Just when you thought iMac had everything, now there´s even more. More powerful Intel Core 2 Duo ..",
-				"122.00", "100.00", "Desktops", "Mac"));
-		products.add(new Product("iMac",
-				"Just when you thought iMac had everything, now there´s even more. More powerful Intel Core 2 Duo ..",
-				"122.00", "100.00", "Desktops", "Mac"));
+	public static List<IProduct> getDesktopIMacs() {
+		List<IProduct> products = new ArrayList<IProduct>();
+		products.add
+			(Product.get()
+				.setDetails("iMac")
+				.setDescription("Just when you thought iMac had everything, now there´s even more. More powerful Intel Core 2 Duo ..")
+				.setPrice("122.0001")
+				.setExTaxPrice("100.00")
+				.setCategoryName("Desctops")
+				.setSubCategoryName("Mac")
+				.build());
+		products.add
+			(Product.get()
+				.setDetails("iMac")
+				.setDescription("Just when you thought iMac had everything, now there´s even more. More powerful Intel Core 2 Duo ..")
+				.setPrice("122.0001")
+				.setExTaxPrice("100.00")
+				.setCategoryName("Desctops")
+				.setSubCategoryName("Mac")
+				.build());
 		return products;
 	}
 
-	public static List<Product> getLaptopHPs() {
-		List<Product> products = new ArrayList<Product>();
-		products.add(new Product("HP LP3065",
-				"Stop your co-workers in their tracks with the stunning new 30-inch diagonal HP LP3065 Flat Panel ..",
-				"99.78", "81.79", "Laptops", "HP"));
-		products.add(new Product("HP 250 G5",
-				"Take your work with you and quickly get the job done without stress or waiting around with the speed..",
-				"408.93", "408.93", "Laptops", "HP"));
-		products.add(new Product("HP Pavilion x360",
-				"A1 are open boxed units which have been returned usually due to been unwanted. The units may have at..",
-				"433.46", "433.46", "Laptops", "HP"));
+	public static List<IProduct> getLaptopHPs() {
+		List<IProduct> products = new ArrayList<IProduct>();
+		products.add
+			(Product.get()
+				.setDetails("HP LP3065")
+				.setDescription("Stop your co-workers in their tracks with the stunning new 30-inch diagonal HP LP3065 Flat Panel ..")
+				.setPrice("99.78")
+				.setExTaxPrice("81.79")
+				.setCategoryName("Laptops")
+				.setSubCategoryName("HP")
+				.build());
+		products.add
+			(Product.get()
+				.setDetails("HP 250 G5")
+				.setDescription("Take your work with you and quickly get the job done without stress or waiting around with the speed..")
+				.setPrice("99.78")
+				.setExTaxPrice("81.79")
+				.setCategoryName("Laptops")
+				.setSubCategoryName("HP")
+				.build());
+		products.add
+			(Product.get()
+				.setDetails("HP Pavilion x360")
+				.setDescription("A1 are open boxed units which have been returned usually due to been unwanted. The units may have at..")
+				.setPrice("433.46")
+				.setExTaxPrice("433.46")
+				.setCategoryName("Laptops")
+				.setSubCategoryName("HP")
+				.build());
 		return products;
 	}
 
-	public static List<Product> getPhonesAndPDAs() {
-		List<Product> products = new ArrayList<Product>();
-		products.add(new Product("HTC Touch HD",
-				"HTC Touch - in High Definition. Watch music videos and streaming content in awe-inspiring high de..",
-				"98.82", "81.00", "Phones", "HTC"));
-		products.add(new Product("Palm Treo Pro",
-				"Redefine your workday with the Palm Treo Pro smartphone. Perfectly balanced, you can respond to b..",
-				"273.77", "226.79", "Phones", "Others"));
+	public static List<IProduct> getPhonesAndPDAs() {
+		List<IProduct> products = new ArrayList<IProduct>();
+		products.add
+			(Product.get()
+				.setDetails("HTC Touch HD")
+				.setDescription("HTC Touch - in High Definition. Watch music videos and streaming content in awe-inspiring high de..")
+				.setPrice("98.82")
+				.setExTaxPrice("81.00")
+				.setCategoryName("Phones")
+				.setSubCategoryName("HTC")
+				.build());
+		products.add
+			(Product.get()
+				.setDetails("Palm Treo Pro")
+				.setDescription("Redefine your workday with the Palm Treo Pro smartphone. Perfectly balanced, you can respond to b..")
+				.setPrice("273.77")
+				.setExTaxPrice("226.79")
+				.setCategoryName("Phones")
+				.setSubCategoryName("Others")
+				.build());
 		return products;
 	}
 
-	 public static List<Product> getComponentsMonitors() {
-	        List<Product> products = new ArrayList<>();
-	        products.add(new Product("Apple Cinema 30\"",
-	        		"The 30-inch Apple Cinema HD Display",
-	        		"110.00", "90.00", "Components", "Monitors"));
-	        products.add(new Product("Samsung SyncMaster 941BW",
-	        		"Imagine the advantages of going",
-	        		"242.00", "200.00", "Components", "Monitors"));
-	        // products.add(new Product("", "", "", ""));
+	 public static List<IProduct> getComponentsMonitors() {
+	        List<IProduct> products = new ArrayList<IProduct>();
+	        products.add
+	        	(Product.get()
+					.setDetails("Apple Cinema 30\"")
+					.setDescription("The 30-inch Apple Cinema HD Display")
+					.setPrice("110.00")
+					.setExTaxPrice("90.00")
+					.setCategoryName("Components")
+					.setSubCategoryName("Monitors")
+					.build());
+	        products.add
+	        	(Product.get()
+					.setDetails("Samsung SyncMaster 941BW")
+					.setDescription("Imagine the advantages of going")
+					.setPrice("242.00")
+					.setExTaxPrice("200.00")
+					.setCategoryName("Components")
+					.setSubCategoryName("Monitors")
+					.build());
 	        return products;
 	    }
 
-	public static List<Product> getProductsFromCsvFile() {
+	public static List<IProduct> getProductsFromCsvFile() {
 		return new ProductDataUtils("/products.csv", new CSVUtils()).getAllProducts();
 	}
 
-	public static List<Product> getProductsFromCsvFile(String filename) {
+	public static List<IProduct> getProductsFromCsvFile(String filename) {
 		return new ProductDataUtils(filename, new CSVUtils()).getAllProducts();
 	}
 
-	public static List<Product> getProductsFromExcelFile() {
+	public static List<IProduct> getProductsFromExcelFile() {
 		return new ProductDataUtils("/products.xlsx", new ExcelUtils()).getAllProducts();
 	}
 
-	public static List<Product> getProductsFromExcelFile(String filename) {
+	public static List<IProduct> getProductsFromExcelFile(String filename) {
 		return new ProductDataUtils(filename, new ExcelUtils()).getAllProducts();
 	}
 
-//	public static List<Product> getProductFromDB() {
+//	public static List<IProduct> getProductFromDB() {
 //		return new ProductUtils("/", new DBUtils()).getAllProduct();
 //	}
 

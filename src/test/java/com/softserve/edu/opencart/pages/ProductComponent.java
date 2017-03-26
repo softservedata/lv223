@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+
 // Private on package
 public class ProductComponent {
 
@@ -21,6 +22,8 @@ public class ProductComponent {
 	private WebElement price;
 	private WebElement exTaxPrice;
 	private WebElement addCart;
+	private WebElement addToWishList;
+	private WebElement compare;
 	
 	public ProductComponent(WebDriver driver, WebElement baseElement) {
 	//public ProductComponent(WebElement baseElement) {
@@ -34,6 +37,8 @@ public class ProductComponent {
 		this.price = baseElement.findElement(By.cssSelector("div[class='caption'] p[class='price']"));
 		this.exTaxPrice = price.findElement(By.tagName("span"));
 		this.addCart = baseElement.findElement(By.cssSelector("div[class='button-group'] span[class='hidden-xs hidden-sm hidden-md']"));
+		this.addToWishList = baseElement.findElement(By.cssSelector(".fa-heart"));
+		this.compare = baseElement.findElement(By.cssSelector(".fa-exchange")); 
 		//
 		//System.out.println("detailsLink = "+ detailsLink.getText());
 		//System.out.println("description = "+ description.getText());
@@ -66,6 +71,10 @@ public class ProductComponent {
 
 	public WebElement getAddCart() {
 		return this.addCart;
+	}
+	
+	public WebElement getCompareButton() {
+		return this.compare;
 	}
 
 	// Functional
@@ -103,6 +112,10 @@ public class ProductComponent {
 	public void clickDetailsLink() {
 		getDetailsLink().click();
 	}
+	
+	public void clickCompareButton() {
+		getCompareButton().click();
+	}
 
 	// Business Logic
 	
@@ -111,5 +124,9 @@ public class ProductComponent {
 		clickDetailsLink();
 		return new ProductPage(driver);
 	}
-
+	
+	public void choiceProductForCompare() {
+		clickCompareButton();
+	}
+	
 }

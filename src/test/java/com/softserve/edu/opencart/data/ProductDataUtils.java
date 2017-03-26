@@ -14,15 +14,15 @@ public final class ProductDataUtils {
 		this.externalData = externalData;
 	}
 
-	public List<Product> getAllProducts() {
+	public List<IProduct> getAllProducts() {
 		//System.out.println("+++ Path to file: "
 		//		+ this.getClass().getResource(path).getPath());
 		return getAllProducts(this.getClass()
 				.getResource(path).getPath().substring(1));
 	}
 
-	public List<Product> getAllProducts(String connection) {
-		List<Product> products = new ArrayList<Product>();
+	public List<IProduct> getAllProducts(String connection) {
+		List<IProduct> products = new ArrayList<IProduct>();
 		for (List<String> row : externalData.getAllCells(connection)) {
 			if (row.get(2).toLowerCase().contains("price")
 					&& row.get(3).toLowerCase().contains("extaxprice")) {
@@ -30,8 +30,14 @@ public final class ProductDataUtils {
 			}
 			//System.out.println("\t+++new Product: " + row.get(0));
 			// TODO Use Builder.
-			products.add(new Product(row.get(0), row.get(1),
-					row.get(2), row.get(3), row.get(4), row.get(5)));
+			products.add(Product.get()
+					.setDetails(row.get(0))
+					.setDescription(row.get(1))
+					.setPrice(row.get(2))
+					.setExTaxPrice(row.get(3))
+					.setCategoryName(row.get(4))
+					.setSubCategoryName(row.get(5))
+					.build());//should return IProduct
 		}
 		return products;
 	}

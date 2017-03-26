@@ -10,6 +10,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.softserve.edu.opencart.appl.ApplicationSourcesRepository;
+import com.softserve.edu.opencart.data.IProduct;
 import com.softserve.edu.opencart.data.Product;
 import com.softserve.edu.opencart.data.ProductRepository;
 import com.softserve.edu.opencart.pages.AMenuPage.CategoryRepository;
@@ -28,7 +29,7 @@ public class ProductTest {
     }
 	
 	@Test(dataProvider = "desctopProducts")
-	public void checkComponent(Product product) throws InterruptedException {
+	public void checkComponent(IProduct product) throws InterruptedException {
 		// Precondition
 		System.setProperty("webdriver.chrome.driver",
 				//"./lib/chromedriver.exe");

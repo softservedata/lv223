@@ -11,7 +11,15 @@ import com.softserve.edu.opencart.tools.GeneralException;
 abstract class ATopPage {
 
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
+	private class Compare {
+		public final WebElement productCompareDescription;
+		public final WebElement comparePageLink;
+		
+		public Compare()	{
+			this.comparePageLink = driver.findElement(By.cssSelector(".alert-success>a[href$=compare]"));
+			this.productCompareDescription = driver.findElement(By.cssSelector(".alert-success>a[href*=id]"));
+		}
+	}
 	private class CurencyATopPage {
 		public final WebElement euro;
 		public final WebElement pound;
@@ -125,9 +133,13 @@ abstract class ATopPage {
 	public WebElement getSearchInput() {
 		return this.searchInput;
 	}
-
+	
 	// Functional
 
+//	public String getProductCompareDescriptionText(){
+//		return productCompareDescription.getText();
+//	}
+	
 	public String getCurrencyText() {
 		return getCurrency().getText();
 	}
@@ -146,6 +158,11 @@ abstract class ATopPage {
 
 	// set Data
 
+//	public ProductCompare getComparePageLink(){
+////		comparePageLink.click();
+////		return new ProductCompare(driver);
+//	}
+	
 	public void clickCurrency() {
 		//clickPhone();
 		clickSearchInput();
