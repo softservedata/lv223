@@ -61,6 +61,7 @@ abstract class ATopPage {
 	private WebElement myAccount;
 	private MyAccountATopPage myAccountATopPage;
 	private WebElement searchInput;
+	private Compare compare;
 
 	protected ATopPage(WebDriver driver) {
 		this.driver = driver;
@@ -136,9 +137,9 @@ abstract class ATopPage {
 	
 	// Functional
 
-//	public String getProductCompareDescriptionText(){
-//		return productCompareDescription.getText();
-//	}
+	public String getProductCompareDescriptionText(){
+		return compare.productCompareDescription.getText();
+	}
 	
 	public String getCurrencyText() {
 		return getCurrency().getText();
@@ -158,10 +159,10 @@ abstract class ATopPage {
 
 	// set Data
 
-//	public ProductCompare getComparePageLink(){
-////		comparePageLink.click();
-////		return new ProductCompare(driver);
-//	}
+	public ProductCompare getComparePageLink(){
+		compare.comparePageLink.click();
+		return new ProductCompare(driver);
+	}
 	
 	public void clickCurrency() {
 		//clickPhone();
