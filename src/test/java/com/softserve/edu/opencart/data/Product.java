@@ -5,40 +5,38 @@ import com.softserve.edu.opencart.tools.GeneralException;
 
 //TODO use builder
 
+interface IDetails {
+	IDescription setDetails(String details);
+}
 
-	interface IDetails {
-		IDescription setDetails(String details);
-	}
-	
-	interface IDescription {
-		IPrice setDescription (String description);
-	}
-	
-	interface IPrice {
-		IExTaxPrice setPrice (String price);
-	}
-	
-	interface IExTaxPrice {
-		IProductAdditional setExTaxPrice(String exTaxPrice);
-	}
+interface IDescription {
+	IPrice setDescription(String description);
+}
 
-	interface IBuildProduct {
-		IProduct build();
-	}
+interface IPrice {
+	IExTaxPrice setPrice(String price);
+}
 
-	interface IProductAdditional extends IBuildProduct {
+interface IExTaxPrice {
+	IProductAdditional setExTaxPrice(String exTaxPrice);
+}
 
-		IProductAdditional setCategoryName(String categoryName);
+interface IBuildProduct {
+	IProduct build();
+}
 
-		IProductAdditional setSubCategoryName(String subCategoryName);
+interface IProductAdditional extends IBuildProduct {
 
-		IProductAdditional setCategory(CategoryRepository category);
+	IProductAdditional setCategoryName(String categoryName);
 
-		IProductAdditional setSubCategory(String subCategory);
-	}
-	
-	public class Product implements IDetails, IDescription, IPrice, 
-									IExTaxPrice, IProductAdditional, IProduct {
+	IProductAdditional setSubCategoryName(String subCategoryName);
+
+	IProductAdditional setCategory(CategoryRepository category);
+
+	IProductAdditional setSubCategory(String subCategory);
+}
+
+public class Product implements IDetails, IDescription, IPrice, IExTaxPrice, IProductAdditional, IProduct {
 	private static final String CATEGORY_NOT_FOUND_ERROR_MESSAGE = "Category not found";
 	private String details;
 	private String description;
@@ -49,7 +47,7 @@ import com.softserve.edu.opencart.tools.GeneralException;
 	private String subCategoryName;
 	private CategoryRepository category;
 	private String subCategory;
-	
+
 	private Product() {
 		//
 		categoryName = new String();
@@ -61,8 +59,7 @@ import com.softserve.edu.opencart.tools.GeneralException;
 	private void initCategory() {
 		category = null;
 		for (CategoryRepository currentCategory : CategoryRepository.values()) {
-			if (currentCategory.getCategory().trim().toLowerCase()
-					.contains(categoryName.trim().toLowerCase())) {
+			if (currentCategory.getCategory().trim().toLowerCase().contains(categoryName.trim().toLowerCase())) {
 				category = currentCategory;
 				break;
 			}
@@ -72,60 +69,61 @@ import com.softserve.edu.opencart.tools.GeneralException;
 		}
 		subCategory = category.getSubCategoriesByPartialName(subCategoryName);
 	}
-	
+
 	public static IDetails get() {
 		return new Product();
 	}
 
+	// setters
 	
-	//setters
-	public IDescription setDetails(String details){
-		details = this.details;
-		return this;
-	}
-	
-	public IPrice setDescription(String description){
-		description = this.description;
+	public IDescription setDetails(String details) {
+		this.details = details;
 		return this;
 	}
 
-	public IExTaxPrice setPrice(String price){
-		price = this.price;
+	public IPrice setDescription(String description) {
+		this.description = description;
 		return this;
 	}
-	
-	public IProductAdditional setExTaxPrice(String exTaxPrice){
-		exTaxPrice = this.exTaxPrice;
+
+	public IExTaxPrice setPrice(String price) {
+		this.price = price;
 		return this;
 	}
-	
+
+	public IProductAdditional setExTaxPrice(String exTaxPrice) {
+		this.exTaxPrice = exTaxPrice;
+		return this;
+	}
+
 	public IProduct build() {
 		return this;
 	}
-	
+
 	//
-	
-	public IProductAdditional setCategoryName(String categoryName){
-		categoryName = this.categoryName;
+
+	public IProductAdditional setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
 		return this;
 	}
-	
-	public IProductAdditional setSubCategoryName(String subCategoryName){
-		subCategoryName = this.subCategoryName;
+
+	public IProductAdditional setSubCategoryName(String subCategoryName) {
+		this.subCategoryName = subCategoryName;
 		return this;
 	}
-	
-	public IProductAdditional setCategory(CategoryRepository category){
-		category = this.category;
+
+	public IProductAdditional setCategory(CategoryRepository category) {
+		this.category = category;
 		return this;
 	}
-	
-	public IProductAdditional setSubCategory(String subCategory){
-		subCategory = this.subCategory;
+
+	public IProductAdditional setSubCategory(String subCategory) {
+		this.subCategory = subCategory;
 		return this;
 	}
+
+	// getters
 	
-	//getters
 	public String getDetails() {
 		return details;
 	}
@@ -149,6 +147,5 @@ import com.softserve.edu.opencart.tools.GeneralException;
 	public String getSubCategory() {
 		return subCategory;
 	}
-
 
 }

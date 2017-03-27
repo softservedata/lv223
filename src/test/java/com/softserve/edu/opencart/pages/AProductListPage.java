@@ -60,6 +60,7 @@ abstract class AProductListPage extends AMenuPage {
 	}
 
 	public ProductComponent getProductByDetailsLink(String detailsLinkText) {
+		//System.out.println("+++++getProductByDetailsLink(String detailsLinkText) = " + detailsLinkText);
 		ProductComponent resultProduct = null;
 		for (ProductComponent currentProduct : getProductsList()) {
 			if (currentProduct.getDetailsLinkText().trim().toLowerCase()

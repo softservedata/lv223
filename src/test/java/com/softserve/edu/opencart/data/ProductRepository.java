@@ -90,6 +90,15 @@ public final class ProductRepository {
 
 	public static List<IProduct> getPhonesAndPDAs() {
 		List<IProduct> products = new ArrayList<IProduct>();
+//		IProduct p = Product.get()
+//				.setDetails("HTC Touch HD")
+//				.setDescription("HTC Touch - in High Definition. Watch music videos and streaming content in awe-inspiring high de..")
+//				.setPrice("98.82")
+//				.setExTaxPrice("81.00")
+//				.setCategoryName("Phones")
+//				.setSubCategoryName("HTC")
+//				.build();
+//		products.add(p);
 		products.add
 			(Product.get()
 				.setDetails("HTC Touch HD")
