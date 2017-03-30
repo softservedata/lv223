@@ -21,6 +21,10 @@ public final class UserDataUtils {
 				.getResource(path).getPath().substring(1));
 	}
 
+	public List<IUser> getAllDBUsers() {
+		return getAllUsers(path);
+	}
+
 	public List<IUser> getAllUsers(String connection) {
 		List<IUser> users = new ArrayList<IUser>();
 		List<String> rowModify;
