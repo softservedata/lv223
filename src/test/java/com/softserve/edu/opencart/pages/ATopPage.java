@@ -1,12 +1,11 @@
 package com.softserve.edu.opencart.pages;
 
-import java.util.List;
-
+import com.softserve.edu.opencart.tools.GeneralException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import com.softserve.edu.opencart.tools.GeneralException;
+import java.util.List;
 
 abstract class ATopPage {
 
@@ -62,6 +61,12 @@ abstract class ATopPage {
 	private MyAccountATopPage myAccountATopPage;
 	private WebElement searchInput;
 	private Compare compare;
+
+	//===============================================
+
+	private LoginPage loginPage;
+
+	//===============================================
 
 	protected ATopPage(WebDriver driver) {
 		this.driver = driver;
@@ -198,6 +203,9 @@ abstract class ATopPage {
 		myAccountATopPage = new MyAccountATopPage();
 	}
 
+
+	//--------------------------------------------LLLL-----------------------------------------------------
+
 	public void clickRegister() {
 		getRegister().click();
 	}
@@ -205,6 +213,8 @@ abstract class ATopPage {
 	public void clickLogin() {
 		getLogin().click();
 	}
+
+	//------------------------------------------------LLLL--------------------------------------------------
 
 	public void clearSearchInput() {
 		getSearchInput().clear();
@@ -219,5 +229,11 @@ abstract class ATopPage {
 	}
 
 	// Business Logic
-	
+
+	public LoginPage gotoLoginPage(){
+		clickLogin();
+		return new LoginPage(driver);
+	}
+
+
 }
