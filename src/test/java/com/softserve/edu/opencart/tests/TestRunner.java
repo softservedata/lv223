@@ -1,12 +1,11 @@
 package com.softserve.edu.opencart.tests;
 
+import com.softserve.edu.opencart.appl.Application;
+import com.softserve.edu.opencart.appl.ApplicationSourcesRepository;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-
-import com.softserve.edu.opencart.appl.Application;
-import com.softserve.edu.opencart.appl.ApplicationSourcesRepository;
 
 public class TestRunner {
 	// Use, if class Application is not singleton
@@ -37,5 +36,4 @@ public class TestRunner {
 		System.out.println("@AfterMethod");
 		//Application.get().logout();
 	}
-
 }
