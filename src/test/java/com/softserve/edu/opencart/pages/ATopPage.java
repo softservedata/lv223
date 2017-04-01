@@ -11,13 +11,7 @@ abstract class ATopPage {
 
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 	private class Compare {
-		public final WebElement productCompareDescription;
-		public final WebElement comparePageLink;
 		
-		public Compare()	{
-			this.comparePageLink = driver.findElement(By.cssSelector(".alert-success>a[href$=compare]"));
-			this.productCompareDescription = driver.findElement(By.cssSelector(".alert-success>a[href*=id]"));
-		}
 	}
 	private class CurencyATopPage {
 		public final WebElement euro;
@@ -142,10 +136,9 @@ abstract class ATopPage {
 	
 	// Functional
 
-	public String getProductCompareDescriptionText(){
-		return compare.productCompareDescription.getText();
+	public String getDollarText(){
+		return curencyATopPage.dollar.getText();
 	}
-	
 	public String getCurrencyText() {
 		return getCurrency().getText();
 	}
@@ -164,10 +157,7 @@ abstract class ATopPage {
 
 	// set Data
 
-	public ProductCompare getComparePageLink(){
-		compare.comparePageLink.click();
-		return new ProductCompare(driver);
-	}
+	
 	
 	public void clickCurrency() {
 		//clickPhone();

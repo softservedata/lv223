@@ -9,10 +9,12 @@ public class ProductPage extends AMenuPage {
 	// Fields
 	
 	private WebElement description;
+	private WebElement compare;
 
 	public ProductPage(WebDriver driver) {
 		super(driver);
 		this.description = driver.findElement(By.cssSelector("a[href='#tab-description']"));
+		this.compare = driver.findElement(By.cssSelector(".fa-exchange")); 
 	}
 
 	// PageObject
@@ -21,6 +23,10 @@ public class ProductPage extends AMenuPage {
 
 	public WebElement getDescription() {
 		return this.description;
+	}
+	
+	public WebElement getCompareButton(){
+		return this.compare;
 	}
 
 	// Functional
@@ -34,7 +40,15 @@ public class ProductPage extends AMenuPage {
 	public void clickDescription() {
 		getDescription().click();
 	}
+	public void clickCompareButton(){
+		getCompareButton().click();
+	}
 
 	// Business Logic
+	
+	public CompareProductSpan choiceProductForCompare() {
+		clickCompareButton();
+		return new CompareProductSpan(driver);
+	}
 
 }
