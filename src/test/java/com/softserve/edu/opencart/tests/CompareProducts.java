@@ -25,7 +25,7 @@ public class CompareProducts {
         };
 	}
 	
-	//@Test(dataProvider = "provider")
+	@Test(dataProvider = "provider")
 	public void productsCompareFromSingleProductTest(IProduct product) throws InterruptedException{
 		VerticalMenuPage verticalMenuPage = Application.get()
 				.load().gotoShowAll(CategoryRepository.DESKTOPS);
@@ -36,7 +36,7 @@ public class CompareProducts {
 		Assert.assertTrue(productCompare.isComparedProductExistInTheList(product.getDetails()));;
 	}
 	
-	@Test(dataProvider = "provider")
+	//@Test(dataProvider = "provider")
 	public void productsCompareFromListOfProductsTest(IProduct product) throws InterruptedException{
 		VerticalMenuPage verticalMenuPage = Application.get()
 				.load().gotoShowAll(CategoryRepository.DESKTOPS);
