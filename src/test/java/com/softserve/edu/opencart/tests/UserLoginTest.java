@@ -29,11 +29,20 @@ public class UserLoginTest extends TestRunner {
         return ProviderUtils.toMultiArray(UserRepository.getUsersFromExcelFile());
     }
 
-	@Test(dataProvider = "excelUsers")
+	@DataProvider//(parallel = true) // Do not use parallel attribute
+    public Object[][] dbUsers() {
+        return ProviderUtils.toMultiArray(UserRepository.getUsersFromLocalDB());
+    }
+
+	@Test(dataProvider = "dbUsers")
+	//@Test(dataProvider = "excelUsers")
 	//@Test(dataProvider = "csvUsers")
 	//@Test(dataProvider = "validUsers")
 	public void checkLogin(IUser user) throws InterruptedException {
 		// Precondition
+		System.out.println("\t+++login = " + user.getEmail()
+			+ "\t+++password = " + user.getPassword());
+		//
 		// Steps
 		HomePage homePage = Application.get().load();
 		Thread.sleep(1000);

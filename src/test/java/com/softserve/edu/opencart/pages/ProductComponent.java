@@ -125,8 +125,9 @@ public class ProductComponent {
 		return new ProductPage(driver);
 	}
 	
-	public void choiceProductForCompare() {
+	public CompareProductSpan choiceProductForCompare() {
 		clickCompareButton();
+		return new CompareProductSpan(driver);
 	}
 	
 }

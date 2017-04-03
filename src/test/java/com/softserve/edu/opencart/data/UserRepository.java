@@ -3,6 +3,7 @@ package com.softserve.edu.opencart.data;
 import java.util.List;
 
 import com.softserve.edu.opencart.tools.CSVUtils;
+import com.softserve.edu.opencart.tools.DBUtils;
 import com.softserve.edu.opencart.tools.ExcelUtils;
 
 public final class UserRepository {
@@ -61,8 +62,21 @@ public final class UserRepository {
 		return new UserDataUtils(filename, new ExcelUtils()).getAllUsers();
 	}
 
-//	public static List<IUser> getUsersFromCsvFile(String filename) {
-//		return new UserDataUtils(filename, new DBUtils()).getAllUsers();
-//	}
+	public static List<IUser> getUsersFromDB() {
+		return new UserDataUtils("select firstname, lastname, email, '', '', '', '', '', '', password from users;",
+				new DBUtils("jdbc:mysql://localhost:3306/lv223test",
+						"root", "root")).getAllDBUsers();
+	}
+
+	public static List<IUser> getUsersFromLocalDB() {
+		return new UserDataUtils("select firstname, lastname, email, '', '', '', '', '', '', password from users;",
+				new DBUtils("jdbc:mysql://localhost:3306/lv223test")).getAllDBUsers();
+	}
+
+	public static List<IUser> getUsersFromDB(String sqlQuery) {
+		return new UserDataUtils(sqlQuery,
+				new DBUtils("jdbc:mysql://localhost:3306/lv223test",
+						"root", "root")).getAllDBUsers();
+	}
 
 }

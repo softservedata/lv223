@@ -7,18 +7,18 @@ import java.sql.Statement;
 
 public class ApplJDBC {
 	private static Connection con = null;
-//	private static String username = "ssu-oms";
-//	private static String password = "ssu-oms";
+	//private static String username = "ssu-oms";
+	//private static String password = "ssu-oms";
 	//private static String username = "db223";
 	//private static String password = "db223";
-	 private static String username = "root";
-	 private static String password = "root";
+	private static String username = "root";
+	private static String password = "root";
 	// Microsoft
 	//private static String URL = "jdbc:sqlserver://CLASS86.training.local\\SQLEXPRESS2;databasename=mqcaqc16;";
 	// private static String URL =
 	//		 "jdbc:sqlserver://CLASS02.training.local\\SQLEXPRESS;databasename=lv223test;";
-	//private static String URL =	"jdbc:sqlserver://ssu-sql12\\tc;databasename=ssu-oms;";
-	//private static String URL =	"jdbc:jtds:sqlserver://ssu-sql12/ssu-oms;instance=tc;";
+	//private static String URL = "jdbc:sqlserver://ssu-sql12\\tc;databasename=ssu-oms;";
+	//private static String URL = "jdbc:jtds:sqlserver://ssu-sql12/ssu-oms;instance=tc;";
 	// Sybase
 	//private static String URL = "jdbc:jtds:sqlserver://CLASS86/mqcaqc16;instance=SQLEXPRESS2;";  // Port 1433
 	// private static String URL =
@@ -31,7 +31,7 @@ public class ApplJDBC {
 	// "jdbc:mysql://localhost:3306/measurement_devices";
 	// private static String URL = "jdbc:mysql://localhost:3306/registrator_db";
 	// private static String URL = "jdbc:mysql://localhost:3306/mqcaqc16";
-	 private static String URL = "jdbc:mysql://localhost:3306/lv223test";
+	private static String URL = "jdbc:mysql://localhost:3306/lv223test";
 
 	public static void main(String[] args) throws SQLException, ClassNotFoundException {
 		System.out.println("Start...");
@@ -41,8 +41,8 @@ public class ApplJDBC {
 		// DriverManager.registerDriver(new net.sourceforge.jtds.jdbc.Driver());
 		// Class.forName("net.sourceforge.jtds.jdbc.Driver");
 		//
-		DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-		// Class.forName("com.mysql.jdbc.Driver");
+		//DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+		Class.forName("com.mysql.jdbc.Driver");
 		// Load the driver
 		con = DriverManager.getConnection(URL, username, password);
 		if (con != null) {
@@ -103,7 +103,13 @@ public class ApplJDBC {
 		//st.execute("INSERT INTO empl (firstname, email) VALUES ('Petro', 'petro@i.ua');");
 		//st.execute("ALTER TABLE empl ALTER COLUMN firstname nvarchar(50);");
 		//st.execute("ALTER TABLE empl ALTER COLUMN email nvarchar(50);");
-		ResultSet rs = st.executeQuery("select * from empl;");
+		//ResultSet rs = st.executeQuery("select * from empl;");
+		ResultSet rs = st.executeQuery("select * from users;");
+		//
+		//st.execute("INSERT INTO dbo.Users "
+		//		+ "(Login, Password, FirstName, LastName, Email, RegionRef, RoleRef, IsUserActive)"
+		//		+ " VALUES ('iva1', 'qwerty', 'ivanka', 'horoshko', 'mail@gmail.com', '1', '1', '1');");
+		//ResultSet rs = st.executeQuery("SELECT * FROM Users;");
 		//
 		int columnCount = rs.getMetaData().getColumnCount();
 		// Resultset.getMetaData () get the information

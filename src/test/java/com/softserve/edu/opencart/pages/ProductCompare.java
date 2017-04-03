@@ -6,12 +6,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class ProductCompare extends AMenuPage{
+public class ProductCompare {
+	private WebDriver driver;
 	private List<WebElement> descriptionOfElements;
 	
-	protected ProductCompare(WebDriver driver) {
-		super(driver);
-		descriptionOfElements = driver.findElements(By.cssSelector(".table-bordered a>strong"));
+	public ProductCompare(WebDriver driver) {
+		this.driver = driver;
+		this.descriptionOfElements = driver.findElements(By.cssSelector(".table-bordered a>strong"));
 	}
 	
 	public boolean isComparedProductExistInTheList(String nameOfProduct){

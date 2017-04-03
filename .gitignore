@@ -49,6 +49,7 @@ hs_err_pid*
 
 # Ignore log
 *.log
+*.log.[1234567890]
 
 # Ignore IntelliJ IDEA Config Files
 *.stackdump
