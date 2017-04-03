@@ -1,12 +1,13 @@
 package com.softserve.edu.opencart.pages;
 
+import com.softserve.edu.opencart.data.IUser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class LoginPage extends ARightMenuUnregister{
 
-	private static final String LOGIN_BUTTON_XPATH_SELECTOR = "input[@value = 'Login']";
+	private static final String LOGIN_BUTTON_XPATH_SELECTOR = "//input[@value = 'Login']";
 	private static final String FORGOTTEN_PASSWORD_LINK_TEXT_SELECTOR = "Forgotten Password";
 	private static final String CONTINUE_BUTTON_CSS_SELECTOR = "div a.btn-primary";
 	private static final String EMAIL_FIELD_CSS_SELECTOR = "#input-email";
@@ -23,7 +24,7 @@ public class LoginPage extends ARightMenuUnregister{
 
 	protected LoginPage(WebDriver driver) {
 		super(driver);
-		this.loginButton = driver.findElement(By.cssSelector(LOGIN_BUTTON_XPATH_SELECTOR));
+		this.loginButton = driver.findElement(By.xpath(LOGIN_BUTTON_XPATH_SELECTOR));
 		this.continueButton = driver.findElement(By.cssSelector(CONTINUE_BUTTON_CSS_SELECTOR));
 		this.forgottenPassword = driver.findElement(By.linkText(FORGOTTEN_PASSWORD_LINK_TEXT_SELECTOR));
 		this.emailField = driver.findElement(By.cssSelector(EMAIL_FIELD_CSS_SELECTOR));
@@ -77,6 +78,16 @@ public class LoginPage extends ARightMenuUnregister{
 		getPasswordField().click();
 	}
 
+	public void setEmail(String email) {
+
+		getEmailField().sendKeys(email);
+	}
+
+	public void setPassword(String password) {
+
+		getPasswordField().sendKeys(password);
+	}
+
 	// ------------------Functional-----------
 
 	public String getLoginButtonText() {
@@ -99,7 +110,18 @@ public class LoginPage extends ARightMenuUnregister{
 		return getPasswordField().getText();
 	}
 
-//  public AdminHomePage successUserLogin(IUser user) {}
+    //=====================Business_Logic=================
+
+	public void setLoginCredentials(IUser user){
+		setEmail(user.getEmail());
+		setPassword(user.getPassword());
+		clickLoginButton();
+	}
+
+	public MyAccountPage successUserLogin(IUser user) {
+		setLoginCredentials(user);
+		return new MyAccountPage(driver);
+	}
 
 //  public LoginValidatorPage unsuccessfulLogin(IUser invalidUser) {}
 

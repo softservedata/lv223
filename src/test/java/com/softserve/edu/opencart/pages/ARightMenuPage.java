@@ -9,16 +9,16 @@ import org.openqa.selenium.WebElement;
  */
 public abstract class ARightMenuPage extends AMenuPage {
 
-    private static final String MY_ACCOUNT_XPATH_SELECTOR = "//a[contains(@href, 'account')]";
-    private static final String ADDRESS_BOOK_XPATH_SELECTOR = "//a[contains(@href, 'address')]";
-    private static final String WISHLIST_XPATH_SELECTOR = "//a[contains(@href, 'wishlist')]";
-    private static final String ORDER_HISTORY_XPATH_SELECTOR = "//a[contains(@href, 'order')]";
-    private static final String DOWNLOADS_XPATH_SELECTOR = "//a[contains(@href, 'download')]";
-    private static final String RECURRING_PAYMENTS_XPATH_SELECTOR = "//a[contains(@href, 'recurring')]";
-    private static final String REWARD_POINTS_XPATH_SELECTOR = "//a[contains(@href, 'reward')]";
-    private static final String RETURNS_XPATH_SELECTOR = "//a[contains(@href, 'return')]";
-    private static final String TRANSACTIONS_XPATH_SELECTOR = "//a[contains(@href, 'transaction')]";
-    private static final String NEWSLETTER_XPATH_SELECTOR = "//a[contains(@href, 'newsletter')]";
+    private static final String MY_ACCOUNT_XPATH_SELECTOR = "//div[@class = 'list-group']/a[contains(@href, 'account')]";
+    private static final String ADDRESS_BOOK_XPATH_SELECTOR = "//div[@class = 'list-group']/a[contains(@href, 'address')]";
+    private static final String WISHLIST_XPATH_SELECTOR = "//div[@class = 'list-group']/a[contains(@href, 'wishlist')]";
+    private static final String ORDER_HISTORY_XPATH_SELECTOR = "//div[@class = 'list-group']/a[contains(@href, 'order')]";
+    private static final String DOWNLOADS_XPATH_SELECTOR = "//div[@class = 'list-group']/a[contains(@href, 'download')]";
+    private static final String RECURRING_PAYMENTS_XPATH_SELECTOR = "//div[@class = 'list-group']/a[contains(@href, 'recurring')]";
+    private static final String REWARD_POINTS_XPATH_SELECTOR = "//div[@class = 'list-group']/a[contains(@href, 'reward')]";
+    private static final String RETURNS_XPATH_SELECTOR = "//div[@class = 'list-group']/a[contains(@href, 'return')]";
+    private static final String TRANSACTIONS_XPATH_SELECTOR = "//div[@class = 'list-group']/a[contains(@href, 'transaction')]";
+    private static final String NEWSLETTER_XPATH_SELECTOR = "//div[@class = 'list-group']/a[contains(@href, 'newsletter')]";
 
 
     private WebElement myAccount;

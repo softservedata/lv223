@@ -203,7 +203,6 @@ abstract class ATopPage {
 		myAccountATopPage = new MyAccountATopPage();
 	}
 
-
 	//--------------------------------------------LLLL-----------------------------------------------------
 
 	public void clickRegister() {
@@ -234,6 +233,4 @@ abstract class ATopPage {
 		clickLogin();
 		return new LoginPage(driver);
 	}
-
-
 }
