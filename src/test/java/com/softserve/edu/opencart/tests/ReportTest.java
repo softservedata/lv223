@@ -28,6 +28,7 @@ public class ReportTest {
 
 	@Test
 	public void testApp() {
+		System.out.println("***@Test Report MAVEN" + System.getProperty("surefire.reports.directory"));
 		Reporter.log("<BR><FONT SIZE='4' COLOR='RED'>Non Conditional.</FONT><BR>", true);
 		Reporter.log("<BR><FONT SIZE='4' COLOR='BLUE'>Level 3</FONT><BR>", 3, true);
 		Reporter.log("<BR><FONT SIZE='4' COLOR='BLUE'>Level 5</FONT><BR>", 5);
