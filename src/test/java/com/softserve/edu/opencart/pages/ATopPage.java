@@ -193,8 +193,6 @@ abstract class ATopPage {
 		myAccountATopPage = new MyAccountATopPage();
 	}
 
-	//--------------------------------------------LLLL-----------------------------------------------------
-
 	public void clickRegister() {
 		getRegister().click();
 	}
@@ -202,8 +200,6 @@ abstract class ATopPage {
 	public void clickLogin() {
 		getLogin().click();
 	}
-
-	//------------------------------------------------LLLL--------------------------------------------------
 
 	public void clearSearchInput() {
 		getSearchInput().clear();
@@ -223,4 +219,8 @@ abstract class ATopPage {
 		clickLogin();
 		return new LoginPage(driver);
 	}
+
+
+
+	//////////////////////////////////////////////////////////////////////
 }

@@ -12,15 +12,17 @@ public class LoginPage extends ARightMenuUnregister{
 	private static final String CONTINUE_BUTTON_CSS_SELECTOR = "div a.btn-primary";
 	private static final String EMAIL_FIELD_CSS_SELECTOR = "#input-email";
 	private static final String PASSWORD_FIELD_CSS_SELECTOR = "#input-password";
+	private static final String VALIDATOR_ERROR_CSS_SELECTOR = ".alert.alert-danger";
 
 	//TODO
-	private static final String VALIDATION_ALERT_CSS_SELECTOR = ".alert.alert-danger";
+
 
 	private WebElement loginButton;
 	private WebElement forgottenPassword;
 	private WebElement continueButton;
 	private WebElement emailField;
 	private WebElement passwordField;
+	private WebElement validatorError;
 
 	protected LoginPage(WebDriver driver) {
 		super(driver);
@@ -51,12 +53,17 @@ public class LoginPage extends ARightMenuUnregister{
 		return this.passwordField;
 	}
 
+	public WebElement getValidatorError(){ return this.validatorError;}
+
 	// ToDO
 	// Returning customer block, login button, email field, password field
 	//
 
 	// -------set data------------------------
 
+	public void initValidatorError(){
+		this.validatorError = driver.findElement(By.cssSelector(VALIDATOR_ERROR_CSS_SELECTOR));
+	}
 
 	public void clickLoginButton() {
 		getLoginButton().click();
@@ -110,6 +117,10 @@ public class LoginPage extends ARightMenuUnregister{
 		return getPasswordField().getText();
 	}
 
+	public String getValidatorErrorText() {
+		return getValidatorError().getText();
+	}
+
     //=====================Business_Logic=================
 
 	public void setLoginCredentials(IUser user){
@@ -123,6 +134,9 @@ public class LoginPage extends ARightMenuUnregister{
 		return new MyAccountPage(driver);
 	}
 
-//  public LoginValidatorPage unsuccessfulLogin(IUser invalidUser) {}
-
+  	public LoginPage unsuccessLogin(IUser invalidUser) throws InterruptedException {
+		setLoginCredentials(invalidUser);
+		LoginPage thisPage = new LoginPage(driver);
+		return thisPage;
+	}
 }
