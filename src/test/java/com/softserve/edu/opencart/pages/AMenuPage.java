@@ -1,10 +1,12 @@
 package com.softserve.edu.opencart.pages;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.softserve.edu.opencart.tools.GeneralException;
+import com.softserve.edu.opencart.tools.ReporterWrapper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -274,7 +276,13 @@ public abstract class AMenuPage extends ATopPage {
 	}
 
 	public VerticalMenuPage gotoShowAll(CategoryRepository category) {
+		logger.debug("\tBegin");
+		ReporterWrapper.get().debug("Start");
 		clickShowAllMenuSubCategory(category);
+		logger.trace("\t\tRunning");
+		//
+		ReporterWrapper.get().debug("Done");
+		logger.debug("\tDone");
 		return new VerticalMenuPage(driver, MENU_PRODUCT_COLUMN);
 	}
 

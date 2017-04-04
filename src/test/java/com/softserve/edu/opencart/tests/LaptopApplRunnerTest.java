@@ -11,6 +11,7 @@ import com.softserve.edu.opencart.data.ProductRepository;
 import com.softserve.edu.opencart.pages.AMenuPage.CategoryRepository;
 import com.softserve.edu.opencart.pages.VerticalMenuPage;
 import com.softserve.edu.opencart.tools.ProviderUtils;
+import com.softserve.edu.opencart.tools.ReporterWrapper;
 
 public class LaptopApplRunnerTest extends TestRunner {
 
@@ -25,6 +26,9 @@ public class LaptopApplRunnerTest extends TestRunner {
 	
 	@Test(dataProvider = "desctopProducts")
 	public void checkComponentAppl(IProduct product) throws InterruptedException {
+		logger.info("Start");
+		ReporterWrapper.get().info("Start");
+		System.out.println("***@Test MAVEN" + System.getProperty("surefire.reports.directory"));
 		// Precondition
 		// Steps
 //		VerticalMenuPage verticalMenuPage = Application.get()
@@ -44,6 +48,9 @@ public class LaptopApplRunnerTest extends TestRunner {
 		//
 		// Return to previous state
 		//Application.remove();
+		ReporterWrapper.get().takeScreenShot();
+		ReporterWrapper.get().info("Done");
+		logger.info("Done");
 	}
 
 }
