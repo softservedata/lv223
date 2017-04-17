@@ -55,7 +55,7 @@ interface IUserAdditional extends IBuildUser {
 	IUserAdditional setNewsletter(String newsletter);
 }
 
-public class User implements IFirstname, ILastname, IEmail,
+class User implements IFirstname, ILastname, IEmail,
 		ITelephone, IAddress, ICity, IPostcode, ICountry,
 		IRegionState, IPassword, IUserAdditional, IUser {
 

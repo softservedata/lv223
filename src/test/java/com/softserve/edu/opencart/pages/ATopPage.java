@@ -4,6 +4,8 @@ import com.softserve.edu.opencart.tools.GeneralException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
@@ -43,6 +45,8 @@ abstract class ATopPage {
 
 	public static final String ATTRIBUTE_VALUE = "value";
 	private static final String VISIBLE_ERROR_MESSAGE = "Element not visible";
+	//
+	protected final Logger logger = LoggerFactory.getLogger(this.getClass());
 	//
 	protected WebDriver driver;
 	//
@@ -193,9 +197,6 @@ abstract class ATopPage {
 		myAccountATopPage = new MyAccountATopPage();
 	}
 
-
-	//--------------------------------------------LLLL-----------------------------------------------------
-
 	public void clickRegister() {
 		getRegister().click();
 	}
@@ -203,8 +204,6 @@ abstract class ATopPage {
 	public void clickLogin() {
 		getLogin().click();
 	}
-
-	//------------------------------------------------LLLL--------------------------------------------------
 
 	public void clearSearchInput() {
 		getSearchInput().clear();
@@ -226,4 +225,6 @@ abstract class ATopPage {
 	}
 
 
+
+	//////////////////////////////////////////////////////////////////////
 }

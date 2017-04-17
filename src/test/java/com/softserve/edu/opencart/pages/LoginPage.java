@@ -1,29 +1,32 @@
 package com.softserve.edu.opencart.pages;
 
+import com.softserve.edu.opencart.data.IUser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class LoginPage extends ARightMenuUnregister{
 
-	private static final String LOGIN_BUTTON_XPATH_SELECTOR = "input[@value = 'Login']";
+	private static final String LOGIN_BUTTON_XPATH_SELECTOR = "//input[@value = 'Login']";
 	private static final String FORGOTTEN_PASSWORD_LINK_TEXT_SELECTOR = "Forgotten Password";
 	private static final String CONTINUE_BUTTON_CSS_SELECTOR = "div a.btn-primary";
 	private static final String EMAIL_FIELD_CSS_SELECTOR = "#input-email";
 	private static final String PASSWORD_FIELD_CSS_SELECTOR = "#input-password";
+	private static final String VALIDATOR_ERROR_CSS_SELECTOR = ".alert.alert-danger";
 
 	//TODO
-	private static final String VALIDATION_ALERT_CSS_SELECTOR = ".alert.alert-danger";
+
 
 	private WebElement loginButton;
 	private WebElement forgottenPassword;
 	private WebElement continueButton;
 	private WebElement emailField;
 	private WebElement passwordField;
+	private WebElement validatorError;
 
 	protected LoginPage(WebDriver driver) {
 		super(driver);
-		this.loginButton = driver.findElement(By.cssSelector(LOGIN_BUTTON_XPATH_SELECTOR));
+		this.loginButton = driver.findElement(By.xpath(LOGIN_BUTTON_XPATH_SELECTOR));
 		this.continueButton = driver.findElement(By.cssSelector(CONTINUE_BUTTON_CSS_SELECTOR));
 		this.forgottenPassword = driver.findElement(By.linkText(FORGOTTEN_PASSWORD_LINK_TEXT_SELECTOR));
 		this.emailField = driver.findElement(By.cssSelector(EMAIL_FIELD_CSS_SELECTOR));
@@ -50,12 +53,17 @@ public class LoginPage extends ARightMenuUnregister{
 		return this.passwordField;
 	}
 
+	public WebElement getValidatorError(){ return this.validatorError;}
+
 	// ToDO
 	// Returning customer block, login button, email field, password field
 	//
 
 	// -------set data------------------------
 
+	public void initValidatorError(){
+		this.validatorError = driver.findElement(By.cssSelector(VALIDATOR_ERROR_CSS_SELECTOR));
+	}
 
 	public void clickLoginButton() {
 		getLoginButton().click();
@@ -75,6 +83,16 @@ public class LoginPage extends ARightMenuUnregister{
 
 	public void clickPasswordField() {
 		getPasswordField().click();
+	}
+
+	public void setEmail(String email) {
+
+		getEmailField().sendKeys(email);
+	}
+
+	public void setPassword(String password) {
+
+		getPasswordField().sendKeys(password);
 	}
 
 	// ------------------Functional-----------
@@ -99,8 +117,26 @@ public class LoginPage extends ARightMenuUnregister{
 		return getPasswordField().getText();
 	}
 
-//  public AdminHomePage successUserLogin(IUser user) {}
+	public String getValidatorErrorText() {
+		return getValidatorError().getText();
+	}
 
-//  public LoginValidatorPage unsuccessfulLogin(IUser invalidUser) {}
+    //=====================Business_Logic=================
 
+	public void setLoginCredentials(IUser user){
+		setEmail(user.getEmail());
+		setPassword(user.getPassword());
+		clickLoginButton();
+	}
+
+	public MyAccountPage successUserLogin(IUser user) {
+		setLoginCredentials(user);
+		return new MyAccountPage(driver);
+	}
+
+  	public LoginPage unsuccessLogin(IUser invalidUser) throws InterruptedException {
+		setLoginCredentials(invalidUser);
+		LoginPage thisPage = new LoginPage(driver);
+		return thisPage;
+	}
 }

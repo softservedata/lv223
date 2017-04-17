@@ -7,13 +7,13 @@ import org.openqa.selenium.WebElement;
 /**
  * Created by FPF on 30.03.2017.
  */
-public class ARightMenuRegistered extends ARightMenuPage {
+abstract class ARightMenuRegistered extends ARightMenuPage {
 
    //fields
 
-    private static final String EDIT_ACCOUNT_XPATH_SELECTOR = "//a[contains(@href, 'edit')]";
-    private static final String PASSWORD_XPATH_SELECTOR = "//a[contains(@href, 'password')]";
-    private static final String LOGOUT_PASSWORD_XPATH_SELECTOR = "//a[contains(@href, 'logout')]";
+    private static final String EDIT_ACCOUNT_XPATH_SELECTOR = "//div[@class = 'list-group']/a[contains(@href, 'edit')]";
+    private static final String PASSWORD_XPATH_SELECTOR = "//div[@class = 'list-group']/a[contains(@href, 'password')]";
+    private static final String LOGOUT_PASSWORD_XPATH_SELECTOR = "//div[@class = 'list-group']/a[contains(@href, 'logout')]";
 
     private WebElement editAccount;
     private WebElement password;
@@ -22,8 +22,8 @@ public class ARightMenuRegistered extends ARightMenuPage {
     protected ARightMenuRegistered(WebDriver driver) {
         super(driver);
         this.editAccount = driver.findElement(By.xpath(EDIT_ACCOUNT_XPATH_SELECTOR));
-        driver.findElement(By.xpath(PASSWORD_XPATH_SELECTOR));
-        driver.findElement(By.xpath(LOGOUT_PASSWORD_XPATH_SELECTOR));
+        this.password = driver.findElement(By.xpath(PASSWORD_XPATH_SELECTOR));
+        this.logout = driver.findElement(By.xpath(LOGOUT_PASSWORD_XPATH_SELECTOR));
     }
 
     //=======================GET_DATA===============================
@@ -53,7 +53,6 @@ public class ARightMenuRegistered extends ARightMenuPage {
     }
 
     public void clickLogout() {
-
         getLogout().click();
     }
 

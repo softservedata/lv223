@@ -11,9 +11,9 @@ public abstract class ARightMenuUnregister extends ARightMenuPage {
 
     //----------------fields----------
 
-    private static final String LOGIN_RIGHT_XPATH_SELECTOR = "//a[contains(@href, 'login')]";
-    private static final String REGISTER_XPATH_SELECTOR = "//a[contains(@href, 'register')]";
-    private static final String FORGOTTEN_PASSWORD_XPATH_SELECTOR = "//a[contains(@href, 'forgotten')]";
+    private static final String LOGIN_RIGHT_XPATH_SELECTOR = "//div[@class = 'list-group']/a[contains(@href, 'login')]";
+    private static final String REGISTER_XPATH_SELECTOR = "//div[@class = 'list-group']/a[contains(@href, 'register')]";
+    private static final String FORGOTTEN_PASSWORD_XPATH_SELECTOR = "//div[@class = 'list-group']/a[contains(@href, 'forgotten')]";
 
 
     private WebElement loginRight;
