@@ -4,7 +4,7 @@ import com.softserve.edu.opencart.appl.ApplicationSourcesRepository;
 import com.softserve.edu.opencart.data.IProduct;
 import com.softserve.edu.opencart.data.ProductRepository;
 import com.softserve.edu.opencart.pages.AMenuPage.CategoryRepository;
-import com.softserve.edu.opencart.pages.ASortingPage;
+//import com.softserve.edu.opencart.pages.ASortingPage;
 import com.softserve.edu.opencart.pages.HomePage;
 import com.softserve.edu.opencart.pages.VerticalMenuPage;
 import org.openqa.selenium.WebDriver;
@@ -44,13 +44,13 @@ public class ProductTest {
 		Thread.sleep(1000);
 		VerticalMenuPage verticalMenuPage = homePage.gotoShowAll(CategoryRepository.COMPONENTS);
 		Thread.sleep(1000);
-		ASortingPage sortPag = new ASortingPage(driver);
-		sortPag = sortPag.gotoSortOptionNameAZ();
+//		ASortingPage sortPag = new ASortingPage(driver);
+//		sortPag = sortPag.gotoSortOptionNameAZ();
 
 		//sortPag.gotoSortOptionNameAZ();
 
 		Thread.sleep(1000);
-		sortPag = sortPag.gotoSortOptionNameZA();
+//		sortPag = sortPag.gotoSortOptionNameZA();
 		boolean actual = true;
 		Assert.assertTrue(actual);
 		Thread.sleep(1000);
