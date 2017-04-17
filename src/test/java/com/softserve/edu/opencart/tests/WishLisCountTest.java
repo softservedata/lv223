@@ -41,17 +41,8 @@ public class WishLisCountTest {
 		ProductComponent productComponent = verticalMenuPage.getProductByIndex(0);
 		productComponent.clickWishList();
 		
-//		Thread.sleep(2000);
-//            try {
-//                Thread.sleep(2000);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-		driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
-		System.out.println("******** = "+ currentWishList);
 		new WebDriverWait(driver, 10).until(ExpectedConditions.invisibilityOfElementWithText(By.cssSelector("i.fa.fa-heart span"), currentWishList));
-// 		
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+ 		
 		String changedWishList = verticalMenuPage.getWishListTopText();
 		String targetWishListCount = CountUtils.getTextInBrackets(changedWishList);
 		System.out.println(targetWishListCount);
