@@ -5,7 +5,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class LoginPage extends ARightMenuUnregister{
+public class LoginPage extends ARightMenuUnregister {
+	
+	public static final String INCORRECT_LOGIN_MESSAGE = "No match for e-mail address and/or password.";
 
 	private static final String LOGIN_BUTTON_XPATH_SELECTOR = "//input[@value = 'Login']";
 	private static final String FORGOTTEN_PASSWORD_LINK_TEXT_SELECTOR = "Forgotten Password";
@@ -14,8 +16,7 @@ public class LoginPage extends ARightMenuUnregister{
 	private static final String PASSWORD_FIELD_CSS_SELECTOR = "#input-password";
 	private static final String VALIDATOR_ERROR_CSS_SELECTOR = ".alert.alert-danger";
 
-	//TODO
-
+	// TODO
 
 	private WebElement loginButton;
 	private WebElement forgottenPassword;
@@ -53,7 +54,9 @@ public class LoginPage extends ARightMenuUnregister{
 		return this.passwordField;
 	}
 
-	public WebElement getValidatorError(){ return this.validatorError;}
+	public WebElement getValidatorError() {
+		return this.validatorError;
+	}
 
 	// ToDO
 	// Returning customer block, login button, email field, password field
@@ -61,12 +64,18 @@ public class LoginPage extends ARightMenuUnregister{
 
 	// -------set data------------------------
 
-	public void initValidatorError(){
+	public void initValidatorError() {
 		this.validatorError = driver.findElement(By.cssSelector(VALIDATOR_ERROR_CSS_SELECTOR));
 	}
 
-	public void clickLoginButton() {
+	public MyAccountPage clickLoginButton() {
 		getLoginButton().click();
+
+		if (!driver.getPageSource().contains("Warning: No match for E-Mail Address and/or Password.")) {
+			MyAccountPage myAccountPage = new MyAccountPage(driver);
+			return myAccountPage;
+		}
+		return null;
 	}
 
 	public void clickForgottenPassword() {
@@ -121,9 +130,9 @@ public class LoginPage extends ARightMenuUnregister{
 		return getValidatorError().getText();
 	}
 
-    //=====================Business_Logic=================
+	// =====================Business_Logic=================
 
-	public void setLoginCredentials(IUser user){
+	public void setLoginCredentials(IUser user) {
 		setEmail(user.getEmail());
 		setPassword(user.getPassword());
 		clickLoginButton();
@@ -134,7 +143,7 @@ public class LoginPage extends ARightMenuUnregister{
 		return new MyAccountPage(driver);
 	}
 
-  	public LoginPage unsuccessLogin(IUser invalidUser) throws InterruptedException {
+	public LoginPage unsuccessLogin(IUser invalidUser) throws InterruptedException {
 		setLoginCredentials(invalidUser);
 		LoginPage thisPage = new LoginPage(driver);
 		return thisPage;

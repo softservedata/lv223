@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 /**
  * Created by FPF on 30.03.2017.
  */
-abstract class ARightMenuRegistered extends ARightMenuPage {
+public abstract class ARightMenuRegistered extends ARightMenuPage {
 
    //fields
 
@@ -64,7 +64,7 @@ abstract class ARightMenuRegistered extends ARightMenuPage {
         return new EditAccountPage(driver);
     }
 
-    public ARightMenuPage gotoChangePasswordPage() {
+    public ChangePasswordPage gotoChangePasswordPage() {
         clickPassword();
         return new ChangePasswordPage(driver);
     }

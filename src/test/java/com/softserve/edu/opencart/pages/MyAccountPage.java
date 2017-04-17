@@ -10,4 +10,9 @@ public class MyAccountPage extends ARightMenuRegistered {
     protected MyAccountPage(WebDriver driver) {
         super(driver);
     }
+    @Override
+    public ChangePasswordPage gotoChangePasswordPage() {
+     // TODO Auto-generated method stub
+     return super.gotoChangePasswordPage();
+    }
 }
