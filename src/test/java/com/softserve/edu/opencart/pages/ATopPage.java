@@ -13,18 +13,19 @@ abstract class ATopPage {
 
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 	private class Compare {
-		
+
 	}
+
 	private class CurencyATopPage {
 		public final WebElement euro;
 		public final WebElement pound;
 		public final WebElement dollar;
 
 		public CurencyATopPage() {
-    		this.euro = driver.findElement(By.name("EUR"));
-    		this.pound = driver.findElement(By.name("GBP"));
-    		this.dollar = driver.findElement(By.name("USD"));
-    	}
+			this.euro = driver.findElement(By.name("EUR"));
+			this.pound = driver.findElement(By.name("GBP"));
+			this.dollar = driver.findElement(By.name("USD"));
+		}
 	}
 
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -34,9 +35,9 @@ abstract class ATopPage {
 		public final WebElement login;
 
 		public MyAccountATopPage() {
-    		this.register = driver.findElement(By.xpath("//a[contains(@href, 'account/register')]"));
-    		this.login = driver.findElement(By.xpath("//a[contains(@href, 'account/login')]"));
-    	}
+			this.register = driver.findElement(By.xpath("//a[contains(@href, 'account/register')]"));
+			this.login = driver.findElement(By.xpath("//a[contains(@href, 'account/login')]"));
+		}
 	}
 
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -52,26 +53,30 @@ abstract class ATopPage {
 	//
 	private WebElement currency;
 	private CurencyATopPage curencyATopPage;
-	//private WebElement phone;
+	// private WebElement phone;
 	private List<WebElement> phones;
 	private WebElement contact;
 	private WebElement myAccount;
 	private MyAccountATopPage myAccountATopPage;
+	private WebElement wishListTop;
 	private WebElement searchInput;
 	private Compare compare;
 
-	//===============================================
+	// ===============================================
 
 	private LoginPage loginPage;
 
-	//===============================================
+	// ===============================================
 
 	protected ATopPage(WebDriver driver) {
 		this.driver = driver;
 		this.currency = driver.findElement(By.cssSelector("button.btn.btn-link.dropdown-toggle"));
-		//this.phone = driver.findElement(By.cssSelector("li > span.hidden-xs.hidden-sm.hidden-md"));
+		// this.phone = driver.findElement(By.cssSelector("li >
+		// span.hidden-xs.hidden-sm.hidden-md"));
 		this.contact = driver.findElement(By.xpath("//div[@id='top-links']//a[contains(@href, '/contact')]"));
-		//this.myAccount = driver.findElement(By.cssSelector("a.dropdown-toggle > span.hidden-xs.hidden-sm.hidden-md"));
+		// this.myAccount = driver.findElement(By.cssSelector("a.dropdown-toggle
+		// > span.hidden-xs.hidden-sm.hidden-md"));
+		this.wishListTop = driver.findElement(By.cssSelector("#wishlist-total span"));
 		this.myAccount = driver.findElement(By.cssSelector("i.fa.fa-user"));
 		this.searchInput = driver.findElement(By.cssSelector("input.form-control.input-lg"));
 	}
@@ -100,11 +105,11 @@ abstract class ATopPage {
 	}
 
 	public boolean isPhone() {
-//		System.out.println("isPhone() start");
-		phones = driver.findElements(By.cssSelector("li > span.hidden-xs.hidden-sm.hidden-md")); 
-//		System.out.println("isPhone() done, phones.size() = " + phones.size() 
-//			+ " isDisplayed= " + phones.get(0).isDisplayed() 
-//			+ " isEnabled= " + phones.get(0).isEnabled() );
+		// System.out.println("isPhone() start");
+		phones = driver.findElements(By.cssSelector("li > span.hidden-xs.hidden-sm.hidden-md"));
+		// System.out.println("isPhone() done, phones.size() = " + phones.size()
+		// + " isDisplayed= " + phones.get(0).isDisplayed()
+		// + " isEnabled= " + phones.get(0).isEnabled() );
 		return (phones.size() > 0) && (phones.get(0).isDisplayed()) && (phones.get(0).isEnabled());
 	}
 
@@ -112,7 +117,7 @@ abstract class ATopPage {
 		if (!isPhone()) {
 			throw new GeneralException(VISIBLE_ERROR_MESSAGE);
 		}
-		//return this.phone;
+		// return this.phone;
 		return phones.get(0);
 	}
 
@@ -134,15 +139,20 @@ abstract class ATopPage {
 		return this.myAccountATopPage.login;
 	}
 
+	public WebElement getWishListTop() {
+		return this.wishListTop;
+	}
+
 	public WebElement getSearchInput() {
 		return this.searchInput;
 	}
-	
+
 	// Functional
 
-	public String getDollarText(){
+	public String getDollarText() {
 		return curencyATopPage.dollar.getText();
 	}
+
 	public String getCurrencyText() {
 		return getCurrency().getText();
 	}
@@ -161,10 +171,8 @@ abstract class ATopPage {
 
 	// set Data
 
-	
-	
 	public void clickCurrency() {
-		//clickPhone();
+		// clickPhone();
 		clickSearchInput();
 		getCurrency().click();
 		curencyATopPage = new CurencyATopPage();
@@ -191,7 +199,7 @@ abstract class ATopPage {
 	}
 
 	public void clickMyAccount() {
-		//clickPhone();
+		// clickPhone();
 		clickSearchInput();
 		getMyAccount().click();
 		myAccountATopPage = new MyAccountATopPage();
@@ -203,6 +211,12 @@ abstract class ATopPage {
 
 	public void clickLogin() {
 		getLogin().click();
+	}
+
+	public void clickWishListTop() {
+
+		getWishListTop().click();
+
 	}
 
 	public void clearSearchInput() {
@@ -219,12 +233,17 @@ abstract class ATopPage {
 
 	// Business Logic
 
-	public LoginPage gotoLoginPage(){
+	public LoginPage gotoLoginPage() {
 		clickLogin();
 		return new LoginPage(driver);
 	}
 
+	public ARightMenuPage gotoWishListPageTop() {
 
+		clickWishListTop();
+
+		return new ReturningCustomerPage(driver);
+	}
 
 	//////////////////////////////////////////////////////////////////////
 }

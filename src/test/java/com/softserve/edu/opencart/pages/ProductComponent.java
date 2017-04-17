@@ -73,6 +73,10 @@ public class ProductComponent {
 		return this.addCart;
 	}
 	
+	 public WebElement getAddToWishList() {
+		  return addToWishList;
+		 }
+	 
 	public WebElement getCompareButton() {
 		return this.compare;
 	}
@@ -112,6 +116,10 @@ public class ProductComponent {
 	public void clickDetailsLink() {
 		getDetailsLink().click();
 	}
+	
+	 public void clickWishList() {
+		  getAddToWishList().click();
+		 }
 	
 	public void clickCompareButton() {
 		getCompareButton().click();
