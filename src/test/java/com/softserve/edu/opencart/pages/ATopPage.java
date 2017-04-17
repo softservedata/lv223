@@ -169,6 +169,11 @@ abstract class ATopPage {
 		return getSearchInput().getAttribute(ATTRIBUTE_VALUE);
 	}
 
+	public String getWishListTopText() {
+		  return getWishListTop().getText();
+		  
+		 }
+	
 	// set Data
 
 	public void clickCurrency() {
