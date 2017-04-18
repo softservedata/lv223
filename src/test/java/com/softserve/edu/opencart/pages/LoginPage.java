@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class LoginPage extends ARightMenuUnregister{
+public class LoginPage extends ARightMenuUnregister {
 
 	private static final String LOGIN_BUTTON_XPATH_SELECTOR = "//input[@value = 'Login']";
 	private static final String FORGOTTEN_PASSWORD_LINK_TEXT_SELECTOR = "Forgotten Password";
@@ -15,7 +15,6 @@ public class LoginPage extends ARightMenuUnregister{
 	private static final String VALIDATOR_ERROR_CSS_SELECTOR = ".alert.alert-danger";
 
 	//TODO
-
 
 	private WebElement loginButton;
 	private WebElement forgottenPassword;
@@ -53,14 +52,20 @@ public class LoginPage extends ARightMenuUnregister{
 		return this.passwordField;
 	}
 
-	public WebElement getValidatorError(){ return this.validatorError;}
+	public WebElement getValidatorError() {
+		// TODO ERROR Return NULL
+		// Must be search if exist, else throw exceptions
+		return this.validatorError;
+	}
 
-	// ToDO
+	// TODO
 	// Returning customer block, login button, email field, password field
-	//
+
+	//  get text for all elements
 
 	// -------set data------------------------
 
+	// TODO move to getValidatorError
 	public void initValidatorError(){
 		this.validatorError = driver.findElement(By.cssSelector(VALIDATOR_ERROR_CSS_SELECTOR));
 	}
@@ -86,15 +91,15 @@ public class LoginPage extends ARightMenuUnregister{
 	}
 
 	public void setEmail(String email) {
-
 		getEmailField().sendKeys(email);
 	}
 
 	public void setPassword(String password) {
-
 		getPasswordField().sendKeys(password);
 	}
 
+	// TODO clear, click, setEmail with clear
+	
 	// ------------------Functional-----------
 
 	public String getLoginButtonText() {
@@ -123,8 +128,11 @@ public class LoginPage extends ARightMenuUnregister{
 
     //=====================Business_Logic=================
 
+	// TODO private
 	public void setLoginCredentials(IUser user){
+		// TODO clear Email
 		setEmail(user.getEmail());
+		// TODO clear Password
 		setPassword(user.getPassword());
 		clickLoginButton();
 	}
@@ -134,9 +142,11 @@ public class LoginPage extends ARightMenuUnregister{
 		return new MyAccountPage(driver);
 	}
 
-  	public LoginPage unsuccessLogin(IUser invalidUser) throws InterruptedException {
+  	//public LoginPage unsuccessLogin(IUser invalidUser) {
+	public LoginValidatorPage unsuccessLogin(IUser invalidUser) {
 		setLoginCredentials(invalidUser);
-		LoginPage thisPage = new LoginPage(driver);
-		return thisPage;
+		//LoginPage thisPage = new LoginPage(driver);
+		//return thisPage;
+		return new LoginValidatorPage(driver);
 	}
 }

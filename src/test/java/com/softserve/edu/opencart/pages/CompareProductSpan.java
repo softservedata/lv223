@@ -6,7 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class CompareProductSpan{
+//TODO Rename
+// TODO Move to another class ?
+public class CompareProductSpan {
 	
 	public final WebElement productCompareDescription;
 	public final WebElement comparePageLink;

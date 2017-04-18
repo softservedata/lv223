@@ -4,7 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class SortingPage extends AMenuPage{
+// TODO Inner class in VerticalMenuPage
+public class SortingPage extends AMenuPage {
 	
 	private static final String SORTING_TYPE_LIST_SELECTOR = "//button[contains(@id, 'list-view')]";
 	private static final String SORTING_TYPE_GRID_SELECTOR = "//button[contains(@id, 'grid-view')]";
@@ -30,7 +31,7 @@ public class SortingPage extends AMenuPage{
 	WebElement sortingTypeGrid;
 	WebElement productCompare;
 	WebElement sortOptionsDropMenu;
-	WebElement showOptionsDropMenu;	
+	WebElement showOptionsDropMenu;
 	ShowOptionsMenu showOptionsMenu;
 	SortOptionsMenu sortOptionsMenu;	
 
