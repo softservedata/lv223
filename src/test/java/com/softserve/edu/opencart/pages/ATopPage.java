@@ -224,6 +224,10 @@ abstract class ATopPage {
 		return new LoginPage(driver);
 	}
 
+	public RegisterPage gotoRegisterPage(){
+		clickRegister();
+		return new RegisterPage(driver);
+	}
 
 
 	//////////////////////////////////////////////////////////////////////
