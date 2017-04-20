@@ -1,5 +1,6 @@
 package com.softserve.edu.opencart.tests;
 
+import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -7,6 +8,7 @@ import com.softserve.edu.opencart.appl.Application;
 import com.softserve.edu.opencart.data.IUser;
 import com.softserve.edu.opencart.data.UserRepository;
 import com.softserve.edu.opencart.pages.AccountCreatedPage;
+import com.softserve.edu.opencart.pages.MyAccountPage;
 import com.softserve.edu.opencart.pages.RegisterPage;
 import com.softserve.edu.opencart.tools.ReporterWrapper;
 
@@ -32,13 +34,17 @@ public class RegisterNewUserTest extends TestRunner {
 		AccountCreatedPage accountCreatedPage = registerPage.gotoAccountCreated(newUser);
 		//
 		// Check
-//		Assert.assertTrue(verticalMenuPage.getProductByDetailsLink(product.getDetails())
-//				.getDescriptionText().trim().toLowerCase()
-//				.contains(product.getDescription().toLowerCase()));
-		Thread.sleep(2000);
+		Assert.assertEquals(accountCreatedPage.getCongratulationsLabelText(),
+				AccountCreatedPage.EXPECTED_MESSAGE);
+		Thread.sleep(1000);
+		//
+		// Steps
+		MyAccountPage myAccountPage = accountCreatedPage.gotoMyAccountPage();
+		Thread.sleep(1000);
 		//
 		// Return to previous state
-		//Application.remove();
+		myAccountPage.gotoSubLogoutPage();
+		//
 		//ReporterWrapper.get().takeScreenShot();
 		ReporterWrapper.get().info("Done");
 		logger.info("Done");

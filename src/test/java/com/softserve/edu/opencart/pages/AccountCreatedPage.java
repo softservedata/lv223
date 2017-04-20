@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import com.softserve.edu.opencart.data.IUser;
+
 public class AccountCreatedPage extends ARightMenuRegistered {
 
 	public static final String EXPECTED_MESSAGE = "Your Account Has Been Created!";
@@ -26,11 +28,31 @@ public class AccountCreatedPage extends ARightMenuRegistered {
 
     // get Data
 
+	public WebElement getCongratulationsLabel() {
+		return this.congratulations;
+	}
+
+	public WebElement getContinueButton() {
+		return this.continueButton;
+	}
+
 	// Functional
+
+	public String getCongratulationsLabelText() {
+		return getCongratulationsLabel().getText();
+	}
 
 	// set Data
 
+	public void clickContinueButton() {
+		 getContinueButton().click();
+	}
+	
 	// Business Logic
 
-	//gotoMyAccountPage
+	public MyAccountPage gotoMyAccountPage() {
+		clickContinueButton();
+		return new MyAccountPage(driver);
+	}
+
 }

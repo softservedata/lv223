@@ -29,15 +29,23 @@ abstract class ATopPage {
 
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-	private class MyAccountATopPage {
-		public final WebElement register;
-		public final WebElement login;
+	protected class MyAccountATopPage {
+		private WebElement register;
+		private WebElement login;
 
 		public MyAccountATopPage() {
     		this.register = driver.findElement(By.xpath("//a[contains(@href, 'account/register')]"));
     		this.login = driver.findElement(By.xpath("//a[contains(@href, 'account/login')]"));
     	}
-	}
+		
+		public WebElement getATopRegister() {
+			return this.register;
+		}
+
+		public WebElement getATopLogin() {
+			return this.login;
+		}
+}
 
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -56,7 +64,7 @@ abstract class ATopPage {
 	private List<WebElement> phones;
 	private WebElement contact;
 	private WebElement myAccount;
-	private MyAccountATopPage myAccountATopPage;
+	protected MyAccountATopPage myAccountATopPage;
 	private WebElement searchInput;
 	private Compare compare;
 
@@ -126,12 +134,12 @@ abstract class ATopPage {
 
 	public WebElement getRegister() {
 		clickMyAccount();
-		return this.myAccountATopPage.register;
+		return this.myAccountATopPage.getATopRegister();
 	}
 
 	public WebElement getLogin() {
 		clickMyAccount();
-		return this.myAccountATopPage.login;
+		return this.myAccountATopPage.getATopLogin();
 	}
 
 	public WebElement getSearchInput() {
