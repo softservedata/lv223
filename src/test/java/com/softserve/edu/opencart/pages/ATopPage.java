@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.List;
 
 abstract class ATopPage {
@@ -38,6 +39,111 @@ abstract class ATopPage {
 			this.register = driver.findElement(By.xpath("//a[contains(@href, 'account/register')]"));
 			this.login = driver.findElement(By.xpath("//a[contains(@href, 'account/login')]"));
 		}
+	}
+
+	// - - - - - - - - - - - CartListButton- - - - - - - - - - - - - - - - - - -
+
+	public class CartListCompactPage { // ????? Public or private
+		private static final String CART_LIST_RAW_SELECTOR = ".table.table-striped tbody tr";
+		public static final String CART_LIST_EMPTY_MESSAGE = "Cart list is empty!";
+		private static final String CART_PRODUCT_NOT_FOUND_ERROR_MESSAGE = "Product not found";
+
+		private List<CartListComponent> cartComponentList;
+
+		public CartListCompactPage(WebDriver driver) {
+			this.cartComponentList = getComponents();
+		}
+
+		// public List<CartListComponent> getCartComponents(){
+		// return cartComponentList;
+		// }
+
+		// finds all raws
+		public List<WebElement> getItems() {
+			List<WebElement> rawList = driver.findElements(By.cssSelector(CART_LIST_RAW_SELECTOR));
+			return rawList;
+		}
+
+		/**
+		 * Create list of products in Cart
+		 * 
+		 * @return cartListComponent
+		 */
+		public List<CartListComponent> getComponents() {
+			List<CartListComponent> cartList = new ArrayList<CartListComponent>();
+			for (WebElement currentProduct : getItems()) {
+				CartListComponent product = new CartListComponent(driver, currentProduct);
+				cartList.add(product);
+			}
+			return cartList;
+		}
+
+		/**
+		 * Find size of cartList
+		 * 
+		 * @return number of products in Cart
+		 */
+		public int getCartListSize() {
+			return cartComponentList.size();
+		}
+
+		/**
+		 * Find element of wish list by index
+		 * 
+		 * @param index
+		 *            number of element in list
+		 * 
+		 * @return element of wish list
+		 */
+		public CartListComponent getCartComponentByIndex(int index) {
+			if ((index < 0) || (index >= getCartListSize())) {
+				throw new GeneralException(CART_LIST_EMPTY_MESSAGE);
+			}
+			return cartComponentList.get(index);
+		}
+
+		/**
+		 * Find element of cart list by product name
+		 * 
+		 * @param name
+		 *            name of searched element
+		 * 
+		 * @return element of Cart list
+		 */
+		public CartListComponent getCartComponentByName(String name) {
+			CartListComponent resultCartProduct = null;
+
+			for (CartListComponent currentProduct : cartComponentList) {
+				if (currentProduct.getProductNameText().trim().toLowerCase().equals(name.trim().toLowerCase())) {
+					resultCartProduct = currentProduct;
+					break;
+				}
+			}
+
+			if (resultCartProduct == null) {
+				throw new GeneralException(CART_PRODUCT_NOT_FOUND_ERROR_MESSAGE);
+			}
+			return resultCartProduct;
+		}
+
+		/**
+		 * Checks if Cart list contains component with specified name
+		 * 
+		 * @param productName
+		 *            the product name of the component
+		 * @return true if component exist in the Cart list
+		 */
+		public boolean isProductPresentInCartList(String productName) {
+			boolean isPresent = false;
+			for (CartListComponent currentProduct : cartComponentList) {
+				if (currentProduct.getProductNameText().trim().toLowerCase().equals(productName.trim().toLowerCase())) {
+					isPresent = true;
+					break;
+				}
+			}
+			return isPresent;
+		}
+
 	}
 
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -170,10 +276,10 @@ abstract class ATopPage {
 	}
 
 	public String getWishListTopText() {
-		  return getWishListTop().getText();
-		  
-		 }
-	
+		return getWishListTop().getText();
+
+	}
+
 	// set Data
 
 	public void clickCurrency() {

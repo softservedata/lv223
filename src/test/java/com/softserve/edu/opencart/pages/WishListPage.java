@@ -37,7 +37,7 @@ public class WishListPage extends ARightMenuPage {
 	/**
 	 * Create list of wished products
 	 * 
-	 * @return WishListComponent
+	 * @return wishListComponent
 	 */
 	public List<WishListComponent> getComponents() {
 		List<WishListComponent> wishListComponents = new ArrayList<WishListComponent>();
