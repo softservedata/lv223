@@ -80,6 +80,7 @@ public class WishListRowsTest {
 
 		boolean isExistAddedProduct = wishListPage.isComponentExistInWishList(productNameWichIsAddedToWishList);
 		Assert.assertTrue(!isExistAddedProduct);
+		//Assert.assertFalse(isExistAddedProduct);
 
 		driver.close();
 
