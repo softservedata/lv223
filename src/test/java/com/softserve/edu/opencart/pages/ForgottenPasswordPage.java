@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
  */
 public class ForgottenPasswordPage extends ARightMenuUnregister{
 
-    protected ForgottenPasswordPage(WebDriver driver) {
+	public ForgottenPasswordPage(WebDriver driver) {
         super(driver);
     }
 }

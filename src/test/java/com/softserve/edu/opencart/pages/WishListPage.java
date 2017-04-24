@@ -16,7 +16,7 @@ public class WishListPage extends ARightMenuRegistered {
 
     private static final String BASE_WISH_LIST_COMPONENT_SELECTOR = "";
 
-    protected WishListPage(WebDriver driver) {
+    public WishListPage(WebDriver driver) {
         super(driver);
         wishListComponents = getComponents();
     }

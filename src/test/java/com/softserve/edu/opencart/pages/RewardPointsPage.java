@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
  */
 public class RewardPointsPage extends ARightMenuRegistered {
 
-    protected RewardPointsPage(WebDriver driver) {
+	public RewardPointsPage(WebDriver driver) {
         super(driver);
     }
 }

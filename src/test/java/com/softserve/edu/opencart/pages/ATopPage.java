@@ -1,13 +1,14 @@
 package com.softserve.edu.opencart.pages;
 
-import com.softserve.edu.opencart.tools.GeneralException;
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.List;
+import com.softserve.edu.opencart.tools.GeneralException;
 
 abstract class ATopPage {
 
@@ -65,6 +66,7 @@ abstract class ATopPage {
 	private WebElement contact;
 	private WebElement myAccount;
 	protected MyAccountATopPage myAccountATopPage;
+	private WebElement logoImage;
 	private WebElement searchInput;
 	private Compare compare;
 
@@ -81,6 +83,7 @@ abstract class ATopPage {
 		this.contact = driver.findElement(By.xpath("//div[@id='top-links']//a[contains(@href, '/contact')]"));
 		//this.myAccount = driver.findElement(By.cssSelector("a.dropdown-toggle > span.hidden-xs.hidden-sm.hidden-md"));
 		this.myAccount = driver.findElement(By.cssSelector("i.fa.fa-user"));
+		this.logoImage = driver.findElement(By.cssSelector("img[alt='Your Store']"));
 		this.searchInput = driver.findElement(By.cssSelector("input.form-control.input-lg"));
 	}
 
@@ -140,6 +143,10 @@ abstract class ATopPage {
 	public WebElement getLogin() {
 		clickMyAccount();
 		return this.myAccountATopPage.getATopLogin();
+	}
+
+	public WebElement getLogoImage() {
+		return this.logoImage;
 	}
 
 	public WebElement getSearchInput() {
@@ -213,6 +220,10 @@ abstract class ATopPage {
 		getLogin().click();
 	}
 
+	public void clickLogoImage() {
+		getLogoImage().click();
+	}
+	
 	public void clearSearchInput() {
 		getSearchInput().clear();
 	}
@@ -237,6 +248,10 @@ abstract class ATopPage {
 		return new RegisterPage(driver);
 	}
 
+	public HomePage gotoLogoHomePage(){
+		clickLogoImage();
+		return new HomePage(driver);
+	}
 
 	//////////////////////////////////////////////////////////////////////
 }

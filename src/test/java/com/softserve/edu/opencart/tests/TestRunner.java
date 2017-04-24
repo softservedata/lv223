@@ -27,6 +27,7 @@ public class TestRunner {
 	@AfterClass
 	public void afterClass() {
 		System.out.println("@AfterClass");
+		// TODO
 		//Application.remove();
 	}
 

@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
  */
 public class RecurringPaymentsPage extends ARightMenuRegistered {
 
-    protected RecurringPaymentsPage(WebDriver driver) {
+	public RecurringPaymentsPage(WebDriver driver) {
         super(driver);
     }
 }

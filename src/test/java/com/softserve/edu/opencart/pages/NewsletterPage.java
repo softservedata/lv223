@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
  */
 public class NewsletterPage extends ARightMenuRegistered {
 
-    protected NewsletterPage(WebDriver driver) {
+	public NewsletterPage(WebDriver driver) {
         super(driver);
     }
 }

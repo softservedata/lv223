@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
  */
 public class OrderHistoryPage extends ARightMenuRegistered{
 
-    protected OrderHistoryPage(WebDriver driver) {
+	public OrderHistoryPage(WebDriver driver) {
         super(driver);
     }
 }

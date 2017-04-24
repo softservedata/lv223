@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
  */
 public class ReturnsPage extends ARightMenuRegistered {
 
-    protected ReturnsPage(WebDriver driver) {
+	public ReturnsPage(WebDriver driver) {
         super(driver);
     }
 }

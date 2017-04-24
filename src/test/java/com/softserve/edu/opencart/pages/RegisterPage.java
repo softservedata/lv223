@@ -42,7 +42,7 @@ public class RegisterPage extends ARightMenuUnregister {
 	private WebElement privacyPolicy;
 	private WebElement continueButton;
 
-    protected RegisterPage(WebDriver driver) {
+	public RegisterPage(WebDriver driver) {
         super(driver);
         this.firstname = driver.findElement(By.id(FIRSTNAME_INPUT_ID));
         this.lastname = driver.findElement(By.id(LASTNAME_INPUT_ID));
@@ -364,4 +364,10 @@ public class RegisterPage extends ARightMenuUnregister {
 		setUserCredentials(newUser);
 		return new AccountCreatedPage(driver);
 	}
+
+	public RegisterValidatorPage gotoAccountDenied(IUser existUser) {
+		setUserCredentials(existUser);
+		return new RegisterValidatorPage(driver);
+	}
+
 }

@@ -23,7 +23,7 @@ public class LoginPage extends ARightMenuUnregister {
 	private WebElement passwordField;
 	private WebElement validatorError;
 
-	protected LoginPage(WebDriver driver) {
+	public LoginPage(WebDriver driver) {
 		super(driver);
 		this.loginButton = driver.findElement(By.xpath(LOGIN_BUTTON_XPATH_SELECTOR));
 		this.continueButton = driver.findElement(By.cssSelector(CONTINUE_BUTTON_CSS_SELECTOR));

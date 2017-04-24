@@ -59,78 +59,79 @@ abstract class ARightMenuRegistered extends ATopRegisteredPage {
     //=======================business_logic=========================
 
 
-    public ARightMenuPage gotoEditAccountPage() {
+    public EditAccountPage gotoEditAccountPage() {
         clickEditAccount();
         return new EditAccountPage(driver);
     }
 
-    public ARightMenuPage gotoChangePasswordPage() {
+    public ChangePasswordPage gotoChangePasswordPage() {
         clickPassword();
         return new ChangePasswordPage(driver);
     }
 
-    public ARightMenuPage gotoLogoutPage() {
+    public LogoutPage gotoLogoutPage() {
         clickLogout();
         return new LogoutPage(driver);
     }
 
     @Override
-    public ARightMenuPage gotoMyAccountPage() {
+    public MyAccountPage gotoMyAccountPage() {
         clickMyAccount();
         return new MyAccountPage(driver);
     }
 
     @Override
-    public ARightMenuPage gotoAddressBookPage() {
+    public AddressBookPage gotoAddressBookPage() {
         clickAddressBook();
         return new AddressBookPage(driver);
     }
 
     @Override
-    public ARightMenuPage gotoWishListPage() {
+    public WishListPage gotoWishListPage() {
         clickWishList();
         return new WishListPage(driver);
     }
 
     @Override
-    public ARightMenuPage gotoOrderHistoryPage() {
+    public OrderHistoryPage gotoOrderHistoryPage() {
         clickOrderHistory();
         return new OrderHistoryPage(driver);
     }
 
     @Override
-    public ARightMenuPage gotoDownloadsPage() {
+    public DownloadsPage gotoDownloadsPage() {
         clickDownloads();
         return new DownloadsPage(driver);
     }
 
     @Override
-    public ARightMenuPage gotoRecurringPaymentsPage() {
+    public RecurringPaymentsPage gotoRecurringPaymentsPage() {
         clickRecurringPayments();
         return new RecurringPaymentsPage(driver);
     }
 
     @Override
-    public ARightMenuPage gotoRewardPointsPage() {
+    public RewardPointsPage gotoRewardPointsPage() {
         clickRewardPoints();
         return new RewardPointsPage(driver);
     }
 
     @Override
-    public ARightMenuPage gotoReturns() {
+    public ReturnsPage gotoReturns() {
         clickReturns();
         return new ReturnsPage(driver);
     }
 
     @Override
-    public ARightMenuPage gotoTransactions() {
+    public TransactionsPage gotoTransactions() {
         clickTransactions();
         return new TransactionsPage(driver);
     }
 
     @Override
-    public ARightMenuPage gotoNewsletter() {
+    public NewsletterPage gotoNewsletter() {
         clickNewsletter();
         return new NewsletterPage(driver);
     }
+    
 }

@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
  */
 public class DownloadsPage extends ARightMenuRegistered {
 
-    protected DownloadsPage(WebDriver driver) {
+	public DownloadsPage(WebDriver driver) {
         super(driver);
     }
 }

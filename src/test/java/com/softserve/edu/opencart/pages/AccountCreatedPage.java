@@ -8,7 +8,7 @@ import com.softserve.edu.opencart.data.IUser;
 
 public class AccountCreatedPage extends ARightMenuRegistered {
 
-	public static final String EXPECTED_MESSAGE = "Your Account Has Been Created!";
+	public static final String ACCOUNT_CREATED_PAGE_EXPECTED_MESSAGE = "Your Account Has Been Created!";
 	//
 	private static final String CONGRATULATIONS_LABEL_CSS = "#content > h1";
 	private static final String CONTINUE_BUTTON_CSS = ".pull-right > a";

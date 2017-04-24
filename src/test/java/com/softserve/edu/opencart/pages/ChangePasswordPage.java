@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
  */
 public class ChangePasswordPage extends ARightMenuRegistered {
 
-    protected ChangePasswordPage(WebDriver driver) {
+	public ChangePasswordPage(WebDriver driver) {
         super(driver);
     }
 }

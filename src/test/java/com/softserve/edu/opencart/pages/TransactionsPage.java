@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
  */
 public class TransactionsPage extends ARightMenuRegistered {
 
-    protected TransactionsPage(WebDriver driver) {
+	public TransactionsPage(WebDriver driver) {
         super(driver);
     }
 }
