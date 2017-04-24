@@ -41,7 +41,8 @@ abstract class ATopPage {
 		}
 	}
 
-	// - - - - - - - - - - - CartListButton- - - - - - - - - - - - - - - - - - -
+	// - - - - - - - - - - - CartListCompactPage- - - - - - - - - - - - - - - -
+	// - - -
 
 	public class CartListCompactPage { // ????? Public or private
 		private static final String CART_LIST_RAW_SELECTOR = ".table.table-striped tbody tr";
@@ -165,12 +166,18 @@ abstract class ATopPage {
 	private WebElement myAccount;
 	private MyAccountATopPage myAccountATopPage;
 	private WebElement wishListTop;
+
+	private WebElement shoppingCart;
+	private WebElement shoppingCartButton;
+
 	private WebElement searchInput;
 	private Compare compare;
 
 	// ===============================================
 
 	private LoginPage loginPage;
+
+	private CartListCompactPage cartListCompactPage; // ???
 
 	// ===============================================
 
@@ -184,6 +191,8 @@ abstract class ATopPage {
 		// > span.hidden-xs.hidden-sm.hidden-md"));
 		this.wishListTop = driver.findElement(By.cssSelector("#wishlist-total span"));
 		this.myAccount = driver.findElement(By.cssSelector("i.fa.fa-user"));
+		this.shoppingCart = driver.findElement(By.cssSelector("a[title='Shopping Cart'] span"));
+		this.shoppingCartButton = driver.findElement(By.cssSelector("#cart button"));
 		this.searchInput = driver.findElement(By.cssSelector("input.form-control.input-lg"));
 	}
 
@@ -249,6 +258,14 @@ abstract class ATopPage {
 		return this.wishListTop;
 	}
 
+	public WebElement getShoppingCart() {
+		return this.shoppingCart;
+	}
+
+	public WebElement getShoppingCartButton() {
+		return this.shoppingCartButton;
+	}
+
 	public WebElement getSearchInput() {
 		return this.searchInput;
 	}
@@ -271,13 +288,17 @@ abstract class ATopPage {
 		return getMyAccount().getText();
 	}
 
-	public String getSearchInputText() {
-		return getSearchInput().getAttribute(ATTRIBUTE_VALUE);
-	}
-
 	public String getWishListTopText() {
 		return getWishListTop().getText();
 
+	}
+
+	public String getShoppingCartButtonText() {
+		return getShoppingCartButton().getText();
+	}
+
+	public String getSearchInputText() {
+		return getSearchInput().getAttribute(ATTRIBUTE_VALUE);
 	}
 
 	// set Data
@@ -325,10 +346,21 @@ abstract class ATopPage {
 	}
 
 	public void clickWishListTop() {
-
-		getWishListTop().click();
-
+		getWishListTop().click(); // ?????
 	}
+	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+	public ShoppingCartPage clickShoppingCart() {
+		getShoppingCart().click();
+		return new ShoppingCartPage(driver); // ???
+	}
+	
+	public void clickShoppingCartButton() {
+		getShoppingCartButton().click();
+		cartListCompactPage = new CartListCompactPage(driver);
+	}
+
+	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 	public void clearSearchInput() {
 		getSearchInput().clear();
@@ -350,9 +382,7 @@ abstract class ATopPage {
 	}
 
 	public ARightMenuPage gotoWishListPageTop() {
-
 		clickWishListTop();
-
 		return new ReturningCustomerPage(driver);
 	}
 

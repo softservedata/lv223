@@ -46,6 +46,24 @@ public final class UserRepository {
 			.build();
 	}
 
+	public IUser getOrlAnn() {
+		return User.get()
+			.setFirstname("Anna")
+			.setLastname("Lastname")
+			.setEmail("orlann@ukr.com")
+			.setTelephone("telephone")
+			.setAddress("V.Vel")
+			.setCity("Lviv")
+			.setPostcode("79022")
+			.setCountry("Ukrnaine")
+			.setRegionState("Lviv")
+			.setPassword("qwerty")
+			.setFax("fax")
+			.setCompany("company")
+			.setSecondAddress("secondAddress")
+			.setNewsletter("newsletter")
+			.build();
+	}
 	public static List<IUser> getUsersFromCsvFile() {
 		return new UserDataUtils("/existUsers.csv", new CSVUtils()).getAllUsers();
 	}

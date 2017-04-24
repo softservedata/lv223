@@ -27,7 +27,7 @@ public class CartListComponent {
 	
 	public CartListComponent(WebDriver driver, WebElement baseElement) {
 		this.driver=driver;
-		this.productImage=baseElement.findElement(By.cssSelector(CART_PRODUCT_IMAGE_SELECTOR));	//??? ��� cssSelector
+		this.productImage=baseElement.findElement(By.cssSelector(CART_PRODUCT_IMAGE_SELECTOR));	//??? 
 		this.productName= baseElement.findElement(By.cssSelector(CART_PRODUCT_NAME_SELECTOR));
 		this.deleteButton= baseElement.findElement(By.cssSelector(CART_PRODUCT_REMOVE_SELECTOR));
 	}
@@ -36,7 +36,7 @@ public class CartListComponent {
 		return productImage;
 	}
 	
-	public ProductPage clickProductImage() {			//????? �� �� ����������� ������� ��������
+	public ProductPage clickProductImage() {			//????? 
 		getProductImage().click();
 		return new ProductPage(driver);
 	}
