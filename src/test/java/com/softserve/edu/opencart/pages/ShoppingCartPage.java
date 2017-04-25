@@ -11,21 +11,24 @@ import com.softserve.edu.opencart.tools.GeneralException;
 
 public class ShoppingCartPage extends AMenuPage {
 
-	private static final String CART_LIST_RAW_SELECTOR = ".table.table-striped tr";
 	public static final String CART_LIST_EMPTY_MESSAGE = "Cart list is empty!";
 	private static final String CART_PRODUCT_NOT_FOUND_ERROR_MESSAGE = "Product not found";
+	//
+	private static final String CART_LIST_RAW_SELECTOR = ".table.table-bordered tr";
+	//
 
-	private List<ShoppingCartComponent> shopingCartList;
+	private List<ShoppingCartComponent> shoppingCartList;
 
 	public ShoppingCartPage(WebDriver driver) {
 		super(driver);
-		this.shopingCartList = getComponents();
+		this.shoppingCartList = getComponents();
 	}
 
 	// finds all raws
 	public List<WebElement> getItems() {
-		List<WebElement> rawList = driver.findElements(By.cssSelector(CART_LIST_RAW_SELECTOR));
-		return rawList;
+		//List<WebElement> rawList = driver.findElements(By.cssSelector(CART_LIST_RAW_SELECTOR));
+		//return rawList;
+		return driver.findElements(By.cssSelector(CART_LIST_RAW_SELECTOR));
 	}
 
 	/**
@@ -48,7 +51,7 @@ public class ShoppingCartPage extends AMenuPage {
 	 * @return number of products in Cart
 	 */
 	public int getCartListSize() {
-		return shopingCartList.size();
+		return shoppingCartList.size();
 	}
 
 	/**
@@ -63,7 +66,7 @@ public class ShoppingCartPage extends AMenuPage {
 		if ((index < 0) || (index >= getCartListSize())) {
 			throw new GeneralException(CART_LIST_EMPTY_MESSAGE);
 		}
-		return shopingCartList.get(index);
+		return shoppingCartList.get(index);
 	}
 
 	/**
@@ -77,7 +80,7 @@ public class ShoppingCartPage extends AMenuPage {
 	public ShoppingCartComponent getCartComponentByName(String name) {
 		ShoppingCartComponent resultCartProduct = null;
 
-		for (ShoppingCartComponent currentProduct : shopingCartList) {
+		for (ShoppingCartComponent currentProduct : shoppingCartList) {
 			if (currentProduct.getProductNameText().trim().toLowerCase().equals(name.trim().toLowerCase())) {
 				resultCartProduct = currentProduct;
 				break;
@@ -99,13 +102,37 @@ public class ShoppingCartPage extends AMenuPage {
 	 */
 	public boolean isProductPresentInCartList(String productName) {
 		boolean isPresent = false;
-		for (ShoppingCartComponent currentProduct : shopingCartList) {
+		for (ShoppingCartComponent currentProduct : shoppingCartList) {
 			if (currentProduct.getProductNameText().trim().toLowerCase().equals(productName.trim().toLowerCase())) {
 				isPresent = true;
 				break;
 			}
 		}
 		return isPresent;
+	}
+
+	public List<ShoppingCartComponent> getShopingCartList() {
+		return this.shoppingCartList;
+	}
+
+	// set Data
+	
+	// Business Logic
+
+	public ProductPage gotoProductPageByName(String productName) {
+		getCartComponentByName(productName).clickProductName();
+		return new ProductPage(driver);
+	}
+
+	public ShoppingCartPage updateProductQuantityByName(String productName, String quantity) {
+		getCartComponentByName(productName).setQuantity(quantity);
+		getCartComponentByName(productName).clickUpdate();
+		return new ShoppingCartPage(driver);
+	}
+
+	public ShoppingCartPage deleteProductByName(String productName) {
+		getCartComponentByName(productName).clickRemove();
+		return new ShoppingCartPage(driver);
 	}
 
 }

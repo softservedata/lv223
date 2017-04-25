@@ -45,14 +45,15 @@ abstract class ATopPage {
 	// - - - - - - - - - - - CartListCompactPage- - - - - - - - - - - - - - - -
 	// - - -
 
-	public class CartListCompactPage { // ????? Public or private
+	private class CartListCompactPage { // ????? Public or private
+		//
 		private static final String CART_LIST_RAW_SELECTOR = ".table.table-striped tbody tr";
 		public static final String CART_LIST_EMPTY_MESSAGE = "Cart list is empty!";
 		private static final String CART_PRODUCT_NOT_FOUND_ERROR_MESSAGE = "Product not found";
 
 		private List<CartListComponent> cartComponentList;
 
-		public CartListCompactPage(WebDriver driver) {
+		public CartListCompactPage() {
 			this.cartComponentList = getComponents();
 		}
 
@@ -62,8 +63,9 @@ abstract class ATopPage {
 
 		// finds all raws
 		public List<WebElement> getItems() {
-			List<WebElement> rawList = driver.findElements(By.cssSelector(CART_LIST_RAW_SELECTOR));
-			return rawList;
+			//List<WebElement> rawList = driver.findElements(By.cssSelector(CART_LIST_RAW_SELECTOR));
+			//return rawList;
+			return driver.findElements(By.cssSelector(CART_LIST_RAW_SELECTOR));
 		}
 
 		/**
@@ -73,6 +75,7 @@ abstract class ATopPage {
 		 */
 		public List<CartListComponent> getComponents() {
 			List<CartListComponent> cartList = new ArrayList<CartListComponent>();
+			// Cycle for all tags <tr>
 			for (WebElement currentProduct : getItems()) {
 				CartListComponent product = new CartListComponent(driver, currentProduct);
 				cartList.add(product);
@@ -114,7 +117,6 @@ abstract class ATopPage {
 		 */
 		public CartListComponent getCartComponentByName(String name) {
 			CartListComponent resultCartProduct = null;
-
 			for (CartListComponent currentProduct : cartComponentList) {
 				if (currentProduct.getProductNameText().trim().toLowerCase().equals(name.trim().toLowerCase())) {
 					resultCartProduct = currentProduct;
@@ -271,6 +273,11 @@ abstract class ATopPage {
 		return this.searchInput;
 	}
 
+	public CartListCompactPage getCartListCompactPage() {
+		clickShoppingCartButton();
+		return this.cartListCompactPage;
+	}
+
 	// Functional
 
 	public String getDollarText() {
@@ -351,14 +358,13 @@ abstract class ATopPage {
 	}
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-	public ShoppingCartPage clickShoppingCart() {
+	public void clickShoppingCart() {
 		getShoppingCart().click();
-		return new ShoppingCartPage(driver); // ???
 	}
 	
 	public void clickShoppingCartButton() {
 		getShoppingCartButton().click();
-		cartListCompactPage = new CartListCompactPage(driver);
+		cartListCompactPage = new CartListCompactPage();
 	}
 
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -385,6 +391,25 @@ abstract class ATopPage {
 	public ARightMenuPage gotoWishListPageTop() {
 		clickWishListTop();
 		return new ReturningCustomerPage(driver);
+	}
+
+	public ShoppingCartPage gotoShoppingCart() {
+		clickShoppingCart();
+		return new ShoppingCartPage(driver);
+	}
+
+	public ProductPage gotoProductPageByName(String productName) {
+		// TODO Use getter for cartListCompactPage 
+		getCartListCompactPage().getCartComponentByName(productName).clickProductName();
+		//cartListCompactPage = null;
+		return new ProductPage(driver);
+	}
+
+	public ATopPage deleteProductFromCartByName(String productName) {
+		// TODO Use getter for cartListCompactPage 
+		getCartListCompactPage().getCartComponentByName(productName).clickDeleteButton();
+		//cartListCompactPage = null;
+		return this;
 	}
 
 	//////////////////////////////////////////////////////////////////////
