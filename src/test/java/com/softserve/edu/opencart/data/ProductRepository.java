@@ -3,6 +3,7 @@ package com.softserve.edu.opencart.data;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.softserve.edu.opencart.pages.AMenuPage.CategoryRepository;
 import com.softserve.edu.opencart.tools.CSVUtils;
 import com.softserve.edu.opencart.tools.ExcelUtils;
 
@@ -30,6 +31,17 @@ public final class ProductRepository {
 				.setExTaxPrice("100.00")
 				.setCategoryName("Desctops")
 				.setSubCategoryName("Mac")
+				.build();
+	}
+
+	public static IProduct getSamsungSyncMaster941BW() {
+		return Product.get()
+				.setDetails("Samsung SyncMaster 941BW")
+				.setDescription("Imagine the advantages of going big without slowing down.")
+				.setPrice("200.00")
+				.setExTaxPrice("200.00")
+				.setCategoryName(CategoryRepository.COMPONENTS.getCategory())
+				.setSubCategoryName(CategoryRepository.COMPONENTS.getSubCategoriesByPartialName("Monitors"))
 				.build();
 	}
 

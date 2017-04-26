@@ -63,6 +63,8 @@ abstract class AProductListPage extends AMenuPage {
 		//System.out.println("+++++getProductByDetailsLink(String detailsLinkText) = " + detailsLinkText);
 		ProductComponent resultProduct = null;
 		for (ProductComponent currentProduct : getProductsList()) {
+			//System.out.println("+++currentProduct.getDetailsLinkText() = "
+			//		+ currentProduct.getDetailsLinkText());
 			if (currentProduct.getDetailsLinkText().trim().toLowerCase()
 					.equals(detailsLinkText.trim().toLowerCase())) {
 				resultProduct = currentProduct;

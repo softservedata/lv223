@@ -64,6 +64,7 @@ public class Product implements IDetails, IDescription, IPrice, IExTaxPrice, IPr
 				break;
 			}
 		}
+		//System.out.println("Category = "+category);
 		if (category == null) {
 			throw new GeneralException(CATEGORY_NOT_FOUND_ERROR_MESSAGE);
 		}
@@ -97,6 +98,7 @@ public class Product implements IDetails, IDescription, IPrice, IExTaxPrice, IPr
 	}
 
 	public IProduct build() {
+		initCategory();
 		return this;
 	}
 

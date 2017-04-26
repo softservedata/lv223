@@ -4,17 +4,16 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-
 // Private on package
 public class ProductComponent {
 
 	// Fields
-	
-	public static final String ATTRIBUTE_SRC = "src"; 
-	//private static final String NAME_IMAGE = "ukraine_logo2.gif";
+
+	public static final String ATTRIBUTE_SRC = "src";
+	// private static final String NAME_IMAGE = "ukraine_logo2.gif";
 	//
 	private WebDriver driver;
-	//private WebElement baseElement;
+	// private WebElement baseElement;
 	//
 	private WebElement image;
 	private WebElement detailsLink;
@@ -24,27 +23,31 @@ public class ProductComponent {
 	private WebElement addCart;
 	private WebElement addToWishList;
 	private WebElement compare;
-	
+
 	public ProductComponent(WebDriver driver, WebElement baseElement) {
-	//public ProductComponent(WebElement baseElement) {
+		// public ProductComponent(WebElement baseElement) {
 		this.driver = driver;
-		//this.baseElement = baseElement;
-		//System.out.println("+++++Base Element Text: "+baseElement.getText());
+		// this.baseElement = baseElement;
+		// System.out.println("+++++Base Element Text: "+baseElement.getText());
 		this.image = baseElement.findElement(By.cssSelector("div[class='image'] img"));
 		this.detailsLink = baseElement.findElement(By.cssSelector("div[class='caption'] a"));
-		//this.description = baseElement.findElement(By.xpath("//div[@class='caption']/p[1]"));
+		// this.description =
+		// baseElement.findElement(By.xpath("//div[@class='caption']/p[1]"));
 		this.description = baseElement.findElement(By.cssSelector("div[class='caption'] > p:not([class])"));
 		this.price = baseElement.findElement(By.cssSelector("div[class='caption'] p[class='price']"));
 		this.exTaxPrice = price.findElement(By.tagName("span"));
-		this.addCart = baseElement.findElement(By.cssSelector("div[class='button-group'] span[class='hidden-xs hidden-sm hidden-md']"));
+		//this.addCart = baseElement.findElement(By.cssSelector("div[class='button-group'] span[class='hidden-xs hidden-sm hidden-md']"));
+		// Do not use XPath !
+		//this.addCart = baseElement.findElement(By.xpath("//button[contains(@onclick,'cart.add')]"));
+		this.addCart = baseElement.findElement(By.cssSelector("div.button-group > button:not([data-toggle])"));
 		this.addToWishList = baseElement.findElement(By.cssSelector(".fa-heart"));
-		this.compare = baseElement.findElement(By.cssSelector(".fa-exchange")); 
+		this.compare = baseElement.findElement(By.cssSelector(".fa-exchange"));
 		//
-		//System.out.println("detailsLink = "+ detailsLink.getText());
-		//System.out.println("description = "+ description.getText());
-		//System.out.println("price = "+ price.getText());
+		// System.out.println("detailsLink = "+ detailsLink.getText());
+		// System.out.println("description = "+ description.getText());
+		// System.out.println("price = "+ price.getText());
 	}
-	
+
 	// PageObject
 
 	// get Data
@@ -72,11 +75,11 @@ public class ProductComponent {
 	public WebElement getAddCart() {
 		return this.addCart;
 	}
-	
-	 public WebElement getAddToWishList() {
-		  return addToWishList;
-		 }
-	 
+
+	public WebElement getAddToWishList() {
+		return addToWishList;
+	}
+
 	public WebElement getCompareButton() {
 		return this.compare;
 	}
@@ -116,26 +119,30 @@ public class ProductComponent {
 	public void clickDetailsLink() {
 		getDetailsLink().click();
 	}
-	
-	 public void clickWishList() {
-		  getAddToWishList().click();
-		 }
-	
+
+	public void clickAddCart() {
+		getAddCart().click();
+	}
+
+	public void clickWishList() {
+		getAddToWishList().click();
+	}
+
 	public void clickCompareButton() {
 		getCompareButton().click();
 	}
 
 	// Business Logic
-	
-    // TODO
+
+	// TODO
 	public ProductPage gotoProductDetails() {
 		clickDetailsLink();
 		return new ProductPage(driver);
 	}
-	
+
 	public CompareProductSpan choiceProductForCompare() {
 		clickCompareButton();
 		return new CompareProductSpan(driver);
 	}
-	
+
 }

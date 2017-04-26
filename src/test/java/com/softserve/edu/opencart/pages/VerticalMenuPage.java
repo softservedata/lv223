@@ -237,4 +237,13 @@ public class VerticalMenuPage extends AProductListPage {
 		return new VerticalMenuPage(driver, MENU_PRODUCT_COLUMN);
 	}
 
+	public VerticalMenuPageModified addToCartProductByDetailsLink(String detailsLinkText) {
+		//ProductComponent productComponent = getProductByDetailsLink(detailsLinkText);
+		//System.out.println("productComponent = " + productComponent.getDetailsLinkText());
+		//System.out.println("productComponent onclick = " + productComponent.getAddCart().getAttribute("onclick"));
+		//productComponent.clickAddCart();
+		getProductByDetailsLink(detailsLinkText).clickAddCart();
+		return new VerticalMenuPageModified(driver);
+	}
+
 }

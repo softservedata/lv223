@@ -50,7 +50,7 @@ public final class UserRepository {
 		return User.get()
 			.setFirstname("Anna")
 			.setLastname("Lastname")
-			.setEmail("orlann@ukr.com")
+			.setEmail("orlann@ukr.net")
 			.setTelephone("telephone")
 			.setAddress("V.Vel")
 			.setCity("Lviv")

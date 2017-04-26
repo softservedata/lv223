@@ -155,7 +155,7 @@ abstract class ATopPage {
 	// Fields
 
 	public static final String ATTRIBUTE_VALUE = "value";
-	private static final String VISIBLE_ERROR_MESSAGE = "Element not visible";
+	protected static final String VISIBLE_ERROR_MESSAGE = "Element not visible";
 	//
 	protected final Logger logger = LoggerFactory.getLogger(this.getClass());
 	//
@@ -194,7 +194,8 @@ abstract class ATopPage {
 		// > span.hidden-xs.hidden-sm.hidden-md"));
 		this.wishListTop = driver.findElement(By.cssSelector("#wishlist-total span"));
 		this.myAccount = driver.findElement(By.cssSelector("i.fa.fa-user"));
-		this.shoppingCart = driver.findElement(By.cssSelector("a[title='Shopping Cart'] span"));
+		//this.shoppingCart = driver.findElement(By.cssSelector("a[title='Shopping Cart'] span"));
+		this.shoppingCart = driver.findElement(By.xpath("//li/a[contains(@href,'route=checkout/cart')]"));
 		this.shoppingCartButton = driver.findElement(By.cssSelector("#cart button"));
 		this.searchInput = driver.findElement(By.cssSelector("input.form-control.input-lg"));
 	}
