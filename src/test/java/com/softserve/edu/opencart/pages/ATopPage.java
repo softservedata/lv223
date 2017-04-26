@@ -19,7 +19,7 @@ abstract class ATopPage {
 	}
 
 	private class CurencyATopPage {
-		public final WebElement euro;
+		public final WebElement euro;		//????????? public?
 		public final WebElement pound;
 		public final WebElement dollar;
 
