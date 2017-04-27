@@ -200,7 +200,8 @@ abstract class ATopPage {
 		this.contact = driver.findElement(By.xpath("//div[@id='top-links']//a[contains(@href, '/contact')]"));
 		// this.myAccount = driver.findElement(By.cssSelector("a.dropdown-toggle
 		// > span.hidden-xs.hidden-sm.hidden-md"));
-		this.wishListTop = driver.findElement(By.cssSelector("#wishlist-total span"));
+		//this.wishListTop = driver.findElement(By.cssSelector("#wishlist-total span"));
+		this.wishListTop = driver.findElement(By.cssSelector("#wishlist-total"));
 		this.myAccount = driver.findElement(By.cssSelector("i.fa.fa-user"));
 		//this.shoppingCart = driver.findElement(By.cssSelector("a[title='Shopping Cart'] span"));
 		this.shoppingCart = driver.findElement(By.xpath("//li/a[contains(@href,'route=checkout/cart')]"));

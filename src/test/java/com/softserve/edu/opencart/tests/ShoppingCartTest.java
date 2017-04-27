@@ -22,7 +22,7 @@ public class ShoppingCartTest extends TestRunner {
         };
     }
 
-	//@Test(dataProvider = "cartProducts")
+	@Test(dataProvider = "cartProducts")
 	public void checkAddProduct(IProduct product, IUser user) throws InterruptedException {
 		// Precondition
 		// Steps
@@ -50,14 +50,14 @@ public class ShoppingCartTest extends TestRunner {
 		Thread.sleep(2000);
 		//
 		// Return to previous state
-		//shoppingCartPage.gotoLogout();
-		// TODO
-		Application.get().getWebDriver().get("http://atqc-shop.epizy.com/index.php?route=account/logout");
+		shoppingCartPage.gotoWishList().gotoLogoutPage().gotoContinueHomePage();
+		//
+		//Application.get().getWebDriver().get("http://atqc-shop.epizy.com/index.php?route=account/logout");
 		//Application.remove();
 	}
 
 	
-	//@Test(dataProvider = "cartProducts", dependsOnMethods = { "checkAddProduct" })
+	@Test(dataProvider = "cartProducts", dependsOnMethods = { "checkAddProduct" })
 	public void checkUpdateProduct(IProduct product, IUser user) throws InterruptedException {
 		// Precondition
 		// Steps
@@ -86,13 +86,13 @@ public class ShoppingCartTest extends TestRunner {
 		Thread.sleep(1000);
 		//
 		// Return to previous state
-		//shoppingCartPage.gotoLogout();
-		// TODO
-		Application.get().getWebDriver().get("http://atqc-shop.epizy.com/index.php?route=account/logout");
+		shoppingCartPage.gotoWishList().gotoLogoutPage().gotoContinueHomePage();
+		//
+		//Application.get().getWebDriver().get("http://atqc-shop.epizy.com/index.php?route=account/logout");
 		//Application.remove();
 	}
 	
-	//@Test(dataProvider = "cartProducts", dependsOnMethods = { "checkAddProduct", "checkUpdateProduct" })
+	@Test(dataProvider = "cartProducts", dependsOnMethods = { "checkAddProduct", "checkUpdateProduct" })
 	//@Test(dataProvider = "cartProducts")
 	public void checkDeleteProduct(IProduct product, IUser user) throws InterruptedException {
 		// Precondition
@@ -111,9 +111,9 @@ public class ShoppingCartTest extends TestRunner {
 		Thread.sleep(1000);
 		//
 		// Return to previous state
-		//shoppingCartPage.gotoLogout();
-		// TODO
-		Application.get().getWebDriver().get("http://atqc-shop.epizy.com/index.php?route=account/logout");
+		shoppingCartPage.gotoWishList().gotoLogoutPage().gotoContinueHomePage();
+		//
+		//Application.get().getWebDriver().get("http://atqc-shop.epizy.com/index.php?route=account/logout");
 		//Application.remove();
 	}
 	
@@ -146,11 +146,8 @@ public class ShoppingCartTest extends TestRunner {
 		Thread.sleep(1000);
 		//
 		// Return to previous state
-		//Application.get().setFullScreen();
-		//Thread.sleep(1000);
-		//shoppingCartPage.gotoWishList().gotoSubLogoutPage().gotoContinueHomePage();
-		//shoppingCartPage.gotoLogout();
-		// TODO
+		shoppingCartPage.gotoWishList().gotoLogoutPage().gotoContinueHomePage();
+		//
 		//Application.get().getWebDriver().get("http://atqc-shop.epizy.com/index.php?route=account/logout");
 		//Application.remove();
 	}

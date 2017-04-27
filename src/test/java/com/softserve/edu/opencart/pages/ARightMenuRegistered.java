@@ -69,7 +69,8 @@ public abstract class ARightMenuRegistered extends ATopRegisteredPage {
         return new ChangePasswordPage(driver);
     }
 
-    public ARightMenuPage gotoLogoutPage() {
+    //public ARightMenuPage gotoLogoutPage() {
+    public LogoutPage gotoLogoutPage() {
         clickLogout();
         return new LogoutPage(driver);
     }
@@ -87,7 +88,8 @@ public abstract class ARightMenuRegistered extends ATopRegisteredPage {
     }
 
     @Override
-    public ARightMenuPage gotoWishListPage() {
+    //public ARightMenuPage gotoWishListPage() {
+    public WishListPage gotoWishListPage() {
         clickWishList();
         return new WishListPage(driver);
     }
