@@ -3,6 +3,10 @@ package com.softserve.edu.opencart.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.softserve.edu.opencart.appl.Application;
 
 public class ShoppingCartComponent {
 
@@ -68,13 +72,26 @@ public class ShoppingCartComponent {
 //		return Integer.parseInt(getProductQuantity().getText());  
 //	}
 
+	// Functional
+
 	public String getProductQuantityText() {
-		return getProductQuantity().getText();  
+		return getProductQuantity().getAttribute(ATopPage.ATTRIBUTE_VALUE);  
 	}
 	
+	// set Data
 	
+	public void clearProductQuantity() {
+		getProductQuantity().clear();
+	}
+
+	public void clickProductQuantity() {
+		getProductQuantity().click();
+	}
+
 	public void setQuantity(int quantity) {
-		String strQuantity = "" + quantity;
+		//String strQuantity = "" + quantity;
+		String strQuantity = String.valueOf(quantity);
+		clearProductQuantity();
 		getProductQuantity().sendKeys(strQuantity);
 	}
 	
@@ -91,11 +108,15 @@ public class ShoppingCartComponent {
 	}
 
 	public void clickRemove() {
+		WebElement cartComponent = getProductRemove(); 
 		getProductRemove().click();
+		(new WebDriverWait(driver, Application.get().getTimeOut()))
+			.until(ExpectedConditions.stalenessOf(cartComponent));
+		//try {
+		//	Thread.sleep(5000);
+		//} catch (InterruptedException e) {
+		//}
 	}
-	// Functional
-
-	// set Data
 
 	// Business Logic
 

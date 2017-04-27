@@ -161,6 +161,7 @@ public class ShoppingCartPage extends AMenuPage {
 
 	public ShoppingCartPage deleteProductByName(String productName) {
 		getCartComponentByName(productName).clickRemove();
+		this.shoppingCartList = getComponents();
 		return new ShoppingCartPage(driver);
 	}
 

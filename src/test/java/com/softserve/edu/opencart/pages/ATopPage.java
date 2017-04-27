@@ -32,15 +32,23 @@ abstract class ATopPage {
 
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-	private class MyAccountATopPage {
-		public final WebElement register;
-		public final WebElement login;
+	protected class MyAccountATopPage {
+		private WebElement register;
+		private WebElement login;
 
 		public MyAccountATopPage() {
-			this.register = driver.findElement(By.xpath("//a[contains(@href, 'account/register')]"));
-			this.login = driver.findElement(By.xpath("//a[contains(@href, 'account/login')]"));
+    		this.register = driver.findElement(By.xpath("//a[contains(@href, 'account/register')]"));
+    		this.login = driver.findElement(By.xpath("//a[contains(@href, 'account/login')]"));
+    	}
+		
+		public WebElement getATopRegister() {
+			return this.register;
 		}
-	}
+
+		public WebElement getATopLogin() {
+			return this.login;
+		}
+}
 
 	// - - - - - - - - - - - CartListCompactPage- - - - - - - - - - - - - - - -
 	// - - -
@@ -167,7 +175,7 @@ abstract class ATopPage {
 	private List<WebElement> phones;
 	private WebElement contact;
 	private WebElement myAccount;
-	private MyAccountATopPage myAccountATopPage;
+	protected MyAccountATopPage myAccountATopPage;
 	private WebElement wishListTop;
 
 	private WebElement shoppingCart;
@@ -391,6 +399,11 @@ abstract class ATopPage {
 	public ARightMenuPage gotoWishListPageTop() {
 		clickWishListTop();
 		return new ReturningCustomerPage(driver);
+	}
+
+	public ReturnsPage gotoWishList() {
+		clickWishListTop();
+		return new ReturnsPage(driver);
 	}
 
 	public ShoppingCartPage gotoShoppingCart() {

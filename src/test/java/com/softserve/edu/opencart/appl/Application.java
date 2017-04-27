@@ -134,6 +134,18 @@ public class Application {
 		}
 	}
 
+	public void setFullScreen() {
+		getWebDriver().manage().window().maximize();
+	}
+
+	private ApplicationSources getApplicationSources() {
+		return this.applicationSources;
+	}
+	
+	public long getTimeOut() {
+		return getApplicationSources().getImplicitTimeOut();
+	}
+	
 	public WebDriver getWebDriver() {
 		return driver;
 	}

@@ -47,7 +47,7 @@ public class ShoppingCartTest extends TestRunner {
 		//
 		// Check
 		Assert.assertTrue(shoppingCartPage.isProductPresentInCartList(product.getDetails()));
-		Thread.sleep(4000);
+		Thread.sleep(2000);
 		//
 		// Return to previous state
 		//shoppingCartPage.gotoLogout();
@@ -57,7 +57,7 @@ public class ShoppingCartTest extends TestRunner {
 	}
 
 	
-//	@Test(dataProvider = "cartProducts")
+	//@Test(dataProvider = "cartProducts", dependsOnMethods = { "checkAddProduct" })
 	public void checkUpdateProduct(IProduct product, IUser user) throws InterruptedException {
 		// Precondition
 		// Steps
@@ -67,29 +67,32 @@ public class ShoppingCartTest extends TestRunner {
 				.gotoLoginPage()
 				.successUserLogin(user)
 				.gotoShoppingCart();
-		
+		Thread.sleep(1000);
+		//
 		int previousQuantity = Integer.valueOf(shoppingCartPage
 				.getCartComponentByName(product.getDetails())
 				.getProductQuantityText());
-				
-		System.out.println("previousQuantity = "+previousQuantity);
-
-		
-		shoppingCartPage.updateProductQuantityByName(product.getDetails(), previousQuantity+1);
-	
-		int newQuantity =	Integer.valueOf(shoppingCartPage
-				.getCartComponentByName(product.getDetails())
-				.getProductQuantityText());
-				
+		System.out.println("previousQuantity = " + previousQuantity);
+		//
+		shoppingCartPage = shoppingCartPage.updateProductQuantityByName(product.getDetails(), previousQuantity + 1);
 		Thread.sleep(1000);
 		//
+		int newQuantity = Integer.valueOf(shoppingCartPage
+				.getCartComponentByName(product.getDetails())
+				.getProductQuantityText());
+		//
 		// Check
-		Assert.assertEquals(newQuantity, previousQuantity+1);
-		
-		
+		Assert.assertEquals(newQuantity, previousQuantity + 1);
+		Thread.sleep(1000);
+		//
+		// Return to previous state
+		//shoppingCartPage.gotoLogout();
+		// TODO
+		Application.get().getWebDriver().get("http://atqc-shop.epizy.com/index.php?route=account/logout");
+		//Application.remove();
 	}
 	
-	//@Test(dataProvider = "cartProducts", dependsOnMethods = { "checkAddProduct" })
+	//@Test(dataProvider = "cartProducts", dependsOnMethods = { "checkAddProduct", "checkUpdateProduct" })
 	//@Test(dataProvider = "cartProducts")
 	public void checkDeleteProduct(IProduct product, IUser user) throws InterruptedException {
 		// Precondition
@@ -104,13 +107,6 @@ public class ShoppingCartTest extends TestRunner {
 		Thread.sleep(1000);
 		//
 		// Check
-//		Assert.assertTrue(shoppingCartPage.isProductPresentInCartList(product.getDetails()));
-//		Thread.sleep(1000);
-		//
-		// Steps
-		// Delete
-		//
-		// Check
 		Assert.assertFalse(shoppingCartPage.isProductPresentInCartList(product.getDetails()));
 		Thread.sleep(1000);
 		//
@@ -122,41 +118,41 @@ public class ShoppingCartTest extends TestRunner {
 	}
 	
 	@Test(dataProvider = "cartProducts")
-		public void checkAddProductToCompactPage(IProduct product, IUser user) throws InterruptedException {
-			// Precondition
-			// Steps
-			//System.out.println(product.getCategory().toString());
-			//Thread.sleep(10000);
-			VerticalMenuPageModified verticalMenuPageModified = Application.get().load()
-					.gotoLoginPage()
-					.successUserLogin(user)
-					.gotoMenuSubCategory(product.getCategory(), product.getSubCategory())
-					.addToCartProductByDetailsLink(product.getDetails());
-			Thread.sleep(1000);
-			
-			//
-			// Check
-			Assert.assertTrue(verticalMenuPageModified.getAddCartMessageText().contains(
-					String.format(VerticalMenuPageModified.SUCCESS_ADD_SHOPPING_CART_MESSAGE,
-							product.getDetails())));
-			Thread.sleep(1000);
-			//
-			// Steps
-			//
-			// Check
-			Assert.assertTrue(verticalMenuPageModified.openShoppingCartButton()
-			.isProductPresentInCartList(product.getDetails()));
-			
-			
-			//
-			// Return to previous state
-			//shoppingCartPage.gotoLogout();
-			// TODO
-			Application.get().getWebDriver().get("http://atqc-shop.epizy.com/index.php?route=account/logout");
-			//Application.remove();
-		}
+	public void checkAddProductToCompactPage(IProduct product, IUser user) throws InterruptedException {
+		// Precondition
+		// Steps
+		//System.out.println(product.getCategory().toString());
+		//Thread.sleep(10000);
+		VerticalMenuPageModified verticalMenuPageModified = Application.get().load()
+				.gotoLoginPage()
+				.successUserLogin(user)
+				.gotoMenuSubCategory(product.getCategory(), product.getSubCategory())
+				.addToCartProductByDetailsLink(product.getDetails());
+		Thread.sleep(1000);
+		//
+		// Check
+		Assert.assertTrue(verticalMenuPageModified.getAddCartMessageText().contains(
+				String.format(VerticalMenuPageModified.SUCCESS_ADD_SHOPPING_CART_MESSAGE,
+						product.getDetails())));
+		Thread.sleep(1000);
+		//
+		// Steps
+		ShoppingCartPage shoppingCartPage = verticalMenuPageModified.gotoShoppingCart();
+		Thread.sleep(1000);
+		//
+		// Check
+		Assert.assertTrue(shoppingCartPage.openShoppingCartButton()
+				.isProductPresentInCartList(product.getDetails()));
+		Thread.sleep(1000);
+		//
+		// Return to previous state
+		//Application.get().setFullScreen();
+		//Thread.sleep(1000);
+		//shoppingCartPage.gotoWishList().gotoSubLogoutPage().gotoContinueHomePage();
+		//shoppingCartPage.gotoLogout();
+		// TODO
+		//Application.get().getWebDriver().get("http://atqc-shop.epizy.com/index.php?route=account/logout");
+		//Application.remove();
+	}
 
-	
-	
-	
 }

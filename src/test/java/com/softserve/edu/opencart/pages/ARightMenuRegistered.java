@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 /**
  * Created by FPF on 30.03.2017.
  */
-public abstract class ARightMenuRegistered extends ARightMenuPage {
+public abstract class ARightMenuRegistered extends ATopRegisteredPage {
 
    //fields
 
