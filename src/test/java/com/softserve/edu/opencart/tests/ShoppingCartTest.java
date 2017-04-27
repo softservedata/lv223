@@ -22,7 +22,7 @@ public class ShoppingCartTest extends TestRunner {
         };
     }
 
-	@Test(dataProvider = "cartProducts")
+	//@Test(dataProvider = "cartProducts")
 	public void checkAddProduct(IProduct product, IUser user) throws InterruptedException {
 		// Precondition
 		// Steps
@@ -56,8 +56,9 @@ public class ShoppingCartTest extends TestRunner {
 		//Application.remove();
 	}
 
-	//@Test(dataProvider = "cartProducts", dependsOnMethods = { "checkAddProduct" })
-	public void checkDeleteProduct(IProduct product, IUser user) throws InterruptedException {
+	
+//	@Test(dataProvider = "cartProducts")
+	public void checkUpdateProduct(IProduct product, IUser user) throws InterruptedException {
 		// Precondition
 		// Steps
 		//System.out.println(product.getCategory().toString());
@@ -66,11 +67,45 @@ public class ShoppingCartTest extends TestRunner {
 				.gotoLoginPage()
 				.successUserLogin(user)
 				.gotoShoppingCart();
+		
+		int previousQuantity = Integer.valueOf(shoppingCartPage
+				.getCartComponentByName(product.getDetails())
+				.getProductQuantityText());
+				
+		System.out.println("previousQuantity = "+previousQuantity);
+
+		
+		shoppingCartPage.updateProductQuantityByName(product.getDetails(), previousQuantity+1);
+	
+		int newQuantity =	Integer.valueOf(shoppingCartPage
+				.getCartComponentByName(product.getDetails())
+				.getProductQuantityText());
+				
 		Thread.sleep(1000);
 		//
 		// Check
-		Assert.assertTrue(shoppingCartPage.isProductPresentInCartList(product.getDetails()));
+		Assert.assertEquals(newQuantity, previousQuantity+1);
+		
+		
+	}
+	
+	//@Test(dataProvider = "cartProducts", dependsOnMethods = { "checkAddProduct" })
+	//@Test(dataProvider = "cartProducts")
+	public void checkDeleteProduct(IProduct product, IUser user) throws InterruptedException {
+		// Precondition
+		// Steps
+		//System.out.println(product.getCategory().toString());
+		//Thread.sleep(10000);
+		ShoppingCartPage shoppingCartPage = Application.get().load()
+				.gotoLoginPage()
+				.successUserLogin(user)
+				.gotoShoppingCart()
+				.deleteProductByName(product.getDetails());
 		Thread.sleep(1000);
+		//
+		// Check
+//		Assert.assertTrue(shoppingCartPage.isProductPresentInCartList(product.getDetails()));
+//		Thread.sleep(1000);
 		//
 		// Steps
 		// Delete
@@ -85,4 +120,43 @@ public class ShoppingCartTest extends TestRunner {
 		Application.get().getWebDriver().get("http://atqc-shop.epizy.com/index.php?route=account/logout");
 		//Application.remove();
 	}
+	
+	@Test(dataProvider = "cartProducts")
+		public void checkAddProductToCompactPage(IProduct product, IUser user) throws InterruptedException {
+			// Precondition
+			// Steps
+			//System.out.println(product.getCategory().toString());
+			//Thread.sleep(10000);
+			VerticalMenuPageModified verticalMenuPageModified = Application.get().load()
+					.gotoLoginPage()
+					.successUserLogin(user)
+					.gotoMenuSubCategory(product.getCategory(), product.getSubCategory())
+					.addToCartProductByDetailsLink(product.getDetails());
+			Thread.sleep(1000);
+			
+			//
+			// Check
+			Assert.assertTrue(verticalMenuPageModified.getAddCartMessageText().contains(
+					String.format(VerticalMenuPageModified.SUCCESS_ADD_SHOPPING_CART_MESSAGE,
+							product.getDetails())));
+			Thread.sleep(1000);
+			//
+			// Steps
+			//
+			// Check
+			Assert.assertTrue(verticalMenuPageModified.openShoppingCartButton()
+			.isProductPresentInCartList(product.getDetails()));
+			
+			
+			//
+			// Return to previous state
+			//shoppingCartPage.gotoLogout();
+			// TODO
+			Application.get().getWebDriver().get("http://atqc-shop.epizy.com/index.php?route=account/logout");
+			//Application.remove();
+		}
+
+	
+	
+	
 }

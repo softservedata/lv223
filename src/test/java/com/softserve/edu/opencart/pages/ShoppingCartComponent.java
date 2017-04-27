@@ -64,12 +64,18 @@ public class ShoppingCartComponent {
 		return productQuantity;
 	}
 	
-	public String getProductQuantityText() {
-		return getProductQuantity().getText();
-	}
+//	public int getProductQuantityText() {
+//		return Integer.parseInt(getProductQuantity().getText());  
+//	}
 
-	public void setQuantity(String quantity) {
-		getProductQuantity().sendKeys(quantity);
+	public String getProductQuantityText() {
+		return getProductQuantity().getText();  
+	}
+	
+	
+	public void setQuantity(int quantity) {
+		String strQuantity = "" + quantity;
+		getProductQuantity().sendKeys(strQuantity);
 	}
 	
 	public WebElement getProductUpdate() {

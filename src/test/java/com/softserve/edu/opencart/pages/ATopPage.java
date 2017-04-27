@@ -45,7 +45,7 @@ abstract class ATopPage {
 	// - - - - - - - - - - - CartListCompactPage- - - - - - - - - - - - - - - -
 	// - - -
 
-	private class CartListCompactPage { // ????? Public or private
+	public class CartListCompactPage { // ????? Public or private
 		//
 		private static final String CART_LIST_RAW_SELECTOR = ".table.table-striped tbody tr";
 		public static final String CART_LIST_EMPTY_MESSAGE = "Cart list is empty!";
@@ -365,7 +365,6 @@ abstract class ATopPage {
 	
 	public void clickShoppingCartButton() {
 		getShoppingCartButton().click();
-		cartListCompactPage = new CartListCompactPage();
 	}
 
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -397,6 +396,11 @@ abstract class ATopPage {
 	public ShoppingCartPage gotoShoppingCart() {
 		clickShoppingCart();
 		return new ShoppingCartPage(driver);
+	}
+	
+	public CartListCompactPage openShoppingCartButton() {
+		getShoppingCartButton().click();
+		return cartListCompactPage = new CartListCompactPage();
 	}
 
 	public ProductPage gotoProductPageByName(String productName) {

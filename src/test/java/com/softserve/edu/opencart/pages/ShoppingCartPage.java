@@ -153,7 +153,7 @@ public class ShoppingCartPage extends AMenuPage {
 		return new ProductPage(driver);
 	}
 
-	public ShoppingCartPage updateProductQuantityByName(String productName, String quantity) {
+	public ShoppingCartPage updateProductQuantityByName(String productName, int quantity) {
 		getCartComponentByName(productName).setQuantity(quantity);
 		getCartComponentByName(productName).clickUpdate();
 		return new ShoppingCartPage(driver);
