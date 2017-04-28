@@ -33,13 +33,11 @@ public class TestRunner {
 	@BeforeMethod
 	public void beforeMethod() {
 		System.out.println("@BeforeMethod");
-		//Application.get().load();
-		//Application.get().login();
 	}
 
 	@AfterMethod
 	public void afterMethod() {
 		System.out.println("@AfterMethod");
-		//Application.get().logout();
+		Application.get().logout();
 	}
 }

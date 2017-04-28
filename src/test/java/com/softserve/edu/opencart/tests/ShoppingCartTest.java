@@ -14,7 +14,7 @@ import com.softserve.edu.opencart.pages.VerticalMenuPageModified;
 
 public class ShoppingCartTest extends TestRunner {
 
-	@DataProvider//(parallel = true) // Do not use parallel attribute
+	@DataProvider
     public Object[][] cartProducts() {
         return new Object[][] {
             {  ProductRepository.getSamsungSyncMaster941BW(),
@@ -26,8 +26,6 @@ public class ShoppingCartTest extends TestRunner {
 	public void checkAddProduct(IProduct product, IUser user) throws InterruptedException {
 		// Precondition
 		// Steps
-		//System.out.println(product.getCategory().toString());
-		//Thread.sleep(10000);
 		VerticalMenuPageModified verticalMenuPageModified = Application.get().load()
 				.gotoLoginPage()
 				.successUserLogin(user)
@@ -48,12 +46,6 @@ public class ShoppingCartTest extends TestRunner {
 		// Check
 		Assert.assertTrue(shoppingCartPage.isProductPresentInCartList(product.getDetails()));
 		Thread.sleep(2000);
-		//
-		// Return to previous state
-		shoppingCartPage.gotoWishList().gotoLogoutPage().gotoContinueHomePage();
-		//
-		//Application.get().getWebDriver().get("http://atqc-shop.epizy.com/index.php?route=account/logout");
-		//Application.remove();
 	}
 
 	
@@ -61,8 +53,6 @@ public class ShoppingCartTest extends TestRunner {
 	public void checkUpdateProduct(IProduct product, IUser user) throws InterruptedException {
 		// Precondition
 		// Steps
-		//System.out.println(product.getCategory().toString());
-		//Thread.sleep(10000);
 		ShoppingCartPage shoppingCartPage = Application.get().load()
 				.gotoLoginPage()
 				.successUserLogin(user)
@@ -84,12 +74,6 @@ public class ShoppingCartTest extends TestRunner {
 		// Check
 		Assert.assertEquals(newQuantity, previousQuantity + 1);
 		Thread.sleep(1000);
-		//
-		// Return to previous state
-		shoppingCartPage.gotoWishList().gotoLogoutPage().gotoContinueHomePage();
-		//
-		//Application.get().getWebDriver().get("http://atqc-shop.epizy.com/index.php?route=account/logout");
-		//Application.remove();
 	}
 	
 	@Test(dataProvider = "cartProducts", dependsOnMethods = { "checkAddProduct", "checkUpdateProduct" })
@@ -97,8 +81,6 @@ public class ShoppingCartTest extends TestRunner {
 	public void checkDeleteProduct(IProduct product, IUser user) throws InterruptedException {
 		// Precondition
 		// Steps
-		//System.out.println(product.getCategory().toString());
-		//Thread.sleep(10000);
 		ShoppingCartPage shoppingCartPage = Application.get().load()
 				.gotoLoginPage()
 				.successUserLogin(user)
@@ -109,20 +91,12 @@ public class ShoppingCartTest extends TestRunner {
 		// Check
 		Assert.assertFalse(shoppingCartPage.isProductPresentInCartList(product.getDetails()));
 		Thread.sleep(1000);
-		//
-		// Return to previous state
-		shoppingCartPage.gotoWishList().gotoLogoutPage().gotoContinueHomePage();
-		//
-		//Application.get().getWebDriver().get("http://atqc-shop.epizy.com/index.php?route=account/logout");
-		//Application.remove();
 	}
 	
 	@Test(dataProvider = "cartProducts")
 	public void checkAddProductToCompactPage(IProduct product, IUser user) throws InterruptedException {
 		// Precondition
 		// Steps
-		//System.out.println(product.getCategory().toString());
-		//Thread.sleep(10000);
 		VerticalMenuPageModified verticalMenuPageModified = Application.get().load()
 				.gotoLoginPage()
 				.successUserLogin(user)
@@ -144,12 +118,6 @@ public class ShoppingCartTest extends TestRunner {
 		Assert.assertTrue(shoppingCartPage.openShoppingCartButton()
 				.isProductPresentInCartList(product.getDetails()));
 		Thread.sleep(1000);
-		//
-		// Return to previous state
-		shoppingCartPage.gotoWishList().gotoLogoutPage().gotoContinueHomePage();
-		//
-		//Application.get().getWebDriver().get("http://atqc-shop.epizy.com/index.php?route=account/logout");
-		//Application.remove();
 	}
 
 }

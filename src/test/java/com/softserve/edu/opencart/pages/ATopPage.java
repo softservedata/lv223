@@ -407,6 +407,11 @@ abstract class ATopPage {
 		return new ReturnsPage(driver);
 	}
 
+	public void gotoWish() {
+		clickWishListTop();
+		//return new ReturnsPage(driver);
+	}
+	
 	public ShoppingCartPage gotoShoppingCart() {
 		clickShoppingCart();
 		return new ShoppingCartPage(driver);

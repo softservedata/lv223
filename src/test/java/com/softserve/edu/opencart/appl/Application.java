@@ -167,4 +167,7 @@ public class Application {
 				TimeUnit.SECONDS);
 	}
 
+	public void logout() {
+		Application.get().getWebDriver().get("http://atqc-shop.epizy.com/index.php?route=account/logout");
+	}
 }
